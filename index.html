@@ -3,80 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTalks - Machine Learning Zoomcamp 2024</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Mi Portafolio</title>
     <style>
         body {
+            margin: 0;
             font-family: 'Montserrat', sans-serif;
         }
-        img {
-            max-width: 100%; /* Ajusta la imagen al ancho de la pantalla */
-            height: auto; /* Mantiene la proporción de la imagen */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            margin: 10px 0;
+        }
+        ul {
+            list-style-type: disc;
+            margin: 10px 0 10px 20px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <h1>DataTalks - Machine Learning Zoomcamp 2024</h1>
-    <img src="https://github.com/user-attachments/assets/f75c598c-4f14-4734-879a-fa432227ea6b" alt="Image">
-
-    <p>El curso se divide en dos partes:</p>
-
-    <p>La Parte 1 se centra en los principales algoritmos de aprendizaje automático y su aplicación práctica utilizando Python. Los temas tratados incluyen:</p>
-
-    <ul>
-        <li><strong>Regresión Lineal</strong>: ingeniería de características, manejo de variables categóricas y la importancia de la regularización.</li>
-        <li><strong>Clasificación</strong>: regresión logística y la importancia de las características.</li>
-        <li><strong>Árboles de Decisión y Aprendizaje por Conjuntos</strong>: técnica de boosting por gradiente y XGBoost, un popular algoritmo de aprendizaje por conjuntos.</li>
-        <li><strong>Redes Neuronales y Aprendizaje Profundo</strong>: Redes Neuronales Convolucionales (CNN) y técnicas de transferencia de aprendizaje para abordar problemas complejos con aprendizaje profundo.</li>
-        <li><strong>Python y Jupyter Notebooks</strong>: trabajando de manera eficiente con código.</li>
-        <li><strong>NumPy y Pandas</strong>: conceptos de álgebra lineal como matrices y manipulación y análisis de datos.</li>
-        <li><strong>Matplotlib y Seaborn</strong>: visualización de datos y representaciones gráficas.</li>
-        <li><strong>Scikit-Learn</strong>: aplicación de varios algoritmos de aprendizaje automático a conjuntos de datos del mundo real.</li>
-        <li><strong>TensorFlow y Keras</strong>: marcos populares para construir redes neuronales y modelos de aprendizaje profundo.</li>
-    </ul>
-
-    <img src="https://datatalks.club/images/posts/2023-08-17-machine-learning-zoomcamp/image1.png" alt="Part 1: Machine learning algorithms and their implementation">
-
-    <p>La Parte 2 está dedicada al despliegue de modelos, que implica poner modelos de aprendizaje automático en producción. En esta sección, adquirirás habilidades prácticas utilizando marcos y herramientas populares. Los temas tratados incluyen:</p>
-
-    <ul>
-        <li><strong>Flask, Pipenv y Docker</strong>: despliegue de modelos de aprendizaje automático, lo que te permitirá trasladar tus modelos de notebooks a servicios y aplicaciones.</li>
-        <li><strong>AWS Lambda y TensorFlow Lite</strong>: aprendizaje profundo sin servidor, comprendiendo cómo operar de manera eficiente dentro de este paradigma.</li>
-        <li><strong>Kubernetes y TensorFlow Serving</strong>: automatización del despliegue, escalado y gestión de aplicaciones en contenedores.</li>
-        <li><strong>KServe</strong> (opcional): un tema adicional para aquellos que buscan conocimientos avanzados, ofreciendo perspectivas sobre cómo mejorar aún más las capacidades de despliegue.</li>
-    </ul>
-
-    <img src="https://datatalks.club/images/posts/2023-08-17-machine-learning-zoomcamp/image3.png" alt="Part 2: Deployment">
-  
-    <h3>Índice</h3>
-    <ol>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/introduction/">Introduction to Machine Learning</a></li>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/regression/">Machine Learning for Regression</a></li>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/classification/">Machine Learning for Classification</a></li>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/evaluation-metrics/">Evaluation Metrics for Classification</a></li>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/model-deployment/">Deploying Machine Learning Models</a></li>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/decision-trees/">Decision Trees and Ensemble Learning</a></li>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/deep-learning/">Neural Networks and Deep Learning</a></li>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/serverless-deployment/">Serverless Deep Learning</a></li>
-        <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/project/">Kubernetes and TensorFlow Serving</a></li>
-    </ol>
-    
-    <h3>Homework</h3>
-    <ol>
-        <li><a href="https://github.com/gonzadzz00/DataTalks/blob/main/1-Homework-Introduction.ipynb">Introduction to Machine Learning</a></li>
-        <li><a href="https://github.com/gonzadzz00/DataTalks/blob/main/2-Homework-Machine-Learning-for-Regression.ipynb">Machine Learning for Regression</a></li>
-        <li><a href="https://github.com/gonzadzz00/DataTalks/blob/main/3-Homework-Machine-Learning-for-Classification.ipynb">Machine Learning for Classification</a></li>
-        <li><a href="#evaluation-metrics-for-classification">Evaluation Metrics for Classification</a></li>
-        <li><a href="#deploying-machine-learning-models">Deploying Machine Learning Models</a></li>
-        <li><a href="#decision-trees-and-ensemble-learning">Decision Trees and Ensemble Learning</a></li>
-        <li><a href="#neural-networks-and-deep-learning">Neural Networks and Deep Learning</a></li>
-        <li><a href="#serverless-deep-learning">Serverless Deep Learning</a></li>
-        <li><a href="#kubernetes-and-tensorflow-serving">Kubernetes and TensorFlow Serving</a></li>
-    </ol>
-
-    <div style="display: flex; align-items: center;">
-        <img src="https://user-images.githubusercontent.com/875246/192300611-a606521b-cb76-4090-be8e-7cc21752b996.png" alt="Descripción de la imagen" width="20" height="20" style="margin-right: 10px;">
-        <a href="https://github.com/DataTalksClub/machine-learning-zoomcamp" target="_blank">Link a repositorio del Curso</a>
+    <div class="navbar">
+        <a href="#mi-perfil">Mi Perfil</a>
+        <a href="#mis-proyectos">Mis Proyectos</a>
+        <a href="#mis-cursos">Mis Cursos</a>
     </div>
+
+    <div id="mi-perfil">
+        <h1>🎯 About Me:</h1>
+        <p>
+            ¡Hola! Soy Gonzalo, Analista de Datos y nacido en Argentina. Actualmente estoy cursando la Tecnicatura en Ciencia de Datos y perfeccionando mis habilidades en Machine Learning, Data Mining y Data Analytics. Tengo experiencia con herramientas como Power BI, Qlik Sense, Python y R.
+        </p>
+        <p>
+            Como consultor de BI y analista de datos, ayudo a las empresas a tomar decisiones basadas en datos y a optimizar sus operaciones mediante visualizaciones y análisis de datos. Estoy continuamente ampliando mis conocimientos y experiencia, con el objetivo de contribuir al campo de la ciencia de datos.
+        </p>
+        <p>
+            Te invito a explorar mi <a href="https://gonzadzz00.github.io/Proyectos/" target="_blank">repositorio</a> 📦 donde comparto mis proyectos. Si compartimos intereses o quieres hablar sobre datos, no dudes en conectarte conmigo. ¡Será un placer conversar!
+        </p>
+
+        <h1>💻 Tech Stack:</h1>
+        <div class="tech-stack">
+            <img src="https://img.shields.io/badge/r-%23276DC3.svg?style=for-the-badge&logo=r&logoColor=white" alt="R">
+            <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
+            <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+            <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+            <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" alt="Matplotlib">
+            <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
+            <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn">
+            <img src="https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI">
+            <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
+            <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+        </div>
+    </div>
+
+    <div id="mis-proyectos">
+        <h1>Proyectos de Análisis de Datos</h1>
+        <p>
+            Este repositorio contiene una colección de proyectos de análisis de datos desarrollados utilizando diversas herramientas y lenguajes, incluyendo <strong>SQL🛢️</strong>, <strong>Python🐍</strong>, <strong>R🧮</strong>, y <strong>Power BI📊</strong>. Cada proyecto está diseñado para demostrar técnicas avanzadas en distintas áreas del análisis de datos, proporcionando ejemplos prácticos y soluciones detalladas.
+        </p>
+
+        <h2>Áreas de Enfoque</h2>
+        <ul>
+            <li><strong>Data Mining</strong>: 
+                <ul>
+                    <li>Descubrimiento de patrones y relaciones en grandes conjuntos de datos.</li>
+                    <li>Uso de algoritmos de clustering, asociación y clasificación.</li>
+                    <li>Implementación en casos de uso como segmentación de clientes y análisis predictivo.</li>
+                </ul>
+            </li>
+            <li><strong>Machine Learning</strong>: 
+                <ul>
+                    <li>Desarrollo de modelos predictivos y de clasificación.</li>
+                    <li>Aplicación de algoritmos supervisados y no supervisados.</li>
+                    <li>Ejemplos prácticos en predicción de ventas, segmentación de clientes y más.</li>
+                </ul>
+            </li>
+            <li><strong>Visualización de Datos</strong>: 
+                <ul>
+                    <li>Creación de dashboards interactivos y reportes visuales.</li>
+                    <li>Uso de herramientas como Power BI y Qlik Sense para representar datos de manera comprensible.</li>
+                    <li>Enfoque en la comunicación efectiva de insights y resultados.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Objetivos de los Proyectos</h2>
+        <ul>
+            <li><strong>Explorar y aplicar</strong>: técnicas avanzadas en la extracción, procesamiento, análisis y presentación de datos.</li>
+            <li><strong>Proporcionar ejemplos prácticos</strong>: que pueden ser utilizados como referencia para resolver problemas reales en el campo del análisis de datos.</li>
+            <li><strong>Desarrollar habilidades</strong>: en el uso de diversas herramientas y lenguajes de programación enfocados en el análisis de datos.</li>
+            <li><strong>Promover la práctica continua</strong>: y el aprendizaje de nuevas técnicas y metodologías en el campo de la ciencia de datos.</li>
+        </ul>
+
+        <h1>Mis Proyectos</h1>
+        <h3>Proyecto 1: Web Scraping</h3>
+        <p><a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto1%3A%20Web%20Scraping/README.md" target="_blank">Manchester City Stats 2023/24⚽</a></p>
+
+        <h3>Proyecto 2: SQL Data Consulting</h3>
+        <p><a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto2%3A%20SQL%20Data%20Consulting/README.md" target="_blank">RetroRides Models Data Insights🚗</a></p>
+
+        <h3>Proyecto 3: Data Viz</h3>
+        <p><a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto3%3A%20Data%20Viz/README.md" target="_blank">Sharks Attacks Report🦈</a></p>
+
+        <h3>Proyecto 4: EDA</h3>
+        <p><a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto4%3A%20EDA/README.md" target="_blank">Exploratory Data Analysis Wine Quality🍷</a></p>
+    </div>
+
+    <div id="mis-cursos">
+        <h1>Mis Cursos</h1> <!-- Título para la sección Mis Cursos -->
+        
+        <h1>DataTalks - Machine Learning Zoomcamp 2024</h1>
+        <img src="https://github.com/user-attachments/assets/f75c598c-4f14-4734-879a-fa432227ea6b" alt="Image">
+
+        <p>El curso se divide en dos partes:</p>
+
+        <p>La Parte 1 se centra en los principales algoritmos de aprendizaje automático y su aplicación práctica utilizando Python. Los temas tratados incluyen:</p>
+
+        <ul>
+            <li><strong>Regresión Lineal</strong>: ingeniería de características, manejo de variables categóricas y la importancia de la regularización.</li>
+            <li><strong>Clasificación</strong>: regresión logística y la importancia de las características.</li>
+            <li><strong>Árboles de Decisión y Aprendizaje por Conjuntos</strong>: técnica de boosting por gradiente y XGBoost, un popular algoritmo de aprendizaje por conjuntos.</li>
+            <li><strong>Redes Neuronales y Aprendizaje Profundo</strong>: Redes Neuronales Convolucionales (CNN) y técnicas de transferencia de aprendizaje para abordar problemas complejos con aprendizaje profundo.</li>
+            <li><strong>Python y Jupyter Notebooks</strong>: trabajando de manera eficiente con código.</li>
+            <li><strong>NumPy y Pandas</strong>: conceptos de álgebra lineal como matrices y manipulación y análisis de datos.</li>
+            <li><strong>Matplotlib y Seaborn</strong>: visualización de datos y representaciones gráficas.</li>
+            <li><strong>Scikit-Learn</strong>: aplicación de varios algoritmos de aprendizaje automático a conjuntos de datos del mundo real.</li>
+            <li><strong>TensorFlow y Keras</strong>: marcos populares para construir redes neuronales y modelos de aprendizaje profundo.</li>
+        </ul>
+
+        <img src="https://datatalks.club/images/posts/2023-08-17-machine-learning-zoomcamp/image1.png" alt="Part 1: Machine learning algorithms and their implementation" width="750" height="400">
+
+        <p>La Parte 2 está dedicada al despliegue de modelos, que implica poner modelos de aprendizaje automático en producción. En esta sección, adquirirás habilidades prácticas utilizando marcos y herramientas populares. Los temas tratados incluyen:</p>
+
+        <ul>
+            <li><strong>Flask, Pipenv y Docker</strong>: despliegue de modelos de aprendizaje automático, lo que te permitirá trasladar tus modelos de notebooks a servicios y aplicaciones.</li>
+            <li><strong>AWS Lambda y TensorFlow Lite</strong>: aprendizaje profundo sin servidor, comprendiendo cómo operar de manera eficiente dentro de este paradigma.</li>
+            <li><strong>Kubernetes y TensorFlow Serving</strong>: automatización del despliegue, escalado y gestión de aplicaciones en contenedores.</li>
+            <li><strong>KServe</strong> (opcional): un tema adicional para aquellos que buscan conocimientos avanzados, ofreciendo perspectivas sobre cómo mejorar aún más las capacidades de despliegue.</li>
+        </ul>
+
+        <img src="https://datatalks.club/images/posts/2023-08-17-machine-learning-zoomcamp/image3.png" alt="Part 2: Deployment" width="750" height="400">
+      
+        <h3>Índice</h3>
+        <ol>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/introduction/">Introduction to Machine Learning</a></li>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/regression/">Machine Learning for Regression</a></li>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/classification/">Machine Learning for Classification</a></li>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/evaluation-metrics/">Evaluation Metrics for Classification</a></li>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/model-deployment/">Deploying Machine Learning Models</a></li>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/decision-trees/">Decision Trees and Ensemble Learning</a></li>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/deep-learning/">Neural Networks and Deep Learning</a></li>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/serverless-deployment/">Serverless Deep Learning</a></li>
+            <li><a href="https://knowmledge.com/category/courses/ml-zoomcamp/project/">Kubernetes and TensorFlow Serving</a></li>
+        </ol>
+        
+        <h3>Tareas</h3>
+        <ol>
+            <li><a href="https://github.com/gonzadzz00/DataTalks/blob/main/1-Homework-Introduction.ipynb">Introducción al Aprendizaje Automático</a></li>
+            <li><a href="https://github.com/gonzadzz00/DataTalks/blob/main/2-Homework-Machine-Learning-for-Regression.ipynb">Aprendizaje Automático para Regresión</a></li>
+            <li><a href="https://github.com/gonzadzz00/DataTalks/blob/main/3-Homework-Machine-Learning-for-Classification.ipynb">Aprendizaje Automático para Clasificación</a></li>
+            <li><a href="#evaluation-metrics-for-classification">Métricas de Evaluación para Clasificación</a></li>
+            <li><a href="#deploying-machine-learning-models">Despliegue de Modelos de Aprendizaje Automático</a></li>
+            <li><a href="#decision-trees-and-ensemble-learning">Árboles de Decisión y Aprendizaje por Conjuntos</a></li>
+            <li><a href="#neural-networks-and-deep-learning">Redes Neuronales y Aprendizaje Profundo</a></li>
+            <li><a href="#serverless-deep-learning">Aprendizaje Profundo sin Servidor</a></li>
+            <li><a href="#kubernetes-and-tensorflow-serving">Kubernetes y TensorFlow Serving</a></li>
+        </ol>
+
+        <div style="display: flex; align-items: center;">
+            <img src="https://user-images.githubusercontent.com/875246/192300611-a606521b-cb76-4090-be8e-7cc21752b996.png" alt="Descripción de la imagen" width="20" height="20" style="margin-right: 10px;">
+            <a href="https://github.com/DataTalksClub/machine-learning-zoomcamp" target="_blank">Link a repositorio del Curso</a>
+        </div>
+    <!-- Aquí puedes agregar más contenido o secciones -->
+
 </body>
 </html>
