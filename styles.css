@@ -1,15 +1,16 @@
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif; /* Cambia la fuente del body a Open Sans */
+    background-color: #f0f0f0; /* Color de fondo gris */
 }
 
 .navbar {
     background-color: #333;
     overflow: hidden;
-    position: fixed; /* Cambiar a fixed para que se mantenga en pantalla */
-    top: 0; /* Fija la barra en la parte superior */
-    width: 100%; /* Asegura que la barra ocupe todo el ancho de la pantalla */
-    z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar a {
@@ -27,14 +28,14 @@ body {
 }
 
 .banner {
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Elimina el espacio debajo de la imagen */
+    width: 100%;
+    height: auto;
+    display: block;
 }
-
 
 h1, h2, h3 {
     color: #333;
+    font-family: 'Montserrat', sans-serif; /* Aplica Montserrat a los títulos */
 }
 
 p {
@@ -53,6 +54,15 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+/* Caja de texto con fondo blanco */
+.text-box {
+    background-color: white; /* Fondo blanco */
+    padding: 20px; /* Espacio interior */
+    margin: 20px; /* Espacio exterior entre las cajas */
+    border-radius: 5px; /* Bordes redondeados (opcional) */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave (opcional) */
 }
 
 /* Agrega un margen superior al contenido para evitar que se esconda detrás de la barra de navegación */
