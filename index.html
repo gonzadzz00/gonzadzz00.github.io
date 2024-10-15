@@ -9,27 +9,37 @@
     
     <link rel="stylesheet" href="styles.css">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
 </head>
 <body>
+
+    <header>
+        <img src="icon/banner.jpg" alt="Banner" class="banner">
+    </header>
+
     <div class="navbar">
-        <a href="#mi-perfil">Mi Perfil</a>
-        <a href="#mis-proyectos">Proyectos</a>
-        <a href="#mis-cursos">Cursos y Certificaciones</a>
-        <a href="#mi-cv">Mi CV</a>
-        <a href="#contacto">Contacto</a>
+        <div class="logo">
+            <img src="icon/favicon.ico" alt="Logo" class="logo-image"> <!-- Cambia "logo.png" por la ruta de tu logo -->
+            <span class="logo-title">Portfolio | Gonzalo Diaz</span> <!-- Título al lado del logo -->
+        </div>
+        <div class="nav-links">
+            <a href="#mi-perfil">Mi Perfil</a>
+            <a href="#mis-proyectos">Proyectos</a>
+            <a href="#mis-cursos">Cursos y Certificaciones</a>
+            <a href="#mi-cv">Mi CV</a>
+            <a href="#contacto">Contacto</a>
+        </div>
     </div>
+    
 
-    <img src="banner.jpg" alt="Banner" class="banner">
-
-    <div id="mi-perfil" class="text-box">
+        <div id="mi-perfil" class="text-box">
 
 
-        <h1>🎯 About Me:</h1>
+        <h1>🎯 Sobre mi</h1>
         <p>
             ¡Hola! Soy Gonzalo, Analista de Datos y nacido en Argentina. Actualmente estoy cursando la Tecnicatura en Ciencia de Datos y perfeccionando mis habilidades en Machine Learning, Data Mining y Data Analytics. Tengo experiencia con herramientas como Power BI, Qlik Sense, Python y R.
         </p>
@@ -40,7 +50,7 @@
             Te invito a explorar mi <a href="https://github.com/gonzadzz00/Proyectos" target="_blank">repositorio</a> 📦 donde comparto mis proyectos. Si compartimos intereses o quieres hablar sobre datos, no dudes en conectarte conmigo. ¡Será un placer conversar!
         </p>
 
-        <h1>💻 Tech Stack:</h1>
+        <h1>💻 Tech Stack</h1>
         <div class="tech-stack">
             <img src="https://img.shields.io/badge/r-%23276DC3.svg?style=for-the-badge&logo=r&logoColor=white" alt="R">
             <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
@@ -100,11 +110,22 @@
             <a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto1%3A%20Web%20Scraping/README.md" target="_blank">Manchester City Stats 2023/24⚽</a>
         </p>
         
-        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-            <img src="icon/mancity1.jpg" alt="Descripción de la imagen 1" width="375" style="margin-right: 10px;">
-            <img src="icon/mancity2.jpg" alt="Descripción de la imagen 2" width="375" style="margin-right: 10px;">
-            <img src="icon/mancity3.jpg" alt="Descripción de la imagen 3" width="375">
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-slide">
+                    <img src="icon/mancity1.jpg" alt="Imagen 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="icon/mancity2.jpg" alt="Imagen 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="icon/mancity3.jpg" alt="Imagen 3">
+                </div>
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
         </div>
+        
                 
 
         <h3>Proyecto 2: SQL Data Consulting</h3>
@@ -130,7 +151,7 @@
         <h1>Mis Cursos</h1> <!-- Título para la sección Mis Cursos -->
         
         <div style="display: flex; align-items: center;">
-            <img src="google-data.png" alt="Certificación de Google en Análisis de Datos" width="150" style="margin-right: 10px;">
+            <img src="icon/google-data.png" alt="Certificación de Google en Análisis de Datos" width="150" style="margin-right: 10px;">
             <h1>Certificación Profesional en Análisis de Datos de Google</h1>
         </div>
         
@@ -168,7 +189,7 @@
     <p><a href="https://coursera.org/share/cc48c32dd31845491480028e57ebffcc" target="_blank">Ver Certificado</a></p>
     
     <div style="display: flex; align-items: center;">
-        <img src="power-bi-data.png" alt="Certificación de Microsoft Power BI" width="120" style="margin-right: 10px;">
+        <img src="icon/power-bi-data.png" alt="Certificación de Microsoft Power BI" width="120" style="margin-right: 10px;">
         <h1>Certificación Profesional en Análisis de Datos con Microsoft Power BI</h1>
     </div>
     

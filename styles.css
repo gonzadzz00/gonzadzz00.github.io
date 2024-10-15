@@ -4,6 +4,10 @@ body {
     background-color: #f0f0f0; /* Color de fondo gris */
 }
 
+html {
+    scroll-padding-top: 30px; /* Ajusta el valor según la altura de tu barra de navegación */
+}
+
 .navbar {
     background-color: #333;
     overflow: hidden;
@@ -11,15 +15,63 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
+    display: flex; /* Usamos flexbox para alinear los elementos */
+    justify-content: space-between; /* Espacia los elementos */
+    align-items: center; /* Alinea verticalmente */
+    padding: 0 15px; /* Espaciado lateral */
 }
 
-.navbar a {
-    float: left;
+.logo {
+    display: flex; /* Permite alinear el logo y el título */
+    align-items: center; /* Alinea verticalmente el logo y el título */
+}
+
+.logo-image {
+    height: 50px; /* Ajusta la altura del logo según tus necesidades */
+    width: 50px; /* Ancho igual a la altura para mantener un círculo */
+    border-radius: 50%; /* Hace que el fondo sea circular */
+    background-color: white; /* Fondo blanco para el círculo */
+    padding: 5px; /* Espacio entre el logo y el borde del fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px; /* Espacio entre el logo y el título */
+    border: 8px solid #333; /* Borde negro alrededor del fondo circular */
+}
+
+
+.logo-title {
+    color: white; /* Color del título */
+    font-size: 20px; /* Tamaño del texto del título, ajusta según sea necesario */
+    font-weight: bold; /* Negrita, ajusta según sea necesario */
+}
+
+.nav-links {
+    display: flex; /* Permite que los enlaces estén en una fila */
+}
+
+/* Estilos para los enlaces de la barra de navegación */
+.nav-links a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    font-family: 'Montserrat', sans-serif; /* Cambia la fuente */
+    font-size: 18px; /* Cambia el tamaño de la fuente */
+}
+
+.nav-links a:hover {
+    background-color: #ddd;
+    color: black;
+    text-decoration: none; /* Asegura que no aparezca el subrayado */
+    transform: scale(1.1); /* Agranda el botón pero sin modificar su espacio */
+}
+
+
+.nav-links a:last-child {
+    padding-right: 30px; /* Espacio adicional al final */
 }
 
 .navbar a:hover {
@@ -29,7 +81,8 @@ body {
 
 .banner {
     width: 100%;
-    height: auto;
+    height: 75vh; /* Altura de la ventana del navegador */
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
     display: block;
 }
 
@@ -68,4 +121,54 @@ a:hover {
 /* Agrega un margen superior al contenido para evitar que se esconda detrás de la barra de navegación */
 .content {
     margin-top: 50px; /* Ajusta este valor según la altura de tu barra de navegación */
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Ajustar al número de imágenes */
+}
+
+.carousel-slide {
+    min-width: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    user-select: none;
+    transform: translateY(-50%);
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
