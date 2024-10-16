@@ -123,52 +123,58 @@ a:hover {
     margin-top: 50px; /* Ajusta este valor según la altura de tu barra de navegación */
 }
 
-.carousel-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
-    overflow: hidden;
-}
-
 .carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 300%; /* Ajustar al número de imágenes */
-}
-
-.carousel-slide {
-    min-width: 100%;
-}
-
-.carousel-slide img {
+    position: relative;
     width: 100%;
-    display: block;
+    max-width: 800px; /* Ajusta según tu diseño */
+    overflow: hidden; /* Oculta imágenes que no están en vista */
+    margin: auto; /* Centra el carrusel */
 }
 
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
+.carousel-images {
+    display: flex; /* Alinea las imágenes en una fila */
+    transition: transform 0.5s ease; /* Añade una transición suave */
+}
+
+.carousel img {
+    width: 100%; /* Cada imagen ocupa el 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin deformarla */
+}
+
+.carousel-control {
+    position: absolute; /* Coloca los botones sobre el carrusel */
     top: 50%;
-    width: auto;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.3s;
-    border: none;
-    background-color: rgba(0, 0, 0, 0.5);
-    user-select: none;
-    transform: translateY(-50%);
+    transform: translateY(-50%); /* Centra verticalmente */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    border: none; /* Sin borde */
+    padding: 10px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    z-index: 10; /* Asegura que los botones estén por encima del contenido */
 }
 
-.prev {
-    left: 0;
+.carousel-control.prev {
+    left: 10px; /* Espacio a la izquierda */
 }
 
-.next {
-    right: 0;
+.carousel-control.next {
+    right: 10px; /* Espacio a la derecha */
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+/* Opcional: Efecto hover para botones */
+.carousel-control:hover {
+    background-color: rgba(255, 255, 255, 1); /* Fondo blanco completo al pasar el mouse */
 }
+
+@media (min-width: 768px) {
+    .carousel img {
+        width: 100%; /* Asegúrate de que las imágenes ocupen el 100% en pantallas más grandes */
+    }
+}
+
+@media (max-width: 767px) {
+    .carousel img {
+        width: 100%; /* Igualmente, aseguramos que en pantallas pequeñas también se ajuste */
+    }
+}
+

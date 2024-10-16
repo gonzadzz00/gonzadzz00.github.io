@@ -110,24 +110,16 @@
             <a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto1%3A%20Web%20Scraping/README.md" target="_blank">Manchester City Stats 2023/24⚽</a>
         </p>
         
-        <div class="carousel-container">
-            <div class="carousel">
-                <div class="carousel-slide">
-                    <img src="icon/mancity1.jpg" alt="Imagen 1">
-                </div>
-                <div class="carousel-slide">
-                    <img src="icon/mancity2.jpg" alt="Imagen 2">
-                </div>
-                <div class="carousel-slide">
-                    <img src="icon/mancity3.jpg" alt="Imagen 3">
-                </div>
+        <div class="carousel" id="carousel1">
+            <button class="carousel-control prev" onclick="prevImage1()">&#10094;</button>
+            <div class="carousel-images">
+                <img src="icon/mancity1.jpg" alt="Descripción de la imagen 1">
+                <img src="icon/mancity2.jpg" alt="Descripción de la imagen 2">
+                <img src="icon/mancity3.jpg" alt="Descripción de la imagen 3">
             </div>
-            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="next" onclick="moveSlide(1)">&#10095;</button>
-        </div>
-        
-                
-
+            <button class="carousel-control next" onclick="nextImage1()">&#10095;</button>
+        </div>      
+                     
         <h3>Proyecto 2: SQL Data Consulting</h3>
         <p><a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto2%3A%20SQL%20Data%20Consulting/README.md" target="_blank">RetroRides Models Data Insights🚗</a></p>
 
@@ -139,10 +131,14 @@
             <a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto4%3A%20EDA/README.md" target="_blank">Exploratory Data Analysis Wine Quality🍷</a>
         </p>
 
-        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-            <img src="icon/eda-1.jpg" alt="Descripción de la imagen 1" width="350" style="margin-right: 10px;">
-            <img src="icon/eda-2.png" alt="Descripción de la imagen 2" width="350" style="margin-right: 10px;">
-            <img src="icon/eda-3.png" alt="Descripción de la imagen 3" width="350">
+        <div class="carousel" id="carousel2">
+            <button class="carousel-control prev" onclick="prevImage2()">&#10094;</button>
+            <div class="carousel-images">
+                <img src="icon/eda-1.jpg" alt="Descripción de la imagen 1">
+                <img src="icon/eda-2.png" alt="Descripción de la imagen 2">
+                <img src="icon/eda-3.png" alt="Descripción de la imagen 3">
+            </div>
+            <button class="carousel-control next" onclick="nextImage2()">&#10095;</button>
         </div>
 
     </div>
@@ -294,6 +290,7 @@
             <a href="https://github.com/DataTalksClub/machine-learning-zoomcamp" target="_blank">Link a repositorio del Curso</a>
         </div>
     <!-- Aquí puedes agregar más contenido o secciones -->
+    <script src="carousel.js"></script>
 
 </body>
 </html>
