@@ -19,6 +19,11 @@ html {
     justify-content: space-between; /* Espacia los elementos */
     align-items: center; /* Alinea verticalmente */
     padding: 0 15px; /* Espaciado lateral */
+    transition: top 0.8s;  /* Añade una transición suave para que el cambio sea más fluido */
+}
+
+.navbar:hover {
+    top: 0;  /* La barra aparecerá completamente al hacer hover */
 }
 
 .logo {
@@ -81,9 +86,112 @@ html {
 
 .banner {
     width: 100%;
-    height: 75vh; /* Altura de la ventana del navegador */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-height: 500px; /* Altura máxima según la imagen */
     object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
     display: block;
+    margin-top: 50px; /* Desplaza el banner hacia abajo para evitar la barra de navegación */
+}
+
+.responsive-img {
+    max-width: 35%; /* Cambia este valor según tu diseño (75% del ancho del contenedor) */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina espacios extra debajo de la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+.button {
+    display: inline-block; /* Permite que el botón tenga dimensiones */
+    padding: 12px 20px; /* Espaciado interior */
+    background-color: #495de4; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Elimina el subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+.button:hover {
+    background-color: #495de4; /* Color de fondo al pasar el mouse */
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el mouse */
+}
+
+.button:active {
+    transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+}
+
+.tech-stack img {
+    height: auto; /* Mantiene la proporción del icono */
+    margin-right: 10px; /* Espacio entre los iconos */
+    margin-bottom: 10px; /* Espacio debajo de cada fila (si hay) */
+}
+
+
+footer {
+    margin-top: 40px; /* Espacio encima del footer */
+    padding: 20px; /* Espacio interior del footer */
+    background-color: #f9f9f99a; /* Color de fondo del footer */
+    border-top: 5px solid #190aa5; /* Línea superior gruesa */
+}
+
+.contact {
+    display: flex; /* Muestra los elementos en fila */
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Espacio entre los elementos */
+    margin: 20px 0; /* Espaciado vertical */
+}
+
+.contact-info {
+    flex: 1; /* Ocupa el espacio disponible */
+}
+
+.contact-info h2 {
+    margin-bottom: 20px; /* Espacio debajo del título */
+    font-size: 24px; /* Tamaño de la fuente */
+}
+
+.contact-info ul {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding: 0; /* Elimina el padding */
+}
+
+.contact-info li {
+    display: inline; /* Muestra los elementos en línea */
+    margin-right: 15px; /* Espacio entre los botones */
+}
+
+.social-icon {
+    width: 40px; /* Ajusta el tamaño del icono */
+    height: auto; /* Mantiene la proporción del icono */
+    transition: transform 0.3s; /* Efecto de transición para el hover */
+}
+
+.social-icon:hover {
+    transform: scale(1.1); /* Aumenta el tamaño al pasar el mouse */
+}
+
+
+.contact-info a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: #495de4; /* Color del enlace */
+    transition: color 0.3s; /* Transición suave */
+}
+
+.contact-info a:hover {
+    color: #495de4; /* Color al pasar el mouse */
+}
+
+.contact-photo {
+    flex: 0 0 150px; /* Anchura fija para la foto */
+}
+
+.contact-photo img {
+    border: 5px dotted #495de4; /* Borde azul de 5px */
+    border-radius: 10px; /* Opcional: redondea las esquinas del borde */
+    width: 100%; /* Asegura que la imagen se ajuste al contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 h1, h2, h3 {
@@ -174,7 +282,52 @@ a:hover {
 
 @media (max-width: 767px) {
     .carousel img {
-        width: 100%; /* Igualmente, aseguramos que en pantallas pequeñas también se ajuste */
+        width: 100%; 
+    }
+
+    .responsive-img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .banner {
+        height: auto; /* Ajusta la altura para que sea automática según el contenido */
+        min-height: 250px; /* Establece una altura mínima para el banner */
+        margin-top: 50px; /* Asegura que el margen superior se mantenga en móviles */
+    }
+
+    /* Ajustar el tamaño de la letra en dispositivos móviles */
+    body {
+        font-size: 14px; 
+    }
+
+    .nav-links a {
+        font-size: 14px; /* Tamaño de fuente más pequeño para botones en móviles */
+        padding: 8px 10px; /* Ajusta el espaciado de los botones si es necesario */
+    }
+
+    .logo-title {
+        font-size: 16px; 
+    }
+
+    /* Ocultar la barra de navegación en dispositivos móviles */
+    .navbar {
+        padding: 5px 10px; /* Menos espacio alrededor */
+        transform: scale(0.9); /* Escala la barra de navegación */
+        transform-origin: top; /* Ajusta el origen de la transformación */
+    }
+
+    /* Mostrar el botón de menú en móviles */
+    .navbar-toggle {
+        display: block;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
     }
 }
-
