@@ -20,6 +20,7 @@ html {
     align-items: center; /* Alinea verticalmente */
     padding: 0 15px; /* Espaciado lateral */
     transition: top 0.8s;  /* Añade una transición suave para que el cambio sea más fluido */
+    
 }
 
 .navbar:hover {
@@ -92,6 +93,7 @@ html {
     object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
     display: block;
     margin-top: 70px; /* Asegura que el banner esté por debajo de la barra de navegación */
+    z-index: 1; /* Asegúrate de que sea menor que el de la barra de navegación */
 }
 
 .responsive-img {
