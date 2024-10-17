@@ -49,14 +49,6 @@ function prevImage2() {
     showImage2(currentImageIndex2 - 1);
 }
 
-function toggleNavbar() {
-    var navbar = document.querySelector('.navbar');
-    if (navbar.style.display === "none" || navbar.style.display === "") {
-        navbar.style.display = "flex"; 
-    } else {
-        navbar.style.display = "none"; 
-    }
-}
 
 let lastScrollPosition = 0;
 let navbar = document.querySelector('.navbar');
@@ -75,18 +67,21 @@ window.addEventListener('scroll', function () {
         navbar.style.top = "0";  // La barra se muestra
     } 
     // Ocultar la barra si el usuario se desplaza hacia abajo
-    else {
-        navbar.style.top = "-60px";  // La barra desaparece
+    else if (currentScrollPosition > lastScrollPosition) {
+        navbar.style.top = "-80px";  // La barra desaparece
     }
 
+    // Guardar la posición de desplazamiento
     lastScrollPosition = currentScrollPosition;
 
-    // Ocultar la barra después de 2 segundos de inactividad, solo si no estamos en la parte superior
+    // Ocultar la barra después de 3 segundos de inactividad, solo si no estamos en la parte superior
     if (currentScrollPosition > 0) {
         clearTimeout(isScrolling);
         isScrolling = setTimeout(function () {
-            navbar.style.top = "-60px";  // La barra se oculta si no hay scroll
-        }, 2000);  // Tiempo de espera para ocultar la barra
+            if (window.pageYOffset > 0) {
+                navbar.style.top = "-80px";  // La barra se oculta si no hay scroll y no estamos en la parte superior
+            }
+        }, 3000);  // Tiempo de espera para ocultar la barra
     }
 });
 
@@ -98,7 +93,10 @@ navbar.addEventListener('mouseenter', function () {
 // Ocultar la barra cuando el usuario retire el mouse y no esté haciendo scroll
 navbar.addEventListener('mouseleave', function () {
     if (window.pageYOffset > 0) {
-        navbar.style.top = "-60px";  // La barra se oculta cuando el mouse se retira y no estamos en el tope
+        navbar.style.top = "-80px";  // La barra se oculta cuando el mouse se retira y no estamos en el tope
     }
 });
+
+
+
 

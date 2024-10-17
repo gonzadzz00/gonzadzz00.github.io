@@ -87,10 +87,11 @@ html {
 .banner {
     width: 100%;
     height: auto; /* Mantiene la proporción de la imagen */
-    max-height: 500px; /* Altura máxima según la imagen */
+    max-height: 500px; /* Altura máxima en pantallas más grandes */
+    min-height: 250px; /* Establece una altura mínima para garantizar que la imagen sea visible */
     object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
     display: block;
-    margin-top: 50px; /* Desplaza el banner hacia abajo para evitar la barra de navegación */
+    margin-top: 70px; /* Asegura que el banner esté por debajo de la barra de navegación */
 }
 
 .responsive-img {
@@ -292,8 +293,8 @@ a:hover {
 
     .banner {
         height: auto; /* Ajusta la altura para que sea automática según el contenido */
-        min-height: 250px; /* Establece una altura mínima para el banner */
-        margin-top: 50px; /* Asegura que el margen superior se mantenga en móviles */
+        min-height: 300px; /* Establece una altura mínima para el banner */
+        margin-top: 0; /* Elimina el margen superior en móviles para maximizar el espacio */
     }
 
     /* Ajustar el tamaño de la letra en dispositivos móviles */
@@ -301,33 +302,30 @@ a:hover {
         font-size: 14px; 
     }
 
+    .navbar {
+        display: flex; /* Asegura que se muestre en móviles */
+        flex-direction: column; /* Coloca los elementos en una columna */
+        align-items: center; /* Centra los elementos horizontalmente */
+        padding: 10px; /* Ajusta el espaciado alrededor de la barra */
+    }
+
+    .logo {
+        margin-bottom: 10px; /* Espacio entre el logo y los enlaces */
+    }
+
+    .nav-links {
+        display: flex; /* Muestra los enlaces en una fila */
+        justify-content: center; /* Alinea los enlaces en el centro */
+        flex-wrap: wrap; /* Permite que los enlaces se ajusten en múltiples líneas si es necesario */
+    }
+
     .nav-links a {
-        font-size: 14px; /* Tamaño de fuente más pequeño para botones en móviles */
-        padding: 8px 10px; /* Ajusta el espaciado de los botones si es necesario */
+        font-size: 0.75rem; /* Aproximadamente 12px */
+        padding: 8px 5px; /* Reduce el espaciado de los botones */
+        margin: 0 5px; /* Espaciado horizontal entre los botones */
     }
 
     .logo-title {
-        font-size: 16px; 
-    }
-
-    /* Ocultar la barra de navegación en dispositivos móviles */
-    .navbar {
-        padding: 5px 10px; /* Menos espacio alrededor */
-        transform: scale(0.9); /* Escala la barra de navegación */
-        transform-origin: top; /* Ajusta el origen de la transformación */
-    }
-
-    /* Mostrar el botón de menú en móviles */
-    .navbar-toggle {
-        display: block;
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        font-size: 24px;
-        background-color: #333;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
+        display: none; /* Oculta el título del logo en móviles */
     }
 }
