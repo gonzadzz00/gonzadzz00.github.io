@@ -8,6 +8,7 @@ html {
     scroll-padding-top: 30px; /* Ajusta el valor según la altura de tu barra de navegación */
 }
 
+/*==========================HEADER=============================*/
 .header {
     background-image: url('icon/banner.png'); /* Cambia esta ruta a la de tu imagen */
     background-size: cover; /* La imagen cubre todo el área */
@@ -20,7 +21,6 @@ html {
 }
 
 /*=====================BARRA DE NAVEGACION====================*/
-
 .navbar {
     background-color: #0d2033;
     overflow: hidden;
@@ -57,7 +57,6 @@ html {
     margin-right: 10px; /* Espacio entre el logo y el título */
     border: 5px solid #0d2033; /* Borde negro alrededor del fondo circular */
 }
-
 
 .logo-title {
     color: white; /* Color del título */
@@ -98,15 +97,7 @@ html {
     color: black;
 }
 
-
-.responsive-img {
-    max-width: 35%; /* Cambia este valor según tu diseño (75% del ancho del contenedor) */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Elimina espacios extra debajo de la imagen */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-}
-
-/*=================BOTONES================*/
+/*==========================BOTONES=============================*/
 .button-container {
     text-align: center; /* Justifica solo este párrafo */
 }
@@ -164,6 +155,7 @@ html {
     margin-bottom: 10px; /* Espacio debajo de cada fila (si hay) */
 }
 
+/*==========================SUBTITULOS=============================*/
 .alinear-imagen-subtitulo {
     display: flex;
     align-items: center; /* Alinea el contenido al centro verticalmente */
@@ -262,13 +254,15 @@ a:hover {
     text-decoration: underline;
 }
 
+/*==========================CAJAS DE TEXTO=============================*/
 /* Caja de texto con fondo blanco */
 .text-box {
     background-color: white; /* Fondo blanco */
-    padding: 20px; /* Espacio interior */
-    margin: 20px; /* Espacio exterior entre las cajas */
-    border-radius: 5px; /* Bordes redondeados (opcional) */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave (opcional) */
+    padding: 40px; /* Espacio interior */
+    margin: 20px auto; /* Centra la caja horizontalmente */
+    max-width: 1000px; /* Ancho máximo para monitores grandes */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más fuerte */
 }
 
 /* Agrega un margen superior al contenido para evitar que se esconda detrás de la barra de navegación */
@@ -276,6 +270,16 @@ a:hover {
     margin-top: 50px; /* Ajusta este valor según la altura de tu barra de navegación */
 }
 
+
+/*==========================CARRUSEL=============================*/
+.responsive-img {
+    max-width: 65%; /* Cambia este valor según tu diseño (75% del ancho del contenedor) */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina espacios extra debajo de la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+/*==========================CARRUSEL=============================*/
 .carousel {
     position: relative;
     width: 100%;
@@ -338,12 +342,12 @@ a:hover {
     .header {
         background-image: url('icon/banner-mobile.png'); /* Cambia a banner2.png en móvil */
         background-size: cover; /* La imagen cubre todo el área */
-    background-position: center; /* Centra la imagen */
-    height: 300px; /* Altura del header, ajusta según tus necesidades */
-    width: 100%; /* Asegura que el header ocupe el ancho completo */
-    margin-top: 80px; /* Aleja el header 50 píxeles de la parte superior */
-    overflow: hidden; /* Evita el desbordamiento de la imagen */
-    border-bottom: 5px solid #0d2033; /* Línea gruesa de color #0d2033 debajo del header */
+        background-position: center; /* Centra la imagen */
+        height: 300px; /* Altura del header, ajusta según tus necesidades */
+        width: 100%; /* Asegura que el header ocupe el ancho completo */
+        margin-top: 80px; /* Aleja el header 50 píxeles de la parte superior */
+        overflow: hidden; /* Evita el desbordamiento de la imagen */
+        border-bottom: 5px solid #0d2033; /* Línea gruesa de color #0d2033 debajo del header */
     }
 
     
