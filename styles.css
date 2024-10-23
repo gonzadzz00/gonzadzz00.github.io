@@ -106,6 +106,7 @@ html {
     margin: 0 auto; /* Centra la imagen horizontalmente */
 }
 
+/*=================BOTONES================*/
 .button-container {
     text-align: center; /* Justifica solo este párrafo */
 }
@@ -131,6 +132,30 @@ html {
 
 .button:active {
     transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
+}
+
+.github-button {
+    display: inline-flex; /* Alinea el ícono y el texto en línea */
+    align-items: center; /* Alinea verticalmente */
+    background-color: #000; /* Fondo negro */
+    color: white; /* Texto en blanco */
+    padding: 10px 15px; /* Espaciado interno */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 7px; /* Bordes redondeados */
+    font-size: 15px; /* Tamaño del texto */
+    transition: background-color 0.3s; /* Transición suave en el fondo */
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+}
+
+.github-button:hover {
+    background-color: #121722; /* Color de fondo al hacer hover */
+    transform: scale(1.05);
+}
+
+.github-button i {
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+    font-size: 20px; /* Ajuste del tamaño del icono */
 }
 
 .tech-stack img {
