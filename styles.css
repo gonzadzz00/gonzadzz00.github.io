@@ -8,8 +8,21 @@ html {
     scroll-padding-top: 30px; /* Ajusta el valor según la altura de tu barra de navegación */
 }
 
+.header {
+    background-image: url('icon/banner.png'); /* Cambia esta ruta a la de tu imagen */
+    background-size: cover; /* La imagen cubre todo el área */
+    background-position: center; /* Centra la imagen */
+    height: 300px; /* Altura del header, ajusta según tus necesidades */
+    width: 100%; /* Asegura que el header ocupe el ancho completo */
+    margin-top: 50px; /* Aleja el header 50 píxeles de la parte superior */
+    overflow: hidden; /* Evita el desbordamiento de la imagen */
+    border-bottom: 5px solid #0d2033; /* Línea gruesa de color #0d2033 debajo del header */
+}
+
+/*=====================BARRA DE NAVEGACION====================*/
+
 .navbar {
-    background-color: #333;
+    background-color: #0d2033;
     overflow: hidden;
     position: fixed;
     top: 0;
@@ -42,13 +55,13 @@ html {
     justify-content: center;
     align-items: center;
     margin-right: 10px; /* Espacio entre el logo y el título */
-    border: 8px solid #333; /* Borde negro alrededor del fondo circular */
+    border: 5px solid #0d2033; /* Borde negro alrededor del fondo circular */
 }
 
 
 .logo-title {
     color: white; /* Color del título */
-    font-size: 20px; /* Tamaño del texto del título, ajusta según sea necesario */
+    font-size: 18px; /* Tamaño del texto del título, ajusta según sea necesario */
     font-weight: bold; /* Negrita, ajusta según sea necesario */
 }
 
@@ -65,7 +78,7 @@ html {
     text-decoration: none;
     transition: transform 0.3s, background-color 0.3s, color 0.3s;
     font-family: 'Montserrat', sans-serif; /* Cambia la fuente */
-    font-size: 18px; /* Cambia el tamaño de la fuente */
+    font-size: 15px; /* Cambia el tamaño de la fuente */
 }
 
 .nav-links a:hover {
@@ -85,16 +98,6 @@ html {
     color: black;
 }
 
-.banner {
-    width: 100%;
-    height: auto; /* Mantiene la proporción de la imagen */
-    max-height: 500px; /* Altura máxima en pantallas más grandes */
-    min-height: 250px; /* Establece una altura mínima para garantizar que la imagen sea visible */
-    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
-    display: block;
-    margin-top: 70px; /* Asegura que el banner esté por debajo de la barra de navegación */
-    z-index: 1; /* Asegúrate de que sea menor que el de la barra de navegación */
-}
 
 .responsive-img {
     max-width: 35%; /* Cambia este valor según tu diseño (75% del ancho del contenedor) */
@@ -103,9 +106,15 @@ html {
     margin: 0 auto; /* Centra la imagen horizontalmente */
 }
 
+.button-container {
+    text-align: center; /* Justifica solo este párrafo */
+}
+
+/* Asegúrate de que el botón también tenga el estilo correcto */
 .button {
     display: inline-block; /* Permite que el botón tenga dimensiones */
     padding: 12px 20px; /* Espaciado interior */
+    margin: 10px auto; /* Centra el botón y añade margen vertical */
     background-color: #495de4; /* Color de fondo */
     color: white; /* Color del texto */
     text-align: center; /* Alineación del texto */
@@ -113,6 +122,7 @@ html {
     border-radius: 5px; /* Bordes redondeados */
     transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
 }
+
 
 .button:hover {
     background-color: #495de4; /* Color de fondo al pasar el mouse */
@@ -139,7 +149,71 @@ html {
     height: auto; /* Permite que la imagen mantenga su proporción */
     width: 50px; /* Ajusta el tamaño de la imagen a tu preferencia */
   }
+
+  /* ========================FOOTER===================================*/
+
+  .pie-pagina {
+    
+    width: 100%;
+    background-color: #0a141d;
+  }
   
+.pie-pagina .grupo-1{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:50px;
+    padding: 45px 0px;
+}
+.pie-pagina .grupo-1 .box figure{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pie-pagina .grupo-1 .box figure img{
+    width: 250px;
+}
+.pie-pagina .grupo-1 .box h2{
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+.pie-pagina .grupo-1 .box p{
+    color: #efefef;
+    margin-bottom: 10px;
+}
+.pie-pagina .grupo-1 .red-social a{
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    margin-right: 10px;
+    background-color: #0d2033;
+    text-align: center;
+    transition: all 300ms ease;
+}
+.pie-pagina .grupo-1 .red-social a:hover{
+    color: #495de4;
+}
+.pie-pagina .grupo-2{
+    background-color: #0a1a2a;
+    padding: 15px 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.pie-pagina .grupo-2 small{
+    font-size: 15px;
+}
+
+
+
 h1, h2, h3 {
     color: #333;
     font-family: 'Montserrat', sans-serif; /* Aplica Montserrat a los títulos */
@@ -236,11 +310,18 @@ a:hover {
         height: auto;
     }
 
-    .banner {
-        height: auto; /* Ajusta la altura para que sea automática según el contenido */
-        min-height: 300px; /* Establece una altura mínima para el banner */
-        margin-top: 0; /* Elimina el margen superior en móviles para maximizar el espacio */
+    .header {
+        background-image: url('icon/banner-mobile.png'); /* Cambia a banner2.png en móvil */
+        background-size: cover; /* La imagen cubre todo el área */
+    background-position: center; /* Centra la imagen */
+    height: 300px; /* Altura del header, ajusta según tus necesidades */
+    width: 100%; /* Asegura que el header ocupe el ancho completo */
+    margin-top: 80px; /* Aleja el header 50 píxeles de la parte superior */
+    overflow: hidden; /* Evita el desbordamiento de la imagen */
+    border-bottom: 5px solid #0d2033; /* Línea gruesa de color #0d2033 debajo del header */
     }
+
+    
 
     /* Ajustar el tamaño de la letra en dispositivos móviles */
     body {
@@ -273,4 +354,47 @@ a:hover {
     .logo-title {
         display: none; /* Oculta el título del logo en móviles */
     }
+    .pie-pagina .grupo-1 {
+        width: 90%;
+        display: grid; /* Asegúrate de que esto esté establecido para usar grid */
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
+        margin: 0 auto; /* Centra el grid en su contenedor */
+        text-align: center; /* Centra el texto dentro de cada caja */
+    }
+    
+    .pie-pagina .grupo-1 .box {
+        display: flex;
+        flex-direction: column; /* Permite apilar el contenido verticalmente */
+        align-items: center; /* Centra horizontalmente el contenido dentro de cada caja */
+    }
+    
+    .pie-pagina .grupo-1 .red-social {
+        display: flex;
+        justify-content: center; /* Centra los íconos de redes sociales */
+        margin-top: 10px; /* Espacio adicional si es necesario */
+    }
+
+    
+    .button {
+        display: inline-block; /* Permite que el botón tenga dimensiones */
+        padding: 12px 20px; /* Espaciado interior */
+        margin: 10px auto; /* Centra el botón y añade margen vertical */
+        background-color: #495de4; /* Color de fondo */
+        color: white; /* Color del texto */
+        text-align: center; /* Alineación del texto */
+        text-decoration: none; /* Elimina el subrayado */
+        border-radius: 5px; /* Bordes redondeados */
+        transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    }
+
+    
+    
+
+    
 }
+
+
+
+
