@@ -1,5 +1,6 @@
 let currentImageIndex1 = 0; // Índice actual del carrusel 1
 let currentImageIndex2 = 0; // Índice actual del carrusel 2
+let currentImageIndex3 = 0; // Índice actual del carrusel 2
 
 function showImage1(index) {
     const images = document.querySelectorAll('#carousel1 .carousel-images img');
@@ -48,6 +49,31 @@ function nextImage2() {
 function prevImage2() {
     showImage2(currentImageIndex2 - 1);
 }
+
+function showImage3(index) {
+    const images = document.querySelectorAll('#carousel3 .carousel-images img');
+    const totalImages = images.length;
+
+    if (index >= totalImages) {
+        currentImageIndex3 = 0; // Vuelve a la primera imagen
+    } else if (index < 0) {
+        currentImageIndex3 = totalImages - 1; // Va a la última imagen
+    } else {
+        currentImageIndex3 = index;
+    }
+
+    const offset = -currentImageIndex3 * 100; // Mueve el contenedor de imágenes
+    document.querySelector('#carousel3 .carousel-images').style.transform = `translateX(${offset}%)`;
+}
+
+function nextImage3() {
+    showImage3(currentImageIndex3 + 1);
+}
+
+function prevImage3() {
+    showImage3(currentImageIndex3 - 1);
+}
+
 
 
 let lastScrollPosition = 0;
