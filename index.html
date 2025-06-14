@@ -15,22 +15,38 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <script src="https://kit.fontawesome.com/ff198f3020.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
 
-    <header class="header"></header>
+    <header class="header">
+        <img src="icon/Portada Gon.png" alt="Portada" class="header-image">
+    </header>
 
 
-    <div class="navbar">
-        <div class="logo">
-            <img src="icon/favicon.ico" alt="Logo" class="logo-image"> <!-- Cambia "logo.png" por la ruta de tu logo -->
-            <span class="logo-title">Portfolio | Gonzalo Diaz</span> <!-- Título al lado del logo -->
+    <div class="navbar" data-aos="fade-down">
+        <div class="logo" data-aos="fade-right">
+            <a href="https://www.linkedin.com/in/gonzalo-diaz-0ab0081b5/" target="_blank" class="logo-link">
+                <img src="icon/favicon.ico" alt="Logo" class="logo-image">
+                <span class="logo-title">Portfolio | Gonzalo Diaz</span>
+            </a>
         </div>
-        <div class="nav-links">
-            <a href="#mi-perfil">Mi Perfil</a>
-            <a href="#mis-proyectos">Proyectos</a>
-            <a href="#mis-cursos">Cursos y Certificaciones</a>
-            <a href="#contacto">Contacto</a>
+        <div class="nav-links" data-aos="fade-left">
+            <a href="#mi-perfil" class="nav-link">Mi Perfil</a>
+            <a href="#educacion" class="nav-link">Educación</a>
+            <a href="#mis-proyectos" class="nav-link">Proyectos</a>
+            <a href="#mis-cursos" class="nav-link">Cursos y Certificaciones</a>
+            <a href="#contacto" class="nav-link">Contacto</a>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </label>
+            </div>
         </div>
     </div>
     
@@ -39,285 +55,361 @@
 
         <div id="mi-perfil" class="text-box">
             <div class="alinear-imagen-subtitulo">
-                <img src="icon/statistics.png" alt="Icono">
-                    <h1>Sobre mi</h1>
+                <span class="emoji-icon">👋</span>
+                <h1>Sobre mi</h1>
             </div>
-        <p>
-            ¡Hola! Soy Gonzalo, Analista de Datos y nacido en Argentina. Actualmente estoy cursando la Tecnicatura en Ciencia de Datos y perfeccionando mis habilidades en Machine Learning, Data Mining y Data Analytics. Tengo experiencia con herramientas como Power BI, Qlik Sense, Python y R.
-        </p>
-        <p>
-            Como consultor de BI y analista de datos, ayudo a las empresas a tomar decisiones basadas en datos y a optimizar sus operaciones mediante visualizaciones y análisis de datos. Estoy continuamente ampliando mis conocimientos y experiencia, con el objetivo de contribuir al campo de la ciencia de datos.
-        </p>
-        <p>
-            Te invito a explorar mi repositorio donde comparto mis proyectos. Si compartimos intereses o quieres hablar sobre datos, no dudes en conectarte conmigo. ¡Será un placer conversar!
-        </p>
+            <p>
+                ¡Hola! Soy Gonzalo, Analista de Datos y nacido en Argentina. Actualmente estoy cursando la Tecnicatura en Ciencia de Datos y perfeccionando mis habilidades en Machine Learning y Data Analytics. Tengo experiencia con herramientas como PostgreSql, Power BI, Qlik Sense, Python y R.
+            </p>
+            <p>
+                Como Analista de datos, ayudo a las empresas a tomar decisiones basadas en datos y a optimizar sus operaciones mediante visualizaciones y análisis de datos. Estoy continuamente ampliando mis conocimientos y experiencia, con el objetivo de contribuir al campo de la ciencia de datos.
+            </p>
+            <p>
+                Te invito a explorar mi repositorio donde comparto mis proyectos. Si compartimos intereses o quieres hablar sobre datos, no dudes en conectarte conmigo. ¡Será un placer conversar!
+            </p>
 
-        
-        <h2>Tech Stack</h2>
-        
+            <h2>🔍 Áreas de Enfoque</h2>
+            <div class="focus-areas">
+                <div class="focus-card" data-aos="fade-up">
+                    <div class="card-icon">🧠</div>
+                    <h3>Machine Learning</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Desarrollo de modelos de predicción, clasificación y segmentación.</li>
+                            <li>Aplicación de algoritmos de aprendizaje supervisado (como regresión lineal, árboles de decisión, random forest, XGBoost, etc.) y no supervisado (clustering con k-means, PCA, etc.).</li>
+                            <li>Evaluación de desempeño mediante métricas como accuracy, recall, F1-score, ROC-AUC, entre otros.</li>
+                            <li>Preprocesamiento de datos: limpieza, transformación, imputación y selección de variables.</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <div class="tech-stack">
-            <img src="https://img.shields.io/badge/r-%23276DC3.svg?style=for-the-badge&logo=r&logoColor=white" alt="R">
-            <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
-            <img src="https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
-            <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
-            <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" alt="Matplotlib">
-            <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
-            <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn">
-            <img src="https://img.shields.io/badge/power_bi-F2C811?style=for-the-badge&logo=powerbi&logoColor=black" alt="Power BI">
-            <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
-            <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-            <img src="https://img.shields.io/badge/Apache%20Spark-FDEE21?style=for-the-badge&logo=apachespark&logoColor=black" alt="Apache Spark">
-            <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" alt="TensorFlow">
-            <img src="https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white" alt="Keras">
-            <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
-            <img src="https://img.shields.io/badge/Teradata-F37440?style=for-the-badge&logo=teradata&logoColor=white" alt="Teradata">
-            
+                <div class="focus-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon">📊</div>
+                    <h3>Data Visualization</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Construcción de dashboards interactivos y reportes visuales adaptados a usuarios técnicos y no técnicos.</li>
+                            <li>Uso de herramientas de Business Intelligence como Power BI y Qlik Sense para representar datos de manera clara, accesible y visualmente atractiva.</li>
+                            <li>Desarrollo de visualizaciones en Python con librerías especializadas como Plotly, Matplotlib y Seaborn</li>
+                            <li>Enfoque en la comunicación efectiva de hallazgos, con énfasis en el storytelling con datos.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="focus-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon">🌐</div>
+                    <h3>Desarrollo Web / Backend con Python</h3>
+                    <div class="card-content">
+                        <ul>
+                            <li>Creación de aplicaciones web y APIs RESTful utilizando el framework Django.</li>
+                            <li>Diseño y construcción de modelos de datos, interfaces administrativas y autenticación de usuarios.</li>
+                            <li>Integración entre el servidor, base de datos y cliente, facilitando la consulta y visualización de datos en tiempo real.</li>
+                            <li>Automatización de tareas analíticas y despliegue de modelos de Machine Learning en producción.</li>
+                            <li>Gestión de permisos, rutas seguras y validación de formularios para mejorar la interacción del usuario con el sistema.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Tech Stack</h2>
+            <div class="tech-stack">
+                <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
+                <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+                <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
+                <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn">
+                <img src="https://img.shields.io/badge/Computer%20Vision-00A4EF?style=for-the-badge&logo=opencv&logoColor=white" alt="Computer Vision">
+                <img src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
+                <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+                <img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
+                <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" alt="TensorFlow">
+                <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+                <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux">
+                <img src="https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white" alt="Django">
+            </div>
+        </div>
+
+    <div id="educacion" class="text-box">
+        <div class="alinear-imagen-subtitulo">
+            <span class="emoji-icon">🎓</span>
+            <h1>Educación</h1>
         </div>
         
+        <div class="education-cards">
+            <div class="education-card" data-aos="fade-right">
+                <div class="education-header">
+                    <img src="icon/istea.png" alt="Logo ISTEA" class="education-logo">
+                    <h2>Instituto Superior Tecnológico Empresarial Argentino</h2>
+                </div>
+                <div class="education-content">
+                    <h3>Tecnicatura en Ciencia de Datos e Inteligencia Artificial</h3>
+                    <p>Formación orientada al análisis estadístico, procesamiento de datos, desarrollo de modelos de machine learning y deep learning, con aplicaciones en visión por computadora, procesamiento de lenguaje natural y sistemas predictivos. Incluye conocimientos sólidos en programación (Python, R, SQL), bases de datos, matemáticas, estadística y ética en la inteligencia artificial.</p>
+                    <p>Durante la carrera se adquieren competencias para liderar proyectos de ciencia de datos, diseñar soluciones basadas en IA, y comunicar resultados de forma clara y efectiva. Se trabajan herramientas como pandas, NumPy, scikit-learn, redes neuronales y técnicas de Big Data, aplicadas en contextos reales a través de prácticas profesionalizantes.</p>
+                    <ul>
+                        <li>Análisis estadístico y matemático</li>
+                        <li>Programación y desarrollo de software</li>
+                        <li>Minería de datos y machine learning</li>
+                        <li>Visualización de datos</li>
+                        <li>Bases de datos y big data</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="education-card" data-aos="fade-left">
+                <div class="education-header">
+                    <img src="icon/ugr.png" alt="Logo UGR" class="education-logo">
+                    <h2>Universidad del Gran Rosario</h2>
+                </div>
+                <div class="education-content">
+                    <h3>Licenciatura en Ciencia de Datos</h3>
+                    <p>La <strong>Licenciatura en Ciencia de Datos</strong> de la Universidad del Gran Rosario ofrece una formación sólida en estadística aplicada, ingeniería de software, aprendizaje automático, aprendizaje profundo, procesamiento de lenguaje natural y visión por computadora. A lo largo del plan de estudios se abordan herramientas de software para análisis de datos, metodologías de investigación y desarrollo de proyectos tecnológicos orientados a problemas reales.</p>
+                    <p>El perfil del egresado está orientado a la aplicación práctica de técnicas avanzadas de ciencia de datos para resolver desafíos complejos en diversos sectores. Se adquieren competencias para:</p>
+                    <ul>
+                        <li>Diseñar, implementar y comunicar soluciones analíticas</li>
+                        <li>Desarrollar modelos predictivos</li>
+                        <li>Gestionar sistemas de datos</li>
+                        <li>Participar en equipos multidisciplinarios</li>
+                        <li>Aportar valor estratégico a la toma de decisiones basada en datos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="mis-proyectos" class="text-box">
         <div class="alinear-imagen-subtitulo">
-            <img src="icon/portfolio.png" alt="Icono">
+            <span class="emoji-icon">💻</span>
             <h1>Proyectos de Análisis de Datos</h1>
         </div>
         <p>
-            Este repositorio contiene una colección de proyectos de análisis de datos desarrollados utilizando diversas herramientas y lenguajes, incluyendo <strong>SQL</strong>, <strong>Python</strong>, <strong>R</strong>,<strong>Qlik Sense</strong> y <strong>Power BI</strong>. Cada proyecto está diseñado para demostrar técnicas avanzadas en distintas áreas del análisis de datos, proporcionando ejemplos prácticos y soluciones detalladas.
+            Este repositorio está pensado para demostrar no solo habilidades técnicas, sino también una visión integral del ciclo de vida del dato, desde la extracción y transformación hasta su análisis, visualización y presentación a usuarios finales o despliegue en entornos reales.
         </p>
 
-        <h2>Áreas de Enfoque</h2>
-        <ul>
-            <li><strong>Data Mining</strong>: 
-                <ul>
-                    <li>Descubrimiento de patrones y relaciones en grandes conjuntos de datos.</li>
-                    <li>Uso de algoritmos de clustering, asociación y clasificación.</li>
-                    <li>Implementación en casos de uso como segmentación de clientes y análisis predictivo.</li>
-                </ul>
-            </li>
-            <li><strong>Machine Learning</strong>: 
-                <ul>
-                    <li>Desarrollo de modelos predictivos y de clasificación.</li>
-                    <li>Aplicación de algoritmos supervisados y no supervisados.</li>
-                    <li>Ejemplos prácticos en predicción de ventas, segmentación de clientes y más.</li>
-                </ul>
-            </li>
-            <li><strong>Business Intelligence</strong>: 
-                <ul>
-                    <li>Creación de dashboards interactivos y reportes visuales.</li>
-                    <li>Uso de herramientas como Power BI y Qlik Sense para representar datos de manera comprensible.</li>
-                    <li>Enfoque en la comunicación efectiva de insights y resultados.</li>
-                </ul>
-            </li>
-        </ul>
+        <div class="projects-grid">
+            <div class="project-card" data-aos="fade-up">
+                <div class="project-header">
+                    <h3>Proyecto 1: Visualización de Estadísticas</h3>
+                </div>
+                <div class="project-content">
+                    <p>El objetivo de este proyecto es analizar y visualizar la fase ofensiva del Manchester City durante la temporada 2023/2024 en la Premier League, con un enfoque especial en los pases y tiros.
+                    Para realizar este análisis, se extrajeron datos mediante scraping de una página web de estadísticas de fútbol utilizando Python, y luego fueron transformados para su visualización en Power BI.</p>
+                    
+                    <div class="carousel" id="carousel1">
+                        <button class="carousel-control prev" onclick="prevImage1()">&#10094;</button>
+                        <div class="carousel-images">
+                            <img src="icon/mancity1.jpg" alt="Descripción de la imagen 1">
+                            <img src="icon/mancity2.jpg" alt="Descripción de la imagen 2">
+                            <img src="icon/mancity3.jpg" alt="Descripción de la imagen 3">
+                        </div>
+                        <button class="carousel-control next" onclick="nextImage1()">&#10095;</button>
+                    </div>
 
-        <h2>Objetivos de los Proyectos</h2>
-        <ul>
-            <li><strong>Explorar y aplicar</strong>: técnicas avanzadas en la extracción, procesamiento, análisis y presentación de datos.</li>
-            <li><strong>Proporcionar ejemplos prácticos</strong>: que pueden ser utilizados como referencia para resolver problemas reales en el campo del análisis de datos.</li>
-            <li><strong>Desarrollar habilidades</strong>: en el uso de diversas herramientas y lenguajes de programación enfocados en el análisis de datos.</li>
-            <li><strong>Promover la práctica continua</strong>: y el aprendizaje de nuevas técnicas y metodologías en el campo de la ciencia de datos.</li>
-        </ul>
-
-        <h3>Proyecto 1: Visualización de Estadísticas</h3>
-         <p>El objetivo de este proyecto es analizar y visualizar la fase ofensiva del Manchester City durante la temporada 2023/2024 en la Premier League, con un enfoque especial en los pases y tiros.
-             Para realizar este análisis, se extrajeron datos mediante scraping de una página web de estadísticas de fútbol utilizando Python, y luego fueron transformados para su visualización en Power BI.</p>       
-        <div class="carousel" id="carousel1">
-            <button class="carousel-control prev" onclick="prevImage1()">&#10094;</button>
-            <div class="carousel-images">
-                <img src="icon/mancity1.jpg" alt="Descripción de la imagen 1">
-                <img src="icon/mancity2.jpg" alt="Descripción de la imagen 2">
-                <img src="icon/mancity3.jpg" alt="Descripción de la imagen 3">
+                    <div class="button-container">
+                        <a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto1%3A%20Web%20Scraping/README.md" target="_blank" class="github-button">
+                            <i class="fa fa-github"></i>
+                            Ver Proyecto
+                        </a>
+                    </div>
+                </div>
             </div>
-            <button class="carousel-control next" onclick="nextImage1()">&#10095;</button>
-        </div>      
-       
-        <div class="button-container">
-        <a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto1%3A%20Web%20Scraping/README.md" target="_blank" class="github-button">
-            <i class="fa fa-github"></i>
-            Ver Proyecto
-        </a>
-        </div>
-                     
-        <h3>Proyecto 2: Caso de Negocio + Business Experimentation </h3>
 
-        <p>Una empresa de retail nacional, líder en la venta de productos electrónicos, ha decidido expandirse a nuevos mercados regionales. Actualmente opera en cinco ciudades principales y desea extender su presencia a tres nuevas ciudades donde aún no tiene operaciones. La dirección necesita una estrategia basada en datos para maximizar la rentabilidad y minimizar 
-            los riesgos asociados con esta expansión. El objetivo es desarrollar una propuesta integral para la expansión, que combine los modelos analíticos para optimizar la toma de decisiones</p>
-        <div class="carousel" id="carousel3">
-            <button class="carousel-control prev" onclick="prevImage3()">&#10094;</button>
-            <div class="carousel-images">
-                <img src="icon/img1 - td.jpg" alt="Descripción de la imagen 1">
-                <img src="icon/img2 - td.jpg" alt="Descripción de la imagen 2">
-                <img src="icon/img3 - td.jpg" alt="Descripción de la imagen 3">
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-header">
+                    <h3>Proyecto 2: Caso de Negocio + Business Experimentation</h3>
+                </div>
+                <div class="project-content">
+                    <p>Una empresa de retail nacional, líder en la venta de productos electrónicos, ha decidido expandirse a nuevos mercados regionales. Actualmente opera en cinco ciudades principales y desea extender su presencia a tres nuevas ciudades donde aún no tiene operaciones. La dirección necesita una estrategia basada en datos para maximizar la rentabilidad y minimizar los riesgos asociados con esta expansión.</p>
+                    
+                    <div class="carousel" id="carousel3">
+                        <button class="carousel-control prev" onclick="prevImage3()">&#10094;</button>
+                        <div class="carousel-images">
+                            <img src="icon/img1 - td.jpg" alt="Descripción de la imagen 1">
+                            <img src="icon/img2 - td.jpg" alt="Descripción de la imagen 2">
+                            <img src="icon/img3 - td.jpg" alt="Descripción de la imagen 3">
+                        </div>
+                        <button class="carousel-control next" onclick="nextImage3()">&#10095;</button>
+                    </div>
+
+                    <div class="button-container">
+                        <a href="https://app.luminpdf.com/es/viewer/674a470adc255e3d51d8d5c8" target="_blank" class="github-button">
+                            <i class="fa fa-github"></i>
+                            Ver Proyecto
+                        </a>
+                    </div>
+                </div>
             </div>
-            <button class="carousel-control next" onclick="nextImage3()">&#10095;</button>
-        </div>
 
-        <div class="button-container">
-            <a href="https://app.luminpdf.com/es/viewer/674a470adc255e3d51d8d5c8" target="_blank" class="github-button">
-                <i class="fa fa-github"></i>
-                Ver Proyecto
-            </a>
-        </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-header">
+                    <h3>Proyecto 3: Análisis Exploratorio de Datos</h3>
+                </div>
+                <div class="project-content">
+                    <p>El Análisis Exploratorio de Datos es una etapa fundamental en cualquier proyecto de ciencia de datos. A través del EDA, se busca explorar los datos de manera sistemática para entender mejor su estructura, distribución y relaciones entre las variables. En este proyecto, el dataset utilizado contiene información sobre la calidad de los vinos, con varias características que describen sus propiedades físicas y químicas.</p>
+                    
+                    <div class="carousel" id="carousel2">
+                        <button class="carousel-control prev" onclick="prevImage2()">&#10094;</button>
+                        <div class="carousel-images">
+                            <img src="icon/eda-1.jpg" alt="Descripción de la imagen 1">
+                            <img src="icon/eda-2.png" alt="Descripción de la imagen 2">
+                            <img src="icon/eda-3.png" alt="Descripción de la imagen 3">
+                        </div>
+                        <button class="carousel-control next" onclick="nextImage2()">&#10095;</button>
+                    </div>
 
-        <h3>Proyecto 3: Analisis Exploratorio de Datos</h3>
-
-        <p>El Análisis Exploratorio de Datos es una etapa fundamental en cualquier proyecto de ciencia de datos. A través del EDA, se busca explorar los datos de manera sistemática para entender mejor su estructura, distribución y relaciones entre las variables. En este proyecto, el dataset utilizado contiene información sobre la calidad de los vinos, con varias características que describen sus propiedades físicas y químicas</p>
-        
-        <div class="carousel" id="carousel2">
-            <button class="carousel-control prev" onclick="prevImage2()">&#10094;</button>
-            <div class="carousel-images">
-                <img src="icon/eda-1.jpg" alt="Descripción de la imagen 1">
-                <img src="icon/eda-2.png" alt="Descripción de la imagen 2">
-                <img src="icon/eda-3.png" alt="Descripción de la imagen 3">
+                    <div class="button-container">
+                        <a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto4%3A%20EDA/README.md" target="_blank" class="github-button">
+                            <i class="fa fa-github"></i>
+                            Ver Proyecto
+                        </a>
+                    </div>
+                </div>
             </div>
-            <button class="carousel-control next" onclick="nextImage2()">&#10095;</button>
-        </div>
-        <div class="button-container">
-            <a href="https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto4%3A%20EDA/README.md"  target="_blank" class="github-button">
-                <i class="fa fa-github"></i>
-                Ver Proyecto
-            </a>
         </div>
 
     </div>
 
     <div id="mis-cursos" class="text-box">
         <div class="alinear-imagen-subtitulo">
-            <img src="icon/data.png" alt="Icono">
-                <h1>Mis Cursos</h1> <!-- Título para la sección Mis Cursos -->
+            <span class="emoji-icon">📚</span>
+            <h1>Mis Cursos</h1>
         </div>
         
-        <div style="display: flex; align-items: center;">
-            <img src="icon/google-data.png" alt="Certificación de Google en Análisis de Datos" width="150" style="margin-right: 10px;">
-            <h1>Certificación Profesional en Análisis de Datos de Google</h1>
+        <div class="education-cards">
+            <div class="education-card" data-aos="fade-right">
+                <div class="education-header">
+                    <img src="icon/google-data.png" alt="Certificación de Google en Análisis de Datos" class="education-logo">
+                    <h2>Certificación Profesional en Análisis de Datos de Google</h2>
+                </div>
+                <div class="education-content">
+                    <h3>Resumen de la Certificación</h3>
+                    <p>La certificación en análisis de datos de Google cubre los conceptos fundamentales del análisis de datos, incluyendo herramientas y técnicas para transformar datos en insights significativos. Está orientada a principiantes y proporciona habilidades prácticas aplicables en el mundo real.</p>
+
+                    <h3>Descripción de los Cursos</h3>
+                    <ol>
+                        <li>
+                            <strong>Fundamentos del Análisis de Datos:</strong>
+                            <span>Introducción a los conceptos básicos del análisis de datos, incluyendo el ciclo de vida de los datos y las habilidades necesarias para ser un analista de datos.</span>
+                        </li>
+                        <li>
+                            <strong>Habilidades de Preparación de Datos:</strong>
+                            <span>Se centra en la recopilación y limpieza de datos. Aprenderás a usar hojas de cálculo y SQL para organizar datos de manera efectiva.</span>
+                        </li>
+                        <li>
+                            <strong>Análisis de Datos en Excel:</strong>
+                            <span>Enseña a usar Excel para realizar análisis de datos, incluyendo fórmulas, gráficos y análisis de tendencias, para extraer insights valiosos.</span>
+                        </li>
+                        <li>
+                            <strong>Visualización de Datos:</strong>
+                            <span>Aprendes a crear visualizaciones efectivas utilizando herramientas como Tableau y Google Data Studio para comunicar hallazgos de manera clara y atractiva.</span>
+                        </li>
+                        <li>
+                            <strong>Análisis Predictivo:</strong>
+                            <span>Introducción a técnicas de análisis predictivo utilizando herramientas de análisis y algoritmos para hacer pronósticos basados en datos históricos.</span>
+                        </li>
+                        <li>
+                            <strong>Proyecto Final:</strong>
+                            <span>Un proyecto práctico donde aplicas todas las habilidades adquiridas en un estudio de caso real, creando un análisis completo que demuestre tu capacidad como analista de datos.</span>
+                        </li>
+                    </ol>
+
+                    <div class="button-container">
+                        <a href="https://coursera.org/share/cc48c32dd31845491480028e57ebffcc" target="_blank" class="button">Ver Certificado</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-card" data-aos="fade-left">
+                <div class="education-header">
+                    <img src="icon/power-bi-data.png" alt="Certificación de Microsoft Power BI" class="education-logo">
+                    <h2>Certificación Profesional en Análisis de Datos con Microsoft Power BI</h2>
+                </div>
+                <div class="education-content">
+                    <h3>Resumen de la Certificación</h3>
+                    <p>La certificación en Análisis de Datos con Microsoft Power BI está diseñada para capacitar a los estudiantes en el uso de Power BI como herramienta para transformar datos en insights significativos. Se enfoca en el manejo de datos, la visualización y la creación de informes interactivos.</p>
+
+                    <h3>Descripción de los Cursos</h3>
+                    <ol>
+                        <li>
+                            <strong>Introducción a Power BI:</strong>
+                            <span>Proporciona una visión general de Power BI, su interfaz, y cómo conectar y cargar datos desde diferentes fuentes.</span>
+                        </li>
+                        <li>
+                            <strong>Preparación de Datos para el Análisis:</strong>
+                            <span>Se centra en la limpieza y transformación de datos utilizando Power Query para garantizar que los datos estén listos para el análisis.</span>
+                        </li>
+                        <li>
+                            <strong>Visualización de Datos:</strong>
+                            <span>Enseña a crear visualizaciones interactivas y a utilizar gráficos y tablas para representar datos de manera efectiva en Power BI.</span>
+                        </li>
+                        <li>
+                            <strong>Modelado de Datos:</strong>
+                            <span>Introducción a la creación de modelos de datos, incluyendo relaciones y cálculos, utilizando DAX (Data Analysis Expressions).</span>
+                        </li>
+                        <li>
+                            <strong>Creación de Informes y Dashboards:</strong>
+                            <span>Aprendes a diseñar informes y dashboards interactivos en Power BI para comunicar resultados a diferentes audiencias.</span>
+                        </li>
+                        <li>
+                            <strong>Compartir y Colaborar:</strong>
+                            <span>Este curso aborda cómo compartir y colaborar en informes y dashboards utilizando el servicio en línea de Power BI.</span>
+                        </li>
+                        <li>
+                            <strong>Proyecto Final:</strong>
+                            <span>Aplicación de las habilidades adquiridas en un proyecto práctico que consiste en el desarrollo de un informe y un dashboard de Power BI a partir de un conjunto de datos real.</span>
+                        </li>
+                    </ol>
+
+                    <div class="button-container">
+                        <a href="https://coursera.org/share/22e0248ed8e190da2ca607523870ba26" target="_blank" class="button">Ver Certificado</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="education-card" data-aos="fade-right">
+                <div class="education-header">
+                    <img src="icon/data-talks-ml-removebg-preview.png" alt="DataTalks - Machine Learning Zoomcamp 2024" class="education-logo">
+                    <h2>DataTalks - Machine Learning Zoomcamp 2024</h2>
+                </div>
+                <div class="education-content">
+                    <h3>Parte 1: Algoritmos de Machine Learning</h3>
+                    <p>La Parte 1 se centra en los principales algoritmos de aprendizaje automático y su aplicación práctica utilizando Python. Los temas tratados incluyen:</p>
+
+                    <ul>
+                        <li><strong>Regresión Lineal</strong>: ingeniería de características, manejo de variables categóricas y la importancia de la regularización.</li>
+                        <li><strong>Clasificación</strong>: regresión logística y la importancia de las características.</li>
+                        <li><strong>Árboles de Decisión y Aprendizaje por Conjuntos</strong>: técnica de boosting por gradiente y XGBoost, un popular algoritmo de aprendizaje por conjuntos.</li>
+                        <li><strong>Redes Neuronales y Aprendizaje Profundo</strong>: Redes Neuronales Convolucionales (CNN) y técnicas de transferencia de aprendizaje para abordar problemas complejos con aprendizaje profundo.</li>
+                        <li><strong>Python y Jupyter Notebooks</strong>: trabajando de manera eficiente con código.</li>
+                        <li><strong>NumPy y Pandas</strong>: conceptos de álgebra lineal como matrices y manipulación y análisis de datos.</li>
+                        <li><strong>Matplotlib y Seaborn</strong>: visualización de datos y representaciones gráficas.</li>
+                        <li><strong>Scikit-Learn</strong>: aplicación de varios algoritmos de aprendizaje automático a conjuntos de datos del mundo real.</li>
+                        <li><strong>TensorFlow y Keras</strong>: marcos populares para construir redes neuronales y modelos de aprendizaje profundo.</li>
+                    </ul>
+
+                    <img src="https://datatalks.club/images/posts/2023-08-17-machine-learning-zoomcamp/image1.png" alt="Part 1: Machine learning algorithms and their implementation" class="responsive-img">
+
+                    <h3>Parte 2: Despliegue de Modelos</h3>
+                    <p>La Parte 2 está dedicada al despliegue de modelos, que implica poner modelos de aprendizaje automático en producción. En esta sección, adquirirás habilidades prácticas utilizando marcos y herramientas populares. Los temas tratados incluyen:</p>
+
+                    <ul>
+                        <li><strong>Flask, Pipenv y Docker</strong>: despliegue de modelos de aprendizaje automático, lo que te permitirá trasladar tus modelos de notebooks a servicios y aplicaciones.</li>
+                        <li><strong>AWS Lambda y TensorFlow Lite</strong>: aprendizaje profundo sin servidor, comprendiendo cómo operar de manera eficiente dentro de este paradigma.</li>
+                        <li><strong>Kubernetes y TensorFlow Serving</strong>: automatización del despliegue, escalado y gestión de aplicaciones en contenedores.</li>
+                        
+                    </ul>
+
+                    <img src="https://datatalks.club/images/posts/2023-08-17-machine-learning-zoomcamp/image3.png" alt="Part 2: Deployment" class="responsive-img">
+
+                    <div class="button-container">
+                        <a href="" target="_blank" class="button">Ver Certificado</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-    <h2>Resumen de la Certificación</h2>
-    <p>La certificación en análisis de datos de Google cubre los conceptos fundamentales del análisis de datos, incluyendo herramientas y técnicas para transformar datos en insights significativos. Está orientada a principiantes y proporciona habilidades prácticas aplicables en el mundo real.</p>
-
-    <h2>Descripción de los Cursos</h2>
-    <ol>
-        <li>
-            <strong>Fundamentos del Análisis de Datos:</strong>
-            Introducción a los conceptos básicos del análisis de datos, incluyendo el ciclo de vida de los datos y las habilidades necesarias para ser un analista de datos.
-        </li>
-        <li>
-            <strong>Habilidades de Preparación de Datos:</strong>
-            Se centra en la recopilación y limpieza de datos. Aprenderás a usar hojas de cálculo y SQL para organizar datos de manera efectiva.
-        </li>
-        <li>
-            <strong>Análisis de Datos en Excel:</strong>
-            Enseña a usar Excel para realizar análisis de datos, incluyendo fórmulas, gráficos y análisis de tendencias, para extraer insights valiosos.
-        </li>
-        <li>
-            <strong>Visualización de Datos:</strong>
-            Aprendes a crear visualizaciones efectivas utilizando herramientas como Tableau y Google Data Studio para comunicar hallazgos de manera clara y atractiva.
-        </li>
-        <li>
-            <strong>Análisis Predictivo:</strong>
-            Introducción a técnicas de análisis predictivo utilizando herramientas de análisis y algoritmos para hacer pronósticos basados en datos históricos.
-        </li>
-        <li>
-            <strong>Proyecto Final:</strong>
-            Un proyecto práctico donde aplicas todas las habilidades adquiridas en un estudio de caso real, creando un análisis completo que demuestre tu capacidad como analista de datos.
-        </li>
-    </ol>
-
-    <p class="button-container">
-        <a href="https://coursera.org/share/cc48c32dd31845491480028e57ebffcc" target="_blank" class="button">Ver Certificado</a>
-    </p>
-    
-    
-    
-    <div style="display: flex; align-items: center;">
-        <img src="icon/power-bi-data.png" alt="Certificación de Microsoft Power BI" width="120" style="margin-right: 10px;">
-        <h1>Certificación Profesional en Análisis de Datos con Microsoft Power BI</h1>
-    </div>
-    
-
-    <h2>Resumen de la Certificación</h2>
-    <p>La certificación en Análisis de Datos con Microsoft Power BI está diseñada para capacitar a los estudiantes en el uso de Power BI como herramienta para transformar datos en insights significativos. Se enfoca en el manejo de datos, la visualización y la creación de informes interactivos.</p>
-
-    <h2>Descripción de los Cursos</h2>
-    <ol>
-        <li>
-            <strong>Introducción a Power BI:</strong>
-            Proporciona una visión general de Power BI, su interfaz, y cómo conectar y cargar datos desde diferentes fuentes.
-        </li>
-        <li>
-            <strong>Preparación de Datos para el Análisis:</strong>
-            Se centra en la limpieza y transformación de datos utilizando Power Query para garantizar que los datos estén listos para el análisis.
-        </li>
-        <li>
-            <strong>Visualización de Datos:</strong>
-            Enseña a crear visualizaciones interactivas y a utilizar gráficos y tablas para representar datos de manera efectiva en Power BI.
-        </li>
-        <li>
-            <strong>Modelado de Datos:</strong>
-            Introducción a la creación de modelos de datos, incluyendo relaciones y cálculos, utilizando DAX (Data Analysis Expressions).
-        </li>
-        <li>
-            <strong>Creación de Informes y Dashboards:</strong>
-            Aprendes a diseñar informes y dashboards interactivos en Power BI para comunicar resultados a diferentes audiencias.
-        </li>
-        <li>
-            <strong>Compartir y Colaborar:</strong>
-            Este curso aborda cómo compartir y colaborar en informes y dashboards utilizando el servicio en línea de Power BI.
-        </li>
-        <li>
-            <strong>Proyecto Final:</strong>
-            Aplicación de las habilidades adquiridas en un proyecto práctico que consiste en el desarrollo de un informe y un dashboard de Power BI a partir de un conjunto de datos real.
-        </li>
-    </ol>
-
-    <p class="button-container">
-        <a href="https://coursera.org/share/22e0248ed8e190da2ca607523870ba26" target="_blank" class="button">Ver Certificado</a>
-    </p>
-    
-    <div style="display: flex; align-items: center;">
-        <img src="icon/data-talks-ml-removebg-preview.png" alt="DataTalks - Machine Learning Zoomcamp 2024" width="120" style="margin-right: 10px;">
-        <h1>DataTalks - Machine Learning Zoomcamp 2024</h1>
-    </div>
-        
-        <p>El curso se divide en dos partes:</p>
-
-        <p>La Parte 1 se centra en los principales algoritmos de aprendizaje automático y su aplicación práctica utilizando Python. Los temas tratados incluyen:</p>
-
-        <ul>
-            <li><strong>Regresión Lineal</strong>: ingeniería de características, manejo de variables categóricas y la importancia de la regularización.</li>
-            <li><strong>Clasificación</strong>: regresión logística y la importancia de las características.</li>
-            <li><strong>Árboles de Decisión y Aprendizaje por Conjuntos</strong>: técnica de boosting por gradiente y XGBoost, un popular algoritmo de aprendizaje por conjuntos.</li>
-            <li><strong>Redes Neuronales y Aprendizaje Profundo</strong>: Redes Neuronales Convolucionales (CNN) y técnicas de transferencia de aprendizaje para abordar problemas complejos con aprendizaje profundo.</li>
-            <li><strong>Python y Jupyter Notebooks</strong>: trabajando de manera eficiente con código.</li>
-            <li><strong>NumPy y Pandas</strong>: conceptos de álgebra lineal como matrices y manipulación y análisis de datos.</li>
-            <li><strong>Matplotlib y Seaborn</strong>: visualización de datos y representaciones gráficas.</li>
-            <li><strong>Scikit-Learn</strong>: aplicación de varios algoritmos de aprendizaje automático a conjuntos de datos del mundo real.</li>
-            <li><strong>TensorFlow y Keras</strong>: marcos populares para construir redes neuronales y modelos de aprendizaje profundo.</li>
-        </ul>
-
-        <img src="https://datatalks.club/images/posts/2023-08-17-machine-learning-zoomcamp/image1.png" alt="Part 1: Machine learning algorithms and their implementation" class="responsive-img">
-
-        <p>La Parte 2 está dedicada al despliegue de modelos, que implica poner modelos de aprendizaje automático en producción. En esta sección, adquirirás habilidades prácticas utilizando marcos y herramientas populares. Los temas tratados incluyen:</p>
-
-        <ul>
-            <li><strong>Flask, Pipenv y Docker</strong>: despliegue de modelos de aprendizaje automático, lo que te permitirá trasladar tus modelos de notebooks a servicios y aplicaciones.</li>
-            <li><strong>AWS Lambda y TensorFlow Lite</strong>: aprendizaje profundo sin servidor, comprendiendo cómo operar de manera eficiente dentro de este paradigma.</li>
-            <li><strong>Kubernetes y TensorFlow Serving</strong>: automatización del despliegue, escalado y gestión de aplicaciones en contenedores.</li>
-            <li><strong>KServe</strong> (opcional): un tema adicional para aquellos que buscan conocimientos avanzados, ofreciendo perspectivas sobre cómo mejorar aún más las capacidades de despliegue.</li>
-        </ul>
-
-        <img src="https://datatalks.club/images/posts/2023-08-17-machine-learning-zoomcamp/image3.png" alt="Part 2: Deployment" class="responsive-img">
-
-        <p class="button-container">
-            <a href="" target="_blank" class="button">Ver Certificado</a>
-        </p>
-
     </div>
 
-    <footer class="pie-pagina"id="contacto">
+    <footer class="pie-pagina" id="contacto" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
         <div class="grupo-1">
-            <div class="box"> <!-- Eliminado el div vacío -->
+            <div class="box" data-aos="fade-right" data-aos-delay="100">
                 <figure>
                     <a href="#">
                         <img src="icon/foto1x1.jpg" alt="Logo de Portfolio Data"> 
@@ -325,13 +417,13 @@
                 </figure>
             </div>
             
-            <div class="box">
+            <div class="box" data-aos="fade-up" data-aos-delay="200">
                 <h2>CONTACTA CONMIGO</h2>
                 <p>¡Gracias por visitar mi página!</p>
                 <p>Me alegra que hayas explorado mis proyectos de Data. Si te interesa charlar o colaborar, te dejo aca mi email: gonzadiaz160400@gmail.com ¡no dudes en contactarme!</p>
             </div>
             
-            <div class="box">
+            <div class="box" data-aos="fade-left" data-aos-delay="300">
                 <h2>MEDIOS</h2>
                 <div class="red-social">
                     <a href="https://www.linkedin.com/in/gonzalo-diaz-0ab0081b5/" class="fa fa-linkedin"></a>
@@ -341,8 +433,8 @@
                 </div>
             </div>
         </div>
-        <div class="grupo-2">
-            <small>&copy; 2024 <b>Data Portfolio</b> - Gonzalo Diaz - Todos los Derechos Reservados.</small>
+        <div class="grupo-2" data-aos="fade-up" data-aos-delay="400">
+            <small>&copy; 2025 <b>Data Portfolio</b> - Gonzalo Diaz - Todos los Derechos Reservados.</small>
         </div>
     </footer>
     
@@ -351,6 +443,34 @@
 
     <!-- Aquí puedes agregar más contenido o secciones -->
     <script src="carousel.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }    
+        }
+
+        toggleSwitch.addEventListener('change', switchTheme, false);
+    </script>
 
 </body>
 </html>
