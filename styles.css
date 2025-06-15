@@ -30,15 +30,17 @@ body {
 
 html {
     scroll-padding-top: 30px; /* Ajusta el valor según la altura de tu barra de navegación */
+    scroll-behavior: smooth;
 }
 
 /*==========================HEADER=============================*/
 .header {
     width: 100%;
-    height: 300px;
-    margin-top: 50px;
+    height: 320px;
+    margin-top: 80px; /* Ajusta según la altura real de tu navbar */
     overflow: hidden;
     border-bottom: 5px solid #0d2033;
+    position: relative;
 }
 
 .header-image {
@@ -46,6 +48,24 @@ html {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    animation: kenburns-zoom 12s ease-in-out infinite alternate;
+    transition: transform 0.5s;
+}
+
+@keyframes kenburns-zoom {
+    0% {
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        transform: scale(1.08) translateY(-8px);
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        margin-top: 100px;
+        height: 220px;
+    }
 }
 
 /*=====================BARRA DE NAVEGACION====================*/
@@ -83,15 +103,17 @@ html {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: box-shadow 0.3s, background 0.3s;
     background-color: white;
     padding: 5px;
     border: 5px solid #1a1a1a;
+    box-shadow: 0 0 0 rgba(0, 164, 239, 0);
 }
 
 .logo:hover .logo-image {
-    transform: rotate(360deg);
     border-color: #1f1f1f;
+    box-shadow: 0 0 18px 4px #00a4ef99, 0 0 8px 2px #00a4ef55;
+    background: #f0faff;
 }
 
 .logo-title {
@@ -135,7 +157,7 @@ html {
     font-weight: 500;
     position: relative;
     padding: 0.5rem 0.8rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s, transform 0.3s;
     font-size: 0.95rem;
     white-space: nowrap;
 }
@@ -153,6 +175,8 @@ html {
 
 .nav-link:hover {
     color: var(--accent-color);
+    text-decoration: none;
+    transform: scale(1.13);
 }
 
 .nav-link:hover::after {
@@ -191,7 +215,7 @@ html {
 
     .logo-title {
         font-size: 0.8rem;
-    }
+}
 
     .nav-link {
         font-size: 0.75rem;
@@ -228,22 +252,22 @@ html {
 }
 
 .github-button {
-    display: inline-flex; /* Alinea el ícono y el texto en línea */
-    align-items: center; /* Alinea verticalmente */
-    background-color: #000; /* Fondo negro */
-    color: white; /* Texto en blanco */
-    padding: 10px 15px; /* Espaciado interno */
-    text-decoration: none; /* Sin subrayado */
-    border-radius: 7px; /* Bordes redondeados */
-    font-size: 15px; /* Tamaño del texto */
-    transition: background-color 0.3s; /* Transición suave en el fondo */
-    margin-top: 20px;
-    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #1a1a1a;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
 }
 
 .github-button:hover {
-    background-color: #121722; /* Color de fondo al hacer hover */
-    transform: scale(1.05);
+    background-color: #00a4ef;
+    transform: translateY(-2px);
+    text-decoration: none;
 }
 
 .github-button i {
@@ -289,8 +313,8 @@ html {
     background: linear-gradient(45deg, rgba(0,123,255,0.1), rgba(0,123,255,0.05));
     opacity: 0;
     transition: opacity 0.5s ease;
-}
-
+  }
+  
 .pie-pagina:hover::before {
     opacity: 1;
 }
@@ -301,7 +325,8 @@ html {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
+    gap: 3rem;
 }
 
 .box {
@@ -368,17 +393,18 @@ html {
     color: #fff;
     background-color: #0d2033;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
     border-radius: 50%;
     font-size: 24px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .red-social a:hover {
-    color: #007bff;
-    transform: translateY(-5px) scale(1.1);
+    text-decoration: none;
+    color: #fff;
+    background-color: #0d2033;
+    transform: scale(1.18);
     box-shadow: 0 8px 20px rgba(0,123,255,0.4);
-    background-color: #fff;
 }
 
 /* Ajustes responsive para los botones de contacto */
@@ -557,8 +583,9 @@ a:hover {
 }
 
 @media (max-width: 767px) {
-    .carousel img {
-        width: 100%; 
+    .header {
+        margin-top: 100px;
+        height: 220px;
     }
 
     .responsive-img {
@@ -810,24 +837,29 @@ a:hover {
     line-height: 1.6;
 }
 
-.education-content ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 1rem;
+.education-content ul,
+.education-content ol {
+    list-style-type: disc;
+    padding-left: 1.5em;
 }
 
-.education-content ul li {
-    margin-bottom: 0.8rem;
+.education-content ul li,
+.education-content ol li {
     position: relative;
-    padding-left: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 0.8rem;
+    padding-left: 1.5em;
 }
 
-.education-content ul li:before {
-    content: "•";
+.education-content ul li:before,
+.education-content ol li:before {
+    content: '•';
     color: #007bff;
     font-weight: bold;
     position: absolute;
-    left: 0;
+    left: 0.2em;
+    font-size: 1.2em;
+    line-height: 1;
 }
 
 /* Animaciones para las tarjetas de educación */
@@ -1005,7 +1037,11 @@ a:hover {
     margin: 0;
     font-size: 1.3rem;
     font-weight: 600;
-    color: white;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .project-header h3 {
+    color: #ffffff !important;
 }
 
 .project-content {
@@ -1050,6 +1086,7 @@ a:hover {
 .github-button:hover {
     background-color: #00a4ef;
     transform: translateY(-2px);
+    text-decoration: none;
 }
 
 .github-button i {
@@ -1226,6 +1263,37 @@ input:checked + .slider:before {
     color: var(--link-color);
     margin-bottom: 10px;
     transition: color 0.3s ease;
+    line-height: 1.8;
+    font-size: 1.15rem;
+}
+
+.pie-pagina .box p:first-of-type {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+.pie-pagina .box p:last-of-type {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem 2rem 2rem 1.5rem;
+    border-radius: 15px;
+    border-left: 5px solid var(--accent-color);
+    margin-top: 1.2rem;
+    font-size: 0.98rem;
+    max-width: 100%;
+}
+
+.pie-pagina .box p:last-of-type a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.pie-pagina .box p:last-of-type a:hover {
+    color: #fff;
+    text-decoration: underline;
 }
 
 [data-theme="dark"] .pie-pagina .box p {
@@ -1233,7 +1301,7 @@ input:checked + .slider:before {
 }
 
 [data-theme="dark"] .project-content p {
-    color: var(--text-color);
+    color: #000000 !important;
 }
 
 [data-theme="dark"] .education-content p,
@@ -1309,6 +1377,173 @@ input:checked + .slider:before {
 .education-content ul li p {
     margin: 0;
     flex-grow: 1;
+}
+
+.pie-pagina .box {
+    flex: 1 1 0;
+    min-width: 260px;
+    max-width: 370px;
+    transition: transform 0.3s ease;
+}
+
+.pie-pagina .box:hover {
+    transform: translateY(-5px);
+}
+
+.pie-pagina .box figure {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.pie-pagina .box.contact-box {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pie-pagina .box.contact-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.pie-pagina .box.contact-box h2 {
+    color: var(--title-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.pie-pagina .box.contact-box p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .pie-pagina .box.contact-box {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+}
+
+.pie-pagina .box figure img {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .education-cards {
+        gap: 1.2rem;
+        margin: 1rem 0;
+    }
+    .education-card {
+        padding: 1rem;
+        max-width: 98vw;
+        min-width: 0;
+        font-size: 0.98rem;
+        word-break: break-word;
+    }
+    .education-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    .education-logo {
+        width: 90px;
+    }
+    .education-header h2 {
+        font-size: 1.1rem;
+    }
+    .education-content {
+        padding: 0;
+        font-size: 0.98rem;
+    }
+    .education-content p,
+    .education-content li {
+        font-size: 0.98rem;
+        word-break: break-word;
+        line-height: 1.5;
+        margin-left: 0;
+        padding-left: 0;
+    }
+    .education-content ol,
+    .education-content ul {
+        padding-left: 0;
+        margin-left: 0;
+        margin: 0.5rem 0;
+    }
+    .education-card .responsive-img {
+        max-width: 100%;
+    }
+    .education-card .education-logo {
+        width: 80px;
+    }
+    .education-card ol {
+        padding-left: 0;
+    }
+    .pie-pagina .grupo-1 {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 35px 0px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .pie-pagina .box figure {
+        justify-content: center;
+        padding-left: 0;
+        width: 100%;
+    }
+    .pie-pagina .box figure img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .education-content ol,
+    .education-content ul {
+        list-style-type: disc;
+        padding-left: 1.2em;
+        margin-left: 0;
+    }
+    .education-content ul li,
+    .education-content ol li {
+        display: list-item !important;
+        list-style-type: disc;
+        color: var(--text-color);
+        white-space: normal !important;
+        gap: 0;
+        padding-left: 0;
+        margin-left: 0;
+    }
+    .education-content ul li:before,
+    .education-content ol li:before {
+        content: none !important;
+    }
+    .education-content ul li strong,
+    .education-content ol li strong {
+        display: inline;
+        margin-bottom: 0;
+        margin-right: 0.2em;
+        white-space: normal;
+        color: #007bff;
+    }
+}
+
+.lang-toggle {
+    display: none !important;
 }
 
 
