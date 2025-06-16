@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet">
 
     <title>Portfolio | Gonzalo Diaz</title>
     
     <link rel="stylesheet" href="styles.css">
 
+    <link rel="icon" type="image/svg+xml" href="icon/logo gon ultimos-01.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
@@ -23,16 +25,19 @@
 
     <!-- =================== PORTADA =================== -->
     <header class="header">
-        <img src="icon/Portada Gon.png" alt="Portada" class="header-image">
+        <div class="animated-title">
+            <h1 class="title-text">Gonzalo Diaz | Data Analyst</h1>
+        </div>
+        <img src="icon/Portada-Gon fn_mesa de trabajo dos, portada Gon.svg" alt="Portada" class="header-image">
     </header>
 
 
     <!-- =================== NAVBAR =================== -->
     <div class="navbar" data-aos="fade-down">
         <div class="logo" data-aos="fade-right">
-            <a href="https://www.linkedin.com/in/gonzalo-diaz-0ab0081b5/" target="_blank" class="logo-link">
-                <img src="icon/favicon.ico" alt="Logo" class="logo-image">
-                <span class="logo-title">Portfolio | Gonzalo Diaz</span>
+            <a href="#" class="logo-link">
+                <img src="icon/logo gon ultimos-01.svg" alt="Logo" class="logo-image">
+                
             </a>
         </div>
         <div class="nav-links" data-aos="fade-left">
@@ -379,9 +384,9 @@
             <div class="education-card" data-aos="fade-right">
                 <div class="education-header">
                     <a href="https://datatalks.club/blog/machine-learning-zoomcamp.html" target="_blank">
-                        <img src="icon/data-talks-ml-removebg-preview.png" alt="DataTalks - Machine Learning Zoomcamp 2024" class="education-logo">
+                        <img src="icon/data-talks-ml-removebg-preview.png" alt="DataTalks - Machine Learning Zoomcamp" class="education-logo">
                     </a>
-                    <h2>DataTalks - Machine Learning Zoomcamp 2024</h2>
+                    <h2>DataTalks - Machine Learning Zoomcamp</h2>
                 </div>
                 <div class="education-content">
                     <h3>Parte 1: Algoritmos de Machine Learning</h3>
@@ -423,29 +428,37 @@
 
     <!-- =================== FOOTER =================== -->
     <footer class="pie-pagina" id="contacto" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-        <div class="grupo-1">
+        <div class="footer-contacto">
             <!-- Foto de perfil -->
-            <div class="box" data-aos="fade-right" data-aos-delay="100">
+            <div class="footer-foto">
                 <figure>
                     <a href="#">
                         <img src="icon/foto1x1.jpg" alt="Logo de Portfolio Data"> 
                     </a>
                 </figure>
             </div>
-            <!-- Contacto -->
-            <div class="box" data-aos="fade-up" data-aos-delay="200">
-                <h2>CONTACTA CONMIGO</h2>
-                <p>¡Gracias por visitar mi página!</p>
-                <p>Me alegra que hayas explorado mis proyectos de Data. Si te interesa charlar o colaborar, puedes contactarme a través de mi email: <a href="mailto:gonzadiaz160400@gmail.com">gonzadiaz160400@gmail.com</a> ¡No dudes en escribirme!</p>
-            </div>
-            <!-- Medios -->
-            <div class="box" data-aos="fade-left" data-aos-delay="300">
-                <h2>MEDIOS</h2>
-                <div class="red-social">
-                    <a href="https://www.linkedin.com/in/gonzalo-diaz-0ab0081b5/" class="fa fa-linkedin"></a>
-                    <a href="https://github.com/gonzadzz00" class="fa fa-github"></a>
-                    <a href="mailto:gonzadiaz160400@gmail.com" class="fa fa-envelope"></a>
-                    <a href="https://api.whatsapp.com/send/?phone=2974235499&text&type=phone_number&app_absent=0" class="fa fa-whatsapp"></a>
+            <!-- Card de despedida -->
+            <div class="footer-card">
+                <div class="contact-card contact-card-full">
+                    <div class="contact-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="contact-content">
+                        <h2>¡Gracias por visitar mi página!</h2>
+                        <p>Me alegra que hayas explorado mis proyectos de Data. Si te interesa charlar o colaborar, puedes contactarme a través de mi email:</p>
+                        <a href="mailto:gonzadiaz160400@gmail.com" class="email-link">
+                            <i class="fas fa-envelope"></i>
+                            gonzadiaz160400@gmail.com
+                        </a>
+                        <p class="contact-cta">¡No dudes en escribirme!</p>
+                    </div>
+                </div>
+                <!-- Íconos de redes sociales debajo de la card -->
+                <div class="footer-redes">
+                    <a href="https://www.linkedin.com/in/gonzalo-diaz-0ab0081b5/" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/gonzadzz00" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a>
+                    <a href="mailto:gonzadiaz160400@gmail.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-envelope"></i></a>
+                    <a href="https://api.whatsapp.com/send/?phone=2974235499&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"><i class="fa fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
@@ -475,7 +488,55 @@
             }
         }
         toggleSwitch.addEventListener('change', switchTheme, false);
+
+        // Ajustar altura del header según la imagen de portada
+        window.addEventListener('load', function() {
+            const header = document.querySelector('.header');
+            const portada = document.querySelector('.header-image');
+            if (header && portada) {
+                function ajustarHeader() {
+                    header.style.height = portada.offsetHeight + 'px';
+                }
+                ajustarHeader();
+                window.addEventListener('resize', ajustarHeader);
+            }
+        });
     </script>
+    <script>
+        // Efecto typewriter para el título
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('.title-text');
+            if (!title) return;
+            const text = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 120);
+                } else {
+                    // Opcional: agregar un cursor parpadeante
+                    title.innerHTML += '<span class="typewriter-cursor">|</span>';
+                }
+            }
+            typeWriter();
+        });
+    </script>
+    <style>
+    .typewriter-cursor {
+        display: inline-block;
+        width: 1ch;
+        animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+    .title-text {
+        font-family: 'ProggyClean', monospace !important;
+    }
+    </style>
 
 </body>
 </html>
