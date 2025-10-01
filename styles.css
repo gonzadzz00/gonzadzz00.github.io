@@ -273,7 +273,10 @@ html {
 
 /*==========================BOTONES=============================*/
 .button-container {
-    text-align: center; /* Justifica solo este párrafo */
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 20px; /* Espacio entre botones */
+    margin-top: 20px;
 }
 
 /* Asegúrate de que el botón también tenga el estilo correcto */
@@ -299,7 +302,8 @@ html {
     transform: scale(0.95); /* Reduce ligeramente el tamaño al hacer clic */
 }
 
-.github-button {
+.github-button,
+.youtube-button {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -321,6 +325,52 @@ html {
 .github-button i {
     margin-right: 8px; /* Espacio entre el icono y el texto */
     font-size: 20px; /* Ajuste del tamaño del icono */
+}
+
+.youtube-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: #1a1a1a; 
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.youtube-button:hover {
+    background-color: #cc0000; /* Un rojo más oscuro al hover */
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.youtube-button i {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+.tech-stack-section {
+    max-width: 1000px;   /* mismo ancho que otras secciones */
+    margin: 40px auto;   /* centrado horizontal */
+    padding: 0 20px;     /* espacio interno para que no pegue al borde */
+}
+
+.tech-stack-section h2 {
+    text-align: left;    /* igual que tus otros títulos */
+    margin-bottom: 20px;
+}
+
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;        /* permite que los badges bajen en varias filas */
+    justify-content: center; /* los centra horizontalmente */
+    gap: 10px;              /* espacio entre ellos */
+    margin: 20px auto;      /* separación con respecto a otros elementos */
+    max-width: 900px;       /* opcional: limitar ancho para que no se estiren de más */
 }
 
 .tech-stack img {
@@ -598,6 +648,13 @@ a:hover {
     width: 100%; /* Cada imagen ocupa el 100% del ancho del contenedor */
     height: auto; /* Mantiene la proporción de la imagen */
     object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin deformarla */
+}
+
+.carousel-images img {
+    width: 100%;          /* cada imagen ocupa todo el ancho del carrusel */
+    height: auto;         /* mantiene proporciones */
+    object-fit: contain;  /* 🔑 evita que el GIF/imagen se recorte */
+    flex-shrink: 0;
 }
 
 .carousel-control {
