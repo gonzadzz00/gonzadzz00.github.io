@@ -1,0 +1,97 @@
+---
+import siteConfig from '../data/site-config.json';
+---
+
+<header class="hero">
+  <div class="hero-bg">
+    <img src="/icon/Portada-Gon fn_mesa de trabajo dos, portada Gon.svg" alt="Portada" class="hero-bg-image" />
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">{siteConfig.ownerName}</h1>
+    <p class="hero-tagline">{siteConfig.tagline}</p>
+    <a href="#mi-perfil" class="hero-cta">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </div>
+</header>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px solid var(--accent-color);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-family: var(--font-heading);
+    color: #fff;
+    margin-bottom: var(--space-sm);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  }
+
+  .hero-tagline {
+    font-size: var(--text-xl);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-xl);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: var(--text-xl);
+    transition: background var(--transition-fast),
+                transform var(--transition-fast);
+    animation: bounce 2s infinite;
+  }
+
+  .hero-cta:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(2px);
+    color: #fff;
+    opacity: 1;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 250px;
+    }
+  }
+</style>

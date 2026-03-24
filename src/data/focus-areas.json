@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ciencia-de-datos",
+    "name": "Ciencia de Datos",
+    "icon": "fas fa-brain",
+    "skills": [
+      "Desarrollo de modelos de prediccion, clasificacion, segmentacion y series temporales para apoyar la toma de decisiones.",
+      "Aplicacion de algoritmos de aprendizaje supervisado (regresion lineal y logistica, arboles de decision, random forest, XGBoost, redes neuronales) y no supervisado (clustering con k-means, DBSCAN, PCA).",
+      "Evaluacion de desempeno mediante metricas como accuracy, precision, recall, F1-score, ROC-AUC, MAE, RMSE, entre otros.",
+      "Preprocesamiento de datos: limpieza, normalizacion, imputacion, ingenieria de caracteristicas y seleccion de variables.",
+      "Optimizacion y validacion de modelos con tecnicas de cross-validation, hiperparametros y pipelines reproducibles en produccion."
+    ]
+  },
+  {
+    "id": "visualizacion",
+    "name": "Visualizacion de Datos",
+    "icon": "fas fa-chart-bar",
+    "skills": [
+      "Construccion de dashboards interactivos y reportes visuales adaptados a usuarios tecnicos y no tecnicos.",
+      "Uso de herramientas de Business Intelligence como Power BI y Qlik Sense para representar datos de manera clara, accesible y visualmente atractiva.",
+      "Desarrollo de visualizaciones en Python con librerias especializadas como Plotly, Matplotlib y Seaborn.",
+      "Enfoque en la comunicacion efectiva de hallazgos, con enfasis en el storytelling con datos."
+    ]
+  },
+  {
+    "id": "ingenieria-de-datos",
+    "name": "Ingenieria de Datos",
+    "icon": "fas fa-database",
+    "skills": [
+      "Administracion, modelado y optimizacion de bases de datos relacionales y no relacionales.",
+      "Diseno y orquestacion de flujos de transformacion de datos (DAGs) utilizando Apache Airflow.",
+      "Construccion de pipelines de datos escalables para ingesta, transformacion y carga de datos (ETL/ELT).",
+      "Implementacion de estrategias de gobernanza de datos: seguridad, trazabilidad y calidad.",
+      "Desarrollo de tests de calidad y monitoreo continuo para garantizar la confiabilidad de la informacion."
+    ]
+  }
+]

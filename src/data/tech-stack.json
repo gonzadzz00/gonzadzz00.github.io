@@ -1,0 +1,18 @@
+[
+  { "name": "Python", "badgeUrl": "https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" },
+  { "name": "Pandas", "badgeUrl": "https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" },
+  { "name": "NumPy", "badgeUrl": "https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" },
+  { "name": "scikit-learn", "badgeUrl": "https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" },
+  { "name": "Computer Vision", "badgeUrl": "https://img.shields.io/badge/Computer%20Vision-00A4EF?style=for-the-badge&logo=opencv&logoColor=white" },
+  { "name": "MongoDB", "badgeUrl": "https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white" },
+  { "name": "GitHub", "badgeUrl": "https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" },
+  { "name": "PostgreSQL", "badgeUrl": "https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" },
+  { "name": "TensorFlow", "badgeUrl": "https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" },
+  { "name": "Docker", "badgeUrl": "https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" },
+  { "name": "Linux", "badgeUrl": "https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" },
+  { "name": "Django", "badgeUrl": "https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white" },
+  { "name": "Apache Airflow", "badgeUrl": "https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white" },
+  { "name": "dbt", "badgeUrl": "https://img.shields.io/badge/dbt-FF694B?style=for-the-badge&logo=dbt&logoColor=white" },
+  { "name": "DVC", "badgeUrl": "https://img.shields.io/badge/DVC-945DD6?style=for-the-badge&logo=dvc&logoColor=white" },
+  { "name": "MLflow", "badgeUrl": "https://img.shields.io/badge/MLflow-0194E2?style=for-the-badge&logo=mlflow&logoColor=white" }
+]
