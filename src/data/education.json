@@ -1,0 +1,34 @@
+[
+  {
+    "id": "istea",
+    "institution": "Instituto Superior Tecnologico Empresarial Argentino",
+    "program": "Tecnicatura en Ciencia de Datos e Inteligencia Artificial",
+    "institutionLogo": "/icon/istea.png",
+    "institutionUrl": "https://www.istea.edu.ar/tecnicatura-superior-en-ciencias-de-datos/",
+    "description": "Formacion orientada al analisis estadistico, procesamiento de datos, desarrollo de modelos de machine learning y deep learning, con aplicaciones en vision por computadora, procesamiento de lenguaje natural y sistemas predictivos. Incluye conocimientos solidos en programacion (Python, R, SQL), bases de datos, matematicas, estadistica y etica en la inteligencia artificial.",
+    "competencies": [
+      "Minería de Datos",
+      "Programacion y Desarrollo de software",
+      "Arquitectura de Soluciones",
+      "Visualizacion de datos",
+      "Bases de datos"
+    ],
+    "order": 1
+  },
+  {
+    "id": "ugr",
+    "institution": "Universidad del Gran Rosario",
+    "program": "Licenciatura en Ciencia de Datos",
+    "institutionLogo": "/icon/ugr.png",
+    "institutionUrl": "https://ugr.edu.ar/carreras/ciclo-de-licenciatura-en-ciencia-de-datos/",
+    "description": "La Licenciatura en Ciencia de Datos de la Universidad del Gran Rosario ofrece una formacion solida en estadistica aplicada, ingenieria de software, aprendizaje automatico, aprendizaje profundo, procesamiento de lenguaje natural y vision por computadora.",
+    "competencies": [
+      "Visión por Computadora",
+      "Procesamiento de Lenguaje Natural",
+      "Aprendizaje por Refuerzo",
+      "Ingeniería del Software",
+      "Herramientas de Software para Análisis de Datos"
+    ],
+    "order": 2
+  }
+]

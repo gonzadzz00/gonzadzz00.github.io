@@ -1,0 +1,151 @@
+---
+import projects from '../data/projects.json';
+import ImageCarousel from '../components/ImageCarousel.astro';
+---
+
+<section id="mis-proyectos" class="section">
+  <h2 class="section-title">
+    <span class="emoji-icon">&#128187;</span>
+    Proyectos de Analisis de Datos
+  </h2>
+
+  <p class="projects-intro">
+    Este repositorio esta pensado para demostrar no solo habilidades tecnicas, sino tambien una vision integral del ciclo de vida del dato, desde la extraccion y transformacion hasta su analisis, visualizacion y presentacion a usuarios finales o despliegue en entornos reales.
+  </p>
+
+  <div class="projects-list reveal-stagger">
+    {projects.map((project: any) => (
+      <div class="card project-card" data-project-card>
+        <div class="project-header" data-project-toggle>
+          <div class="project-header-text">
+            <h3 class="project-title">{project.title}</h3>
+            <div class="project-tools">
+              {project.tools.map((tool: string) => (
+                <span class="badge">{tool}</span>
+              ))}
+            </div>
+          </div>
+          <button class="project-expand-btn" aria-label="Expandir proyecto">
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">{project.description}</p>
+
+          {project.images.length > 0 && (
+            <ImageCarousel images={project.images} />
+          )}
+
+          <div class="project-links">
+            {project.links.map((link: any) => (
+              <a href={link.url} target="_blank" rel="noopener noreferrer" class="btn-primary">
+                <i class={link.icon}></i>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  function initProjectCards() {
+    document.querySelectorAll('[data-project-card]').forEach(card => {
+      const toggle = card.querySelector('[data-project-toggle]');
+      toggle?.addEventListener('click', () => {
+        card.classList.toggle('expanded');
+      });
+    });
+  }
+
+  initProjectCards();
+  document.addEventListener('astro:after-swap', initProjectCards);
+</script>
+
+<style>
+  .projects-intro {
+    max-width: 800px;
+    margin-bottom: var(--space-2xl);
+    color: var(--secondary-text);
+  }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .project-card {
+    overflow: hidden;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .project-header-text {
+    flex: 1;
+  }
+
+  .project-title {
+    font-size: var(--text-xl);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .project-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .project-expand-btn {
+    background: none;
+    border: none;
+    color: var(--secondary-text);
+    font-size: var(--text-lg);
+    cursor: pointer;
+    padding: var(--space-xs);
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
+  }
+
+  .project-card.expanded .project-expand-btn {
+    transform: rotate(180deg);
+  }
+
+  .project-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .project-body > * {
+    overflow: hidden;
+  }
+
+  .project-card.expanded .project-body {
+    grid-template-rows: 1fr;
+  }
+
+  .project-description {
+    font-size: var(--text-sm);
+    color: var(--secondary-text);
+    line-height: 1.6;
+    margin: var(--space-md) 0;
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0 var(--space-xs);
+  }
+</style>

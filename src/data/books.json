@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Fundamentals of Data Engineering",
+    "author": "Joe Reis & Matt Housley",
+    "coverImage": "/icon/Fundametals_of_DE.jfif",
+    "category": "Data Engineering",
+    "note": "Guia completa sobre el ciclo de vida de la ingenieria de datos, desde la generacion hasta el servicio de datos, cubriendo arquitecturas, herramientas y mejores practicas."
+  },
+  {
+    "title": "Software Engineering for Data Scientists",
+    "author": "Catherine Nelson",
+    "coverImage": "/icon/Software_Eng_for_DS.jfif",
+    "category": "Software Engineering",
+    "note": "Principios de ingenieria de software aplicados a proyectos de ciencia de datos, incluyendo testing, control de versiones, y diseno de codigo mantenible."
+  }
+]

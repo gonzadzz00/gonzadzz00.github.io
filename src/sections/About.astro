@@ -1,0 +1,118 @@
+---
+import siteConfig from '../data/site-config.json';
+import focusAreas from '../data/focus-areas.json';
+import techStack from '../data/tech-stack.json';
+---
+
+<section id="mi-perfil" class="section">
+  <h2 class="section-title">
+    <span class="emoji-icon">&#128075;</span>
+    Sobre mi
+  </h2>
+
+  <div class="about-bio">
+    {siteConfig.bio.map((paragraph: string) => (
+      <p>{paragraph}</p>
+    ))}
+  </div>
+
+  <h3 class="subsection-title">
+    <span class="emoji-icon">&#128270;</span>
+    Areas de Enfoque
+  </h3>
+
+  <div class="grid-3 reveal-stagger">
+    {focusAreas.map((area: any) => (
+      <div class="card focus-card">
+        <div class="focus-icon">
+          <i class={area.icon}></i>
+        </div>
+        <h4>{area.name}</h4>
+        <ul class="focus-skills">
+          {area.skills.map((skill: string) => (
+            <li>{skill}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <h3 class="subsection-title">
+    <span class="emoji-icon">&#128736;</span>
+    Tech Stack
+  </h3>
+
+  <div class="tech-badges">
+    {techStack.map((tech: any) => (
+      <img src={tech.badgeUrl} alt={tech.name} loading="lazy" />
+    ))}
+  </div>
+</section>
+
+<style>
+  .about-bio {
+    max-width: 800px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .about-bio p {
+    margin-bottom: var(--space-md);
+    line-height: 1.7;
+  }
+
+  .subsection-title {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .focus-card {
+    text-align: left;
+  }
+
+  .focus-icon {
+    font-size: var(--text-3xl);
+    color: var(--accent-color);
+    margin-bottom: var(--space-sm);
+  }
+
+  .focus-icon i {
+    display: block;
+  }
+
+  .focus-card h4 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .focus-skills {
+    list-style: none;
+    padding: 0;
+  }
+
+  .focus-skills li {
+    padding: var(--space-xs) 0;
+    font-size: var(--text-sm);
+    color: var(--secondary-text);
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .focus-skills li:last-child {
+    border-bottom: none;
+  }
+
+  .tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .tech-badges img {
+    height: 28px;
+    width: auto;
+  }
+</style>

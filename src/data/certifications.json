@@ -1,0 +1,74 @@
+[
+  {
+    "id": "humai-data-engineering",
+    "name": "Ingenieria de Datos",
+    "issuer": "HUMAI",
+    "issuerLogo": "/icon/humai.png",
+    "issuerUrl": "https://humai.lat/carreras/data_eng",
+    "date": "2025",
+    "description": "La carrera de Ingeniería de Datos tiene como objetivo formar profesionales especializados en diseñar, construir y optimizar sistemas que permitan la gestión eficiente de grandes volúmenes de datos. El egresado podrá desempeñarse en roles como ingeniero de datos o arquitecto de datos junior, con habilidades en integración de datos, manejo de bases de datos, desarrollo de pipelines de datos y despliegue de soluciones escalables que faciliten el análisis y la toma de decisiones.",
+    "topics": [
+      "Fundamentos de Ingenieria de Datos",
+      "Bases de Datos SQL y NoSQL",
+      "ETL y Pipelines de Datos",
+      "Big Data y Procesamiento con PySpark",
+      "Python Avanzado",
+      "Automatización y Orquestación de Pipelines"
+    ],
+    "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
+    "order": 1
+  },
+  {
+    "id": "devtalles-docker",
+    "name": "Desarrollo con Docker",
+    "issuer": "Dev/Talles",
+    "issuerLogo": "/icon/dev-talles.png",
+    "issuerUrl": "https://cursos.devtalles.com/courses/docker-guia-practica",
+    "date": "2025",
+    "description": "Poder crear, usar, y desplegar imágenes es una habilidad necesaria para cualquier desarrollador o administrador de hoy en día, ahorra mucho tiempo en la preparación de diferentes ambientes de desarrollo, testing, staging y production.Este curso te dará las más que las bases para poder utilizar Docker de una forma productiva y funcional, aprenderemos mediante ejercicios prácticos y tareas.",
+    "topics": [
+      "Dockerfiles e Imagenes",
+      "Docker Compose",
+      "Persistencia y Redes",
+      "Deploy y Buenas Practicas"
+    ],
+    "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
+    "order": 2
+  },
+  {
+    "id": "google-data-analytics",
+    "name": "Certificacion Profesional en Analisis de Datos de Google",
+    "issuer": "Google",
+    "issuerLogo": "/icon/google-data.png",
+    "issuerUrl": "https://www.coursera.org/professional-certificates/google-data-analytics",
+    "date": "2024",
+    "description": "La certificacion en analisis de datos de Google cubre los conceptos fundamentales del analisis de datos, incluyendo herramientas y tecnicas para transformar datos en insights significativos.",
+    "topics": [
+      "Fundamentos del Analisis de Datos",
+      "Preparacion de Datos",
+      "Analisis de Datos en Excel",
+      "Visualizacion de Datos",
+      "Analisis Predictivo"
+    ],
+    "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
+    "order": 3
+  },
+  {
+    "id": "microsoft-power-bi",
+    "name": "Certificacion Profesional en Analisis de Datos con Microsoft Power BI",
+    "issuer": "Microsoft",
+    "issuerLogo": "/icon/power-bi-data.png",
+    "issuerUrl": "https://www.coursera.org/professional-certificates/microsoft-power-bi-data-analyst",
+    "date": "2024",
+    "description": "Certificacion disenada para capacitar en el uso de Power BI como herramienta para transformar datos en insights significativos, con enfoque en manejo de datos, visualizacion y creacion de informes interactivos.",
+    "topics": [
+      "Introduccion a Power BI",
+      "Preparacion de Datos para el Analisis",
+      "Visualizacion de Datos",
+      "Modelado de Datos con DAX",
+      "Creacion de Informes y Dashboards"
+    ],
+    "verificationUrl": "https://coursera.org/share/22e0248ed8e190da2ca607523870ba26",
+    "order": 4
+  }
+]

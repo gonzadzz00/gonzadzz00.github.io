@@ -1,0 +1,102 @@
+---
+---
+
+<label class="theme-switch" aria-label="Cambiar tema">
+  <input type="checkbox" id="theme-checkbox" />
+  <div class="slider">
+    <i class="fas fa-sun"></i>
+    <i class="fas fa-moon"></i>
+  </div>
+</label>
+
+<script>
+  function initThemeToggle() {
+    const checkbox = document.getElementById('theme-checkbox') as HTMLInputElement;
+    if (!checkbox) return;
+
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    checkbox.checked = currentTheme === 'dark';
+
+    checkbox.addEventListener('change', () => {
+      const theme = checkbox.checked ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
+  }
+
+  initThemeToggle();
+  document.addEventListener('astro:after-swap', initThemeToggle);
+</script>
+
+<style>
+  .theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+    cursor: pointer;
+  }
+
+  .theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    inset: 0;
+    background-color: var(--border-color);
+    border-radius: 28px;
+    transition: background-color var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+  }
+
+  .slider i {
+    font-size: 12px;
+    z-index: 1;
+    transition: opacity var(--transition-fast);
+  }
+
+  .slider .fa-sun {
+    color: #f39c12;
+    opacity: 1;
+  }
+
+  .slider .fa-moon {
+    color: #f1c40f;
+    opacity: 0.4;
+  }
+
+  .slider::before {
+    content: '';
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform var(--transition-normal);
+    z-index: 2;
+  }
+
+  input:checked + .slider {
+    background-color: #333;
+  }
+
+  input:checked + .slider .fa-sun {
+    opacity: 0.4;
+  }
+
+  input:checked + .slider .fa-moon {
+    opacity: 1;
+  }
+
+  input:checked + .slider::before {
+    transform: translateX(24px);
+  }
+</style>

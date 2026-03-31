@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+import Hero from '../sections/Hero.astro';
+import About from '../sections/About.astro';
+import Education from '../sections/Education.astro';
+import Projects from '../sections/Projects.astro';
+import Certifications from '../sections/Certifications.astro';
+import Books from '../sections/Books.astro';
+import Contact from '../sections/Contact.astro';
+---
+
+<BaseLayout>
+  <Navbar />
+  <Hero />
+  <main>
+    <About />
+    <Education />
+    <Projects />
+    <Certifications />
+    <Books />
+    <Contact />
+  </main>
+  <Footer />
+  <ScrollReveal />
+</BaseLayout>
