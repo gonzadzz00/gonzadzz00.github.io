@@ -1,13 +1,11 @@
 {
   "ownerName": "Gonzalo Diaz",
-  "tagline": "Data Science & Analytics Engineering",
+  "tagline": "Data & AI",
   "bio": [
-    "Hola! Soy Gonzalo, Analista de Datos de Argentina, con formacion como Tecnico Superior en Ciencia de Datos y actualmente estudiante de la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario. Me apasiona convertir datos en conocimiento util y continuo aprendiendo y perfeccionando mis habilidades en analisis, modelado y visualizacion, junto con un fuerte interes en la ingenieria de datos y el desarrollo y puesta en produccion de modelos predictivos.",
-    "Como Analista de Datos, ayudo a las empresas a optimizar sus operaciones y a tomar decisiones informadas mediante reportes y analisis. Mi experiencia incluye trabajar con datos de diversas fuentes, aplicando tecnicas de limpieza, transformacion y visualizacion para generar insights claros y accionables.",
-    "Estoy orientando mi perfil profesional hacia el rol de Analytics Engineer. En esta funcion, no solo analizo datos, sino que transformo y preparo conjuntos de datos limpios y confiables, aplicando buenas practicas de ingenieria como control de versiones, testing automatizado y documentacion clara, para que otros usuarios puedan responder sus propias preguntas con confianza.",
-    "Ademas, me estoy desarrollando en el campo de Machine Learning Engineering, enfocandome en el diseno, entrenamiento y despliegue de modelos predictivos escalables, con el objetivo de llevar las soluciones de IA desde la experimentacion hasta entornos productivos.",
-    "Mi objetivo profesional es seguir creciendo como un perfil hibrido de datos capaz de conectar la analitica, el software y la infraestructura para construir soluciones eficientes, reproducibles y orientadas al impacto real en el negocio.",
-    "Te invito a explorar mi repositorio donde comparto mis proyectos. Si compartimos intereses o quieres hablar sobre datos, no dudes en conectarte conmigo. Sera un placer conversar!"
+"¡Hola! Soy Gonzalo, Data & AI Engineer de Argentina. Soy Técnico Superior en Ciencia de Datos y actualmente curso la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario.",
+"Mi trabajo se centra en el desarrollo con IA: diseño y construcción de agentes inteligentes, automatización de flujos de datos y tareas de ingeniería de datos orientadas a producción. Me apasiona construir sistemas que no solo analicen información, sino que actúen sobre ella de forma autónoma y eficiente.",
+"Mi perfil combina la solidez analítica del dato con la mentalidad de ingeniería necesaria para llevarlo a sistemas reales: pipelines robustos, modelos en producción y soluciones que generan impacto concreto.",
+"Te invito a explorar mi repositorio, donde comparto proyectos en estas áreas. Si te interesa la IA aplicada, los datos o simplemente quieres intercambiar ideas, será un placer conectarnos."
   ],
   "profileImage": "/icon/foto1x1.jpg",
   "socialLinks": [

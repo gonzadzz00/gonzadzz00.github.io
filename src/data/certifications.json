@@ -4,15 +4,16 @@
     "name": "Ingenieria de Datos",
     "issuer": "HUMAI",
     "issuerLogo": "/icon/humai.png",
-    "issuerUrl": "https://humai.com.ar/",
+    "issuerUrl": "https://humai.lat/carreras/data_eng",
     "date": "2025",
-    "description": "Curso orientado al diseno, construccion y mantenimiento de sistemas de procesamiento de datos escalables, combinando bases teoricas con practicas reales utilizadas en la industria.",
+    "description": "La carrera de Ingeniería de Datos tiene como objetivo formar profesionales especializados en diseñar, construir y optimizar sistemas que permitan la gestión eficiente de grandes volúmenes de datos. El egresado podrá desempeñarse en roles como ingeniero de datos o arquitecto de datos junior, con habilidades en integración de datos, manejo de bases de datos, desarrollo de pipelines de datos y despliegue de soluciones escalables que faciliten el análisis y la toma de decisiones.",
     "topics": [
       "Fundamentos de Ingenieria de Datos",
       "Bases de Datos SQL y NoSQL",
       "ETL y Pipelines de Datos",
-      "Big Data y Procesamiento Distribuido",
-      "Proyecto Integrador"
+      "Big Data y Procesamiento con PySpark",
+      "Python Avanzado",
+      "Automatización y Orquestación de Pipelines"
     ],
     "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
     "order": 1
@@ -22,11 +23,10 @@
     "name": "Desarrollo con Docker",
     "issuer": "Dev/Talles",
     "issuerLogo": "/icon/dev-talles.png",
-    "issuerUrl": "https://www.devtalles.com/",
+    "issuerUrl": "https://cursos.devtalles.com/courses/docker-guia-practica",
     "date": "2025",
-    "description": "Curso que ensena a crear, configurar y desplegar aplicaciones utilizando contenedores, facilitando entornos reproducibles y escalables para desarrollo y produccion.",
+    "description": "Poder crear, usar, y desplegar imágenes es una habilidad necesaria para cualquier desarrollador o administrador de hoy en día, ahorra mucho tiempo en la preparación de diferentes ambientes de desarrollo, testing, staging y production.Este curso te dará las más que las bases para poder utilizar Docker de una forma productiva y funcional, aprenderemos mediante ejercicios prácticos y tareas.",
     "topics": [
-      "Introduccion a Docker",
       "Dockerfiles e Imagenes",
       "Docker Compose",
       "Persistencia y Redes",
@@ -48,8 +48,7 @@
       "Preparacion de Datos",
       "Analisis de Datos en Excel",
       "Visualizacion de Datos",
-      "Analisis Predictivo",
-      "Proyecto Final"
+      "Analisis Predictivo"
     ],
     "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
     "order": 3
@@ -67,30 +66,9 @@
       "Preparacion de Datos para el Analisis",
       "Visualizacion de Datos",
       "Modelado de Datos con DAX",
-      "Creacion de Informes y Dashboards",
-      "Compartir y Colaborar",
-      "Proyecto Final"
+      "Creacion de Informes y Dashboards"
     ],
     "verificationUrl": "https://coursera.org/share/22e0248ed8e190da2ca607523870ba26",
     "order": 4
-  },
-  {
-    "id": "datatalks-ml-zoomcamp",
-    "name": "Machine Learning Zoomcamp",
-    "issuer": "DataTalks.Club",
-    "issuerLogo": "/icon/data-talks-ml-removebg-preview.png",
-    "issuerUrl": "https://datatalks.club/blog/machine-learning-zoomcamp.html",
-    "date": "2024",
-    "description": "Programa intensivo de Machine Learning que cubre desde algoritmos fundamentales hasta el despliegue de modelos en produccion.",
-    "topics": [
-      "Regresion Lineal y Logistica",
-      "Arboles de Decision y XGBoost",
-      "Redes Neuronales y Deep Learning",
-      "Flask, Docker y Despliegue",
-      "AWS Lambda y TensorFlow Lite",
-      "Kubernetes y TensorFlow Serving"
-    ],
-    "verificationUrl": "",
-    "order": 5
   }
 ]
