@@ -13,7 +13,7 @@ import siteConfig from '../data/site-config.json';
         <div class="contact-icon">
           <i class="fas fa-handshake"></i>
         </div>
-        <h2>Gracias por visitar mi pagina!</h2>
+        <h2>¡Gracias por visitar mi portfolio!</h2>
         <p>{siteConfig.contactMessage}</p>
         <a href={`mailto:${siteConfig.contactEmail}`} class="email-link">
           <i class="fas fa-envelope"></i>
@@ -78,7 +78,8 @@ import siteConfig from '../data/site-config.json';
   }
 
   .email-link {
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: var(--space-sm);
     color: var(--accent-color);

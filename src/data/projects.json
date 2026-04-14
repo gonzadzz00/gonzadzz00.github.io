@@ -1,8 +1,8 @@
 [
   {
     "id": "visualizacion-estadisticas",
-    "title": "Proyecto 1: Visualizacion de Estadisticas",
-    "description": "El objetivo de este proyecto es analizar y visualizar la fase ofensiva del Manchester City durante la temporada 2023/2024 en la Premier League, con un enfoque especial en los pases y tiros. Para realizar este analisis, se extrajeron datos mediante scraping de una pagina web de estadisticas de futbol utilizando Python, y luego fueron transformados para su visualizacion en Power BI.",
+    "title": "Proyecto 1: Visualización de Estadísticas",
+    "description": "El objetivo de este proyecto es analizar y visualizar la fase ofensiva del Manchester City durante la temporada 2023/2024 en la Premier League, con un enfoque especial en los pases y tiros. Para realizar este análisis, se extrajeron datos mediante scraping de una página web de estadísticas de fútbol utilizando Python, y luego fueron transformados para su visualización en Power BI.",
     "tools": ["Python", "Web Scraping", "Power BI"],
     "images": [
       { "src": "/icon/mancity1.jpg", "alt": "Dashboard Manchester City - Vista 1" },
@@ -18,8 +18,8 @@
   {
     "id": "caso-negocio",
     "title": "Proyecto 2: Caso de Negocio + Business Experimentation",
-    "description": "Una empresa de retail nacional, lider en la venta de productos electronicos, ha decidido expandirse a nuevos mercados regionales. Actualmente opera en cinco ciudades principales y desea extender su presencia a tres nuevas ciudades donde aun no tiene operaciones. La direccion necesita una estrategia basada en datos para maximizar la rentabilidad y minimizar los riesgos asociados con esta expansion.",
-    "tools": ["Python", "Analisis de Negocio", "Experimentacion"],
+    "description": "Una empresa de retail nacional, líder en la venta de productos electrónicos, ha decidido expandirse a nuevos mercados regionales. Actualmente opera en cinco ciudades principales y desea extender su presencia a tres nuevas ciudades donde aún no tiene operaciones. La dirección necesita una estrategia basada en datos para maximizar la rentabilidad y minimizar los riesgos asociados con esta expansión.",
+    "tools": ["Python", "Análisis de Negocio", "Experimentación"],
     "images": [
       { "src": "/icon/img1 - td.jpg", "alt": "Caso de negocio - Vista 1" },
       { "src": "/icon/img2 - td.jpg", "alt": "Caso de negocio - Vista 2" },
@@ -34,11 +34,11 @@
   {
     "id": "shipping-container-ocr",
     "title": "Proyecto 3: Shipping Container OCR",
-    "description": "Este proyecto implementa un pipeline hibrido de deteccion y OCR para identificar, validar y hacer seguimiento de codigos ISO 6346 en contenedores maritimos. Combina modelos YOLOv8 para deteccion de regiones y caracteres con EasyOCR como metodo de respaldo y metodos de validacion.",
+    "description": "Este proyecto implementa un pipeline híbrido de detección y OCR para identificar, validar y hacer seguimiento de códigos ISO 6346 en contenedores marítimos. Combina modelos YOLOv8 para detección de regiones y caracteres con EasyOCR como método de respaldo y métodos de validación.",
     "tools": ["Python", "YOLOv8", "EasyOCR", "Computer Vision"],
     "images": [
       { "src": "/icon/0919.gif", "alt": "Demo OCR en contenedores" },
-      { "src": "/icon/vertical_to_horizontal.jpg", "alt": "Transformacion vertical a horizontal" },
+      { "src": "/icon/vertical_to_horizontal.jpg", "alt": "Transformación vertical a horizontal" },
       { "src": "/icon/container_example_label.jpg", "alt": "Ejemplo de etiqueta de contenedor" },
       { "src": "/icon/modal.jpg", "alt": "Modal de resultado" }
     ],

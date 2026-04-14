@@ -2,34 +2,33 @@
   {
     "id": "ciencia-de-datos",
     "name": "Ciencia de Datos",
-    "icon": "fas fa-brain",
+    "icon": "fas fa-atom",
     "skills": [
-      "Desarrollo de modelos de prediccion, clasificacion, segmentacion y series temporales para apoyar la toma de decisiones.",
-      "Aplicacion de algoritmos de aprendizaje supervisado y no supervisado.",
-      "Preprocesamiento de datos: limpieza, normalizacion, imputacion, ingenieria de caracteristicas y seleccion de variables.",
-      "Optimizacion y validacion de modelos con tecnicas de cross-validation, hiperparametros y pipelines reproducibles en produccion."
+      "Desarrollo de modelos de predicción, clasificación, segmentación y series temporales para apoyar la toma de decisiones.",
+      "Aplicación de algoritmos de aprendizaje supervisado y no supervisado.",
+      "Preprocesamiento de datos: limpieza, normalización, imputación, ingeniería de características y selección de variables.",
+      "Optimización y validación de modelos con técnicas de cross-validation, hiperparámetros y pipelines reproducibles en producción."
     ]
   },
   {
-    "id": "visualizacion",
-    "name": "Visualización de Datos",
-    "icon": "fas fa-chart-bar",
+    "id": "ia",
+    "name": "Inteligencia Artificial",
+    "icon": "fa-solid fa-robot",
     "skills": [
-      "Construcción de dashboards interactivos y reportes visuales adaptados a usuarios tecnicos y no técnicos.",
-      "Uso de herramientas de Business Intelligence como Power BI y Qlik Sense para representar datos de manera clara, accesible y visualmente atractiva.",
-      "Desarrollo de visualizaciones en Python con librerias especializadas como Plotly, Matplotlib y Seaborn.",
-      "Enfoque en la comunicacion efectiva de hallazgos, con enfasis en el storytelling con datos."
+      "Diseño e implementación de agentes inteligentes capaces de automatizar procesos, interactuar con usuarios y tomar decisiones basadas en contexto.",
+      "Uso de frameworks como LangChain y n8n para la orquestación de flujos, integración de herramientas y construcción de pipelines escalables.",
+      "Aplicación de enfoques como prompt engineering, RAG (Retrieval-Augmented Generation) y diseño de herramientas (tools) para ampliar las capacidades de los agentes."
     ]
   },
   {
     "id": "ingenieria-de-datos",
-    "name": "Ingenieria de Datos",
+    "name": "Ingeniería de Datos",
     "icon": "fas fa-database",
     "skills": [
-      "Administración, modelado y optimizacion de bases de datos relacionales y no relacionales.",
-      "Diseño y orquestación de flujos de transformacion de datos (DAGs) utilizando Apache Airflow.",
-      "Construccion de pipelines de datos escalables para ingesta, transformacion y carga de datos (ETL/ELT).",
-      "Implementacion de estrategias de gobernanza de datos: seguridad, trazabilidad y calidad."
+      "Administración, modelado y optimización de bases de datos relacionales y no relacionales.",
+      "Diseño y orquestación de flujos de transformación de datos (DAGs) utilizando Apache Airflow.",
+      "Construcción de pipelines de datos escalables para ingesta, transformación y carga de datos (ETL/ELT).",
+      "Implementación de estrategias de gobernanza de datos: seguridad, trazabilidad y calidad."
     ]
   }
 ]

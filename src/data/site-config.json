@@ -1,5 +1,5 @@
 {
-  "ownerName": "Gonzalo Diaz",
+  "ownerName": "Gonzalo Diaz Tamini",
   "tagline": "Data & AI",
   "bio": [
 "¡Hola! Soy Gonzalo, Data & AI Engineer de Argentina. Soy Técnico Superior en Ciencia de Datos y actualmente curso la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario.",
@@ -14,6 +14,6 @@
     { "label": "Email", "url": "mailto:gonzadiaz160400@gmail.com", "icon": "fas fa-envelope" },
     { "label": "WhatsApp", "url": "https://api.whatsapp.com/send/?phone=2974235499&text&type=phone_number&app_absent=0", "icon": "fab fa-whatsapp" }
   ],
-  "contactMessage": "Me alegra que hayas explorado mis proyectos de Data. Si te interesa charlar o colaborar, puedes contactarme a traves de mi email:",
+  "contactMessage": "Me alegra que hayas explorado mis proyectos de Data. Si te interesa charlar o colaborar, puedes contactarme a través de mi email:",
   "contactEmail": "gonzadiaz160400@gmail.com"
 }

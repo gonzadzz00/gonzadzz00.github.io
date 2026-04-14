@@ -4,13 +4,21 @@
     "author": "Joe Reis & Matt Housley",
     "coverImage": "/icon/Fundametals_of_DE.jfif",
     "category": "Data Engineering",
-    "note": "Guia completa sobre el ciclo de vida de la ingenieria de datos, desde la generacion hasta el servicio de datos, cubriendo arquitecturas, herramientas y mejores practicas."
+    "note": "Guía completa sobre el ciclo de vida de la ingeniería de datos, desde la generación hasta el servicio de datos, cubriendo arquitecturas, herramientas y mejores prácticas."
   },
   {
     "title": "Software Engineering for Data Scientists",
     "author": "Catherine Nelson",
     "coverImage": "/icon/Software_Eng_for_DS.jfif",
     "category": "Software Engineering",
-    "note": "Principios de ingenieria de software aplicados a proyectos de ciencia de datos, incluyendo testing, control de versiones, y diseno de codigo mantenible."
+    "note": "Principios de ingeniería de software aplicados a proyectos de ciencia de datos, incluyendo testing, control de versiones, y diseño de código mantenible."
+  },
+    {
+    "title": "AI Engineering",
+    "author": "Chip Huyen",
+    "coverImage": "/icon/ia_eng.png",
+    "category": "AI Engineering",
+    "note": "Enseña cómo diseñar, construir, evaluar y optimizar aplicaciones con modelos fundacionales de Inteligencia Artificial, incluyendo prompting, RAG, fine-tuning, datos y despliegue eficiente."
   }
+
 ]
