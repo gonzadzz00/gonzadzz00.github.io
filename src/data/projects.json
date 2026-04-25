@@ -17,25 +17,26 @@
   },
   {
     "id": "caso-negocio",
-    "title": "Proyecto 2: Caso de Negocio + Business Experimentation",
-    "description": "Una empresa de retail nacional, líder en la venta de productos electrónicos, ha decidido expandirse a nuevos mercados regionales. Actualmente opera en cinco ciudades principales y desea extender su presencia a tres nuevas ciudades donde aún no tiene operaciones. La dirección necesita una estrategia basada en datos para maximizar la rentabilidad y minimizar los riesgos asociados con esta expansión.",
-    "tools": ["Python", "Análisis de Negocio", "Experimentación"],
+    "title": "Proyecto 2: Orquestación y Trazabilidad Logística",
+    "description": "Sistema de orquestación y automatización de datos que unifica la información logística de exportación integrando las bases de datos con la API de tracking marítimo ShipsGo. El pipeline combina sincronización programada en Airflow con eventos en tiempo real en n8n, garantizando información estandarizada, confiable y siempre actualizada para la toma de decisiones operativas.",
+    "tools": ["Airflow", "n8n", "Automatización"],
     "images": [
-      { "src": "/icon/img1 - td.jpg", "alt": "Caso de negocio - Vista 1" },
-      { "src": "/icon/img2 - td.jpg", "alt": "Caso de negocio - Vista 2" },
-      { "src": "/icon/img3 - td.jpg", "alt": "Caso de negocio - Vista 3" }
+      { "src": "/icon/shipsgo-dashboard.jpg", "alt": "ShipsGo Dashboard - Trazabilidad de envíos" },
+      { "src": "/icon/DAG.jpg", "alt": "Airflow DAG - Pipeline de sincronización" },
+      { "src": "/icon/n8n.jpg", "alt": "n8n Workflow - Automatización de webhooks" },
+      { "src": "/icon/webhook.jpg", "alt": "Webhook Event History - Eventos de actualización" }
     ],
     "links": [
-      { "label": "Ver Proyecto", "url": "https://app.luminpdf.com/es/viewer/674a470adc255e3d51d8d5c8", "icon": "fas fa-file-pdf" }
+      { "label": "Ver Proyecto", "url": "https://drive.google.com/file/d/19meaUGymJVXe5fFibb5R8NV6XeJJXzyE/view?usp=sharing", "icon": "fas fa-file-pdf" }
     ],
-    "category": "analytics",
+    "category": "data engineering",
     "order": 2
   },
   {
     "id": "shipping-container-ocr",
     "title": "Proyecto 3: Shipping Container OCR",
     "description": "Este proyecto implementa un pipeline híbrido de detección y OCR para identificar, validar y hacer seguimiento de códigos ISO 6346 en contenedores marítimos. Combina modelos YOLOv8 para detección de regiones y caracteres con EasyOCR como método de respaldo y métodos de validación.",
-    "tools": ["Python", "YOLOv8", "EasyOCR", "Computer Vision"],
+    "tools": ["YOLO", "EasyOCR", "Computer Vision"],
     "images": [
       { "src": "/icon/0919.gif", "alt": "Demo OCR en contenedores" },
       { "src": "/icon/vertical_to_horizontal.jpg", "alt": "Transformación vertical a horizontal" },
