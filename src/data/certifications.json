@@ -1,72 +1,84 @@
 [
   {
     "id": "humai-data-engineering",
-    "name": "Ingeniería de Datos",
+    "name": { "es": "Ingeniería de Datos", "en": "Data Engineering" },
     "issuer": "Humai",
     "issuerLogo": "/icon/humai.jpg",
     "issuerUrl": "https://humai.lat/carreras/data_eng",
     "date": "2025",
-    "description": "La carrera de Ingeniería de Datos tiene como objetivo formar profesionales especializados en diseñar, construir y optimizar sistemas que permitan la gestión eficiente de grandes volúmenes de datos. El egresado podrá desempeñarse en roles como ingeniero de datos o arquitecto de datos junior, con habilidades en integración de datos, manejo de bases de datos, desarrollo de pipelines de datos y despliegue de soluciones escalables que faciliten el análisis y la toma de decisiones.",
+    "description": {
+      "es": "La carrera de Ingeniería de Datos tiene como objetivo formar profesionales especializados en diseñar, construir y optimizar sistemas que permitan la gestión eficiente de grandes volúmenes de datos. El egresado podrá desempeñarse en roles como ingeniero de datos o arquitecto de datos junior, con habilidades en integración de datos, manejo de bases de datos, desarrollo de pipelines de datos y despliegue de soluciones escalables que faciliten el análisis y la toma de decisiones.",
+      "en": "This Data Engineering program trains professionals specialized in designing, building, and optimizing systems for the efficient management of large data volumes. Graduates can work as data engineers or junior data architects, with skills in data integration, database management, data pipeline development, and deploying scalable solutions that support analysis and decision-making."
+    },
     "topics": [
-      "Fundamentos de Ingeniería de Datos",
-      "Bases de Datos SQL y NoSQL",
-      "ETL y Pipelines de Datos",
-      "Big Data y Procesamiento con PySpark",
-      "Python Avanzado",
-      "Automatización y Orquestación de Pipelines"
+      { "es": "Fundamentos de Ingeniería de Datos", "en": "Data Engineering Fundamentals" },
+      { "es": "Bases de Datos SQL y NoSQL", "en": "SQL & NoSQL Databases" },
+      { "es": "ETL y Pipelines de Datos", "en": "ETL & Data Pipelines" },
+      { "es": "Big Data y Procesamiento con PySpark", "en": "Big Data & PySpark Processing" },
+      { "es": "Python Avanzado", "en": "Advanced Python" },
+      { "es": "Automatización y Orquestación de Pipelines", "en": "Pipeline Automation & Orchestration" }
     ],
     "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
     "order": 1
   },
   {
     "id": "devtalles-docker",
-    "name": "Desarrollo con Docker",
+    "name": { "es": "Desarrollo con Docker", "en": "Docker Development" },
     "issuer": "Dev/Talles",
     "issuerLogo": "/icon/dev-talles.png",
     "issuerUrl": "https://cursos.devtalles.com/courses/docker-guia-practica",
     "date": "2025",
-    "description": "Poder crear, usar, y desplegar imágenes es una habilidad necesaria para cualquier desarrollador o administrador de hoy en día, ahorra mucho tiempo en la preparación de diferentes ambientes de desarrollo, testing, staging y production. Este curso te dará las más que las bases para poder utilizar Docker de una forma productiva y funcional, aprenderemos mediante ejercicios prácticos y tareas.",
+    "description": {
+      "es": "Poder crear, usar, y desplegar imágenes es una habilidad necesaria para cualquier desarrollador o administrador de hoy en día, ahorra mucho tiempo en la preparación de diferentes ambientes de desarrollo, testing, staging y production. Este curso te dará las más que las bases para poder utilizar Docker de una forma productiva y funcional, aprenderemos mediante ejercicios prácticos y tareas.",
+      "en": "Being able to create, use, and deploy images is an essential skill for any developer or administrator today, saving significant time when preparing development, testing, staging, and production environments. This course provides more than the basics for using Docker productively, learning through hands-on exercises and tasks."
+    },
     "topics": [
-      "Dockerfiles e Imágenes",
-      "Docker Compose",
-      "Persistencia y Redes",
-      "Deploy y Buenas Prácticas"
+      { "es": "Dockerfiles e Imágenes", "en": "Dockerfiles & Images" },
+      { "es": "Docker Compose", "en": "Docker Compose" },
+      { "es": "Persistencia y Redes", "en": "Persistence & Networking" },
+      { "es": "Deploy y Buenas Prácticas", "en": "Deployment & Best Practices" }
     ],
     "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
     "order": 2
   },
   {
     "id": "google-data-analytics",
-    "name": "Certificación Profesional en Análisis de Datos de Google",
+    "name": { "es": "Certificación Profesional en Análisis de Datos de Google", "en": "Google Data Analytics Professional Certificate" },
     "issuer": "Google",
     "issuerLogo": "/icon/google-data.png",
     "issuerUrl": "https://www.coursera.org/professional-certificates/google-data-analytics",
     "date": "2024",
-    "description": "La certificación en análisis de datos de Google cubre los conceptos fundamentales del análisis de datos, incluyendo herramientas y técnicas para transformar datos en insights significativos.",
+    "description": {
+      "es": "La certificación en análisis de datos de Google cubre los conceptos fundamentales del análisis de datos, incluyendo herramientas y técnicas para transformar datos en insights significativos.",
+      "en": "The Google Data Analytics certificate covers the fundamental concepts of data analysis, including tools and techniques for turning data into meaningful insights."
+    },
     "topics": [
-      "Fundamentos del Análisis de Datos",
-      "Preparación de Datos",
-      "Análisis de Datos en Excel",
-      "Visualización de Datos",
-      "Análisis Predictivo"
+      { "es": "Fundamentos del Análisis de Datos", "en": "Data Analysis Fundamentals" },
+      { "es": "Preparación de Datos", "en": "Data Preparation" },
+      { "es": "Análisis de Datos en Excel", "en": "Data Analysis in Excel" },
+      { "es": "Visualización de Datos", "en": "Data Visualization" },
+      { "es": "Análisis Predictivo", "en": "Predictive Analysis" }
     ],
     "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
     "order": 3
   },
   {
     "id": "microsoft-power-bi",
-    "name": "Certificación Profesional en Análisis de Datos con Microsoft Power BI",
+    "name": { "es": "Certificación Profesional en Análisis de Datos con Microsoft Power BI", "en": "Microsoft Power BI Data Analyst Professional Certificate" },
     "issuer": "Microsoft",
     "issuerLogo": "/icon/power-bi-data.png",
     "issuerUrl": "https://www.coursera.org/professional-certificates/microsoft-power-bi-data-analyst",
     "date": "2024",
-    "description": "Certificación diseñada para capacitar en el uso de Power BI como herramienta para transformar datos en insights significativos, con enfoque en manejo de datos, visualización y creación de informes interactivos.",
+    "description": {
+      "es": "Certificación diseñada para capacitar en el uso de Power BI como herramienta para transformar datos en insights significativos, con enfoque en manejo de datos, visualización y creación de informes interactivos.",
+      "en": "A certification designed to build proficiency in Power BI as a tool for turning data into meaningful insights, with a focus on data handling, visualization, and building interactive reports."
+    },
     "topics": [
-      "Introducción a Power BI",
-      "Preparación de Datos para el Análisis",
-      "Visualización de Datos",
-      "Modelado de Datos con DAX",
-      "Creación de Informes y Dashboards"
+      { "es": "Introducción a Power BI", "en": "Introduction to Power BI" },
+      { "es": "Preparación de Datos para el Análisis", "en": "Preparing Data for Analysis" },
+      { "es": "Visualización de Datos", "en": "Data Visualization" },
+      { "es": "Modelado de Datos con DAX", "en": "Data Modeling with DAX" },
+      { "es": "Creación de Informes y Dashboards", "en": "Building Reports & Dashboards" }
     ],
     "verificationUrl": "https://coursera.org/share/22e0248ed8e190da2ca607523870ba26",
     "order": 4

@@ -1,8 +1,14 @@
 [
   {
     "id": "visualizacion-estadisticas",
-    "title": "Proyecto 1: Visualización de Estadísticas",
-    "description": "El objetivo de este proyecto es analizar y visualizar la fase ofensiva del Manchester City durante la temporada 2023/2024 en la Premier League, con un enfoque especial en los pases y tiros. Para realizar este análisis, se extrajeron datos mediante scraping de una página web de estadísticas de fútbol utilizando Python, y luego fueron transformados para su visualización en Power BI.",
+    "title": {
+      "es": "Proyecto 1: Visualización de Estadísticas",
+      "en": "Project 1: Statistics Visualization"
+    },
+    "description": {
+      "es": "El objetivo de este proyecto es analizar y visualizar la fase ofensiva del Manchester City durante la temporada 2023/2024 en la Premier League, con un enfoque especial en los pases y tiros. Para realizar este análisis, se extrajeron datos mediante scraping de una página web de estadísticas de fútbol utilizando Python, y luego fueron transformados para su visualización en Power BI.",
+      "en": "This project analyzes and visualizes Manchester City's offensive phase during the 2023/2024 Premier League season, with a particular focus on passes and shots. Data was extracted via web scraping from a football statistics site using Python, then transformed for visualization in Power BI."
+    },
     "tools": ["Python", "Web Scraping", "Power BI"],
     "images": [
       { "src": "/icon/mancity1.jpg", "alt": "Dashboard Manchester City - Vista 1" },
@@ -10,15 +16,21 @@
       { "src": "/icon/mancity3.jpg", "alt": "Dashboard Manchester City - Vista 3" }
     ],
     "links": [
-      { "label": "Ver Proyecto", "url": "https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto1%3A%20Web%20Scraping/README.md", "icon": "fab fa-github" }
+      { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto1%3A%20Web%20Scraping/README.md", "icon": "fab fa-github" }
     ],
     "category": "visualization",
     "order": 1
   },
   {
     "id": "caso-negocio",
-    "title": "Proyecto 2: Orquestación y Trazabilidad Logística",
-    "description": "Sistema de orquestación y automatización de datos que unifica la información logística de exportación integrando las bases de datos con la API de tracking marítimo ShipsGo. El pipeline combina sincronización programada en Airflow con eventos en tiempo real en n8n, garantizando información estandarizada, confiable y siempre actualizada para la toma de decisiones operativas.",
+    "title": {
+      "es": "Proyecto 2: Orquestación y Trazabilidad Logística",
+      "en": "Project 2: Logistics Orchestration & Traceability"
+    },
+    "description": {
+      "es": "Sistema de orquestación y automatización de datos que unifica la información logística de exportación integrando las bases de datos con la API de tracking marítimo ShipsGo. El pipeline combina sincronización programada en Airflow con eventos en tiempo real en n8n, garantizando información estandarizada, confiable y siempre actualizada para la toma de decisiones operativas.",
+      "en": "A data orchestration and automation system that unifies export logistics information by integrating internal databases with the ShipsGo maritime tracking API. The pipeline combines scheduled synchronization in Airflow with real-time events in n8n, ensuring standardized, reliable, and always up-to-date information for operational decision-making."
+    },
     "tools": ["Airflow", "n8n", "Automatización"],
     "images": [
       { "src": "/icon/shipsgo-dashboard.jpg", "alt": "ShipsGo Dashboard - Trazabilidad de envíos" },
@@ -27,15 +39,21 @@
       { "src": "/icon/webhook.jpg", "alt": "Webhook Event History - Eventos de actualización" }
     ],
     "links": [
-      { "label": "Ver Proyecto", "url": "https://drive.google.com/file/d/19meaUGymJVXe5fFibb5R8NV6XeJJXzyE/view?usp=sharing", "icon": "fas fa-file-pdf" }
+      { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://drive.google.com/file/d/19meaUGymJVXe5fFibb5R8NV6XeJJXzyE/view?usp=sharing", "icon": "fas fa-file-pdf" }
     ],
     "category": "data engineering",
     "order": 2
   },
   {
     "id": "shipping-container-ocr",
-    "title": "Proyecto 3: Shipping Container OCR",
-    "description": "Este proyecto implementa un pipeline híbrido de detección y OCR para identificar, validar y hacer seguimiento de códigos ISO 6346 en contenedores marítimos. Combina modelos YOLOv8 para detección de regiones y caracteres con EasyOCR como método de respaldo y métodos de validación.",
+    "title": {
+      "es": "Proyecto 3: Shipping Container OCR",
+      "en": "Project 3: Shipping Container OCR"
+    },
+    "description": {
+      "es": "Este proyecto implementa un pipeline híbrido de detección y OCR para identificar, validar y hacer seguimiento de códigos ISO 6346 en contenedores marítimos. Combina modelos YOLOv8 para detección de regiones y caracteres con EasyOCR como método de respaldo y métodos de validación.",
+      "en": "This project implements a hybrid detection and OCR pipeline to identify, validate, and track ISO 6346 codes on shipping containers. It combines YOLOv8 models for region and character detection with EasyOCR as a fallback method, plus validation logic."
+    },
     "tools": ["YOLO", "EasyOCR", "Computer Vision"],
     "images": [
       { "src": "/icon/0919.gif", "alt": "Demo OCR en contenedores" },
@@ -44,8 +62,8 @@
       { "src": "/icon/modal.jpg", "alt": "Modal de resultado" }
     ],
     "links": [
-      { "label": "Ver Proyecto", "url": "https://github.com/gonzadiazfrp/yolo11_container#", "icon": "fab fa-github" },
-      { "label": "Ir a YouTube", "url": "https://www.youtube.com/watch?v=Fv6g6Z_yxNo", "icon": "fab fa-youtube" }
+      { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://github.com/gonzadiazfrp/yolo11_container#", "icon": "fab fa-github" },
+      { "label": { "es": "Ir a YouTube", "en": "Go to YouTube" }, "url": "https://www.youtube.com/watch?v=Fv6g6Z_yxNo", "icon": "fab fa-youtube" }
     ],
     "category": "ml",
     "order": 3

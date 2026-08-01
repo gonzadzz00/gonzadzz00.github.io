@@ -1,14 +1,20 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from './LanguageToggle.astro';
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
 
 const navLinks = [
-  { href: '#mi-perfil', label: 'Mi Perfil' },
-  { href: '#educacion', label: 'Educación' },
-  { href: '#mis-proyectos', label: 'Proyectos' },
-  { href: '#certificaciones', label: 'Certificaciones' },
-  { href: '#libros', label: 'Libros' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#mi-perfil', ...strings['nav.miPerfil'] },
+  { href: '#educacion', ...strings['nav.educacion'] },
+  { href: '#mis-proyectos', ...strings['nav.proyectos'] },
+  { href: '#certificaciones', ...strings['nav.certificaciones'] },
+  { href: '#libros', ...strings['nav.libros'] },
+  { href: '#contacto', ...strings['nav.contacto'] },
 ];
+
+const openMenuAria = strings['nav.openMenuAria'];
 ---
 
 <nav class="navbar-custom" id="navbar">
@@ -17,7 +23,15 @@ const navLinks = [
       <img src="/icon/logo gon ultimos-01.svg" alt="Gonzalo Diaz Logo" width="40" height="40" />
     </a>
 
-    <button class="navbar-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+    <button
+      class="navbar-toggle"
+      id="nav-toggle"
+      aria-expanded="false"
+      data-i18n-attr="aria-label"
+      data-i18n-attr-es={openMenuAria.es}
+      data-i18n-attr-en={openMenuAria.en}
+      aria-label={openMenuAria.es}
+    >
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
@@ -25,8 +39,16 @@ const navLinks = [
 
     <div class="navbar-links" id="nav-links">
       {navLinks.map(link => (
-        <a href={link.href} class="nav-link">{link.label}</a>
+        <a
+          href={link.href}
+          class="nav-link"
+          data-i18n-es={link.es}
+          data-i18n-en={link.en}
+        >
+          {link.es}
+        </a>
       ))}
+      <LanguageToggle />
       <ThemeToggle />
     </div>
   </div>

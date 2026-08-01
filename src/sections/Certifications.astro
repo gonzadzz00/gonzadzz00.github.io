@@ -1,12 +1,17 @@
 ---
 import certifications from '../data/certifications.json';
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const certsTitle = strings['section.certifications.title'];
+const verifyButton = strings['certifications.verifyButton'];
 ---
 
 {certifications.length > 0 && (
   <section id="certificaciones" class="section">
     <h2 class="section-title">
       <span class="emoji-icon">&#128218;</span>
-      Cursos y Certificaciones
+      <span data-i18n-es={certsTitle.es} data-i18n-en={certsTitle.en}>{certsTitle.es}</span>
     </h2>
 
     <div class="certs-list">
@@ -19,19 +24,19 @@ import certifications from '../data/certifications.json';
               </a>
             )}
             <div class="cert-header-text">
-              <h3>{cert.name}</h3>
+              <h3 data-i18n-es={cert.name.es} data-i18n-en={cert.name.en}>{cert.name.es}</h3>
               <p class="cert-issuer">{cert.issuer} &middot; {cert.date}</p>
             </div>
           </div>
 
           {cert.description && (
-            <p class="cert-description">{cert.description}</p>
+            <p class="cert-description" data-i18n-es={cert.description.es} data-i18n-en={cert.description.en}>{cert.description.es}</p>
           )}
 
           {cert.topics && cert.topics.length > 0 && (
             <div class="cert-topics">
-              {cert.topics.map((topic: string) => (
-                <span class="cert-topic">{topic}</span>
+              {cert.topics.map((topic: { es: string; en: string }) => (
+                <span class="cert-topic" data-i18n-es={topic.es} data-i18n-en={topic.en}>{topic.es}</span>
               ))}
             </div>
           )}
@@ -39,7 +44,7 @@ import certifications from '../data/certifications.json';
           {cert.verificationUrl && cert.verificationUrl !== "" && (
             <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" class="btn-outline cert-verify">
               <i class="fas fa-external-link-alt"></i>
-              Ver Certificado
+              <span data-i18n-es={verifyButton.es} data-i18n-en={verifyButton.en}>{verifyButton.es}</span>
             </a>
           )}
         </div>

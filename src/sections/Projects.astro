@@ -1,16 +1,26 @@
 ---
 import projects from '../data/projects.json';
 import ImageCarousel from '../components/ImageCarousel.astro';
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const projectsTitle = strings['section.projects.title'];
+const projectsIntro = strings['projects.intro'];
+const expandAria = strings['projects.expandAria'];
+const viewDiagramButton = strings['projects.viewDiagramButton'];
+const flowchartTitle = strings['projects.flowchart.title'];
+const flowchartSubtitle = strings['projects.flowchart.subtitle'];
+const flowchartCloseAria = strings['projects.flowchart.closeAria'];
 ---
 
 <section id="mis-proyectos" class="section">
   <h2 class="section-title">
     <span class="emoji-icon">&#128187;</span>
-    Proyectos
+    <span data-i18n-es={projectsTitle.es} data-i18n-en={projectsTitle.en}>{projectsTitle.es}</span>
   </h2>
 
-  <p class="projects-intro">
-    Este repositorio está orientado a demostrar no solo habilidades técnicas, sino también una visión integral del desarrollo y despliegue de modelos, abarcando proyectos de ingeniería de datos y la creación de workflows con agentes de IA, desde la integración y automatización hasta su implementación en entornos reales.
+  <p class="projects-intro" data-i18n-es={projectsIntro.es} data-i18n-en={projectsIntro.en}>
+    {projectsIntro.es}
   </p>
 
   <div class="projects-list reveal-stagger">
@@ -18,20 +28,26 @@ import ImageCarousel from '../components/ImageCarousel.astro';
       <div class="card project-card" data-project-card>
         <div class="project-header" data-project-toggle>
           <div class="project-header-text">
-            <h3 class="project-title">{project.title}</h3>
+            <h3 class="project-title" data-i18n-es={project.title.es} data-i18n-en={project.title.en}>{project.title.es}</h3>
             <div class="project-tools">
               {project.tools.map((tool: string) => (
                 <span class="badge">{tool}</span>
               ))}
             </div>
           </div>
-          <button class="project-expand-btn" aria-label="Expandir proyecto">
+          <button
+            class="project-expand-btn"
+            data-i18n-attr="aria-label"
+            data-i18n-attr-es={expandAria.es}
+            data-i18n-attr-en={expandAria.en}
+            aria-label={expandAria.es}
+          >
             <i class="fas fa-chevron-down"></i>
           </button>
         </div>
 
         <div class="project-body">
-          <p class="project-description">{project.description}</p>
+          <p class="project-description" data-i18n-es={project.description.es} data-i18n-en={project.description.en}>{project.description.es}</p>
 
           {project.images.length > 0 && (
             <ImageCarousel images={project.images} />
@@ -41,13 +57,13 @@ import ImageCarousel from '../components/ImageCarousel.astro';
             {project.links.map((link: any) => (
               <a href={link.url} target="_blank" rel="noopener noreferrer" class="btn-primary">
                 <i class={link.icon}></i>
-                {link.label}
+                <span data-i18n-es={link.label.es} data-i18n-en={link.label.en}>{link.label.es}</span>
               </a>
             ))}
             {project.id === 'caso-negocio' && (
               <button class="btn-outline" data-open-flowchart>
                 <i class="fas fa-project-diagram"></i>
-                Ver Diagrama
+                <span data-i18n-es={viewDiagramButton.es} data-i18n-en={viewDiagramButton.en}>{viewDiagramButton.es}</span>
               </button>
             )}
           </div>
@@ -60,12 +76,18 @@ import ImageCarousel from '../components/ImageCarousel.astro';
 <!-- Modal del diagrama de flujo -->
 <div class="flowchart-modal-overlay" id="flowchart-modal">
   <div class="flowchart-modal">
-    <button class="flowchart-modal-close" aria-label="Cerrar diagrama">
+    <button
+      class="flowchart-modal-close"
+      data-i18n-attr="aria-label"
+      data-i18n-attr-es={flowchartCloseAria.es}
+      data-i18n-attr-en={flowchartCloseAria.en}
+      aria-label={flowchartCloseAria.es}
+    >
       <i class="fas fa-times"></i>
     </button>
     <div class="diagram-wrapper">
-      <h3>Trazabilidad de datos · DAG shipsgo_sync_pipeline</h3>
-      <p class="subtitle">Ciclo de descubrimiento, registro, sincronización y captura de cambios — ejecución cada 2 horas.</p>
+      <h3 data-i18n-es={flowchartTitle.es} data-i18n-en={flowchartTitle.en}>{flowchartTitle.es}</h3>
+      <p class="subtitle" data-i18n-es={flowchartSubtitle.es} data-i18n-en={flowchartSubtitle.en}>{flowchartSubtitle.es}</p>
       <svg viewBox="0 0 920 1180" role="img" xmlns="http://www.w3.org/2000/svg">
         <title>Diagrama de flujo del pipeline de sincronización ShipsGo</title>
         <desc>Flujo completo del DAG: descubrimiento de bookings, registro contra la API ShipsGo, máquina de estados de sincronización, captura de cambios CDC y propagación de eventos en tiempo real vía n8n.</desc>

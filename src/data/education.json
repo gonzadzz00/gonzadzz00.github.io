@@ -2,32 +2,44 @@
   {
     "id": "istea",
     "institution": "Instituto Superior Tecnológico Empresarial Argentino",
-    "program": "Tecnicatura en Ciencia de Datos e Inteligencia Artificial",
+    "program": {
+      "es": "Tecnicatura en Ciencia de Datos e Inteligencia Artificial",
+      "en": "Associate Degree in Data Science and Artificial Intelligence"
+    },
     "institutionLogo": "/icon/istea.png",
     "institutionUrl": "https://www.istea.edu.ar/tecnicatura-superior-en-ciencias-de-datos/",
-    "description": "Formación orientada al análisis estadístico, procesamiento de datos, desarrollo de modelos de machine learning y deep learning, con aplicaciones en visión por computadora, procesamiento de lenguaje natural y sistemas predictivos. Incluye conocimientos sólidos en programación (Python, R, SQL), bases de datos, matemáticas, estadística y ética en la inteligencia artificial.",
+    "description": {
+      "es": "Formación orientada al análisis estadístico, procesamiento de datos, desarrollo de modelos de machine learning y deep learning, con aplicaciones en visión por computadora, procesamiento de lenguaje natural y sistemas predictivos. Incluye conocimientos sólidos en programación (Python, R, SQL), bases de datos, matemáticas, estadística y ética en la inteligencia artificial.",
+      "en": "Training focused on statistical analysis, data processing, and the development of machine learning and deep learning models, with applications in computer vision, natural language processing, and predictive systems. Includes solid grounding in programming (Python, R, SQL), databases, mathematics, statistics, and AI ethics."
+    },
     "competencies": [
-      "Minería de Datos",
-      "Programación y Desarrollo de software",
-      "Arquitectura de Soluciones",
-      "Visualización de datos",
-      "Bases de datos"
+      { "es": "Minería de Datos", "en": "Data Mining" },
+      { "es": "Programación y Desarrollo de software", "en": "Programming & Software Development" },
+      { "es": "Arquitectura de Soluciones", "en": "Solutions Architecture" },
+      { "es": "Visualización de datos", "en": "Data Visualization" },
+      { "es": "Bases de datos", "en": "Databases" }
     ],
     "order": 1
   },
   {
     "id": "ugr",
     "institution": "Universidad del Gran Rosario",
-    "program": "Licenciatura en Ciencia de Datos",
+    "program": {
+      "es": "Licenciatura en Ciencia de Datos",
+      "en": "Bachelor's Degree in Data Science"
+    },
     "institutionLogo": "/icon/ugr.png",
     "institutionUrl": "https://ugr.edu.ar/carreras/ciclo-de-licenciatura-en-ciencia-de-datos/",
-    "description": "La Licenciatura en Ciencia de Datos de la Universidad del Gran Rosario ofrece una formación sólida en estadística aplicada, ingeniería de software, aprendizaje automático, aprendizaje profundo, procesamiento de lenguaje natural y visión por computadora.",
+    "description": {
+      "es": "La Licenciatura en Ciencia de Datos de la Universidad del Gran Rosario ofrece una formación sólida en estadística aplicada, ingeniería de software, aprendizaje automático, aprendizaje profundo, procesamiento de lenguaje natural y visión por computadora.",
+      "en": "The Bachelor's in Data Science at Universidad del Gran Rosario provides solid training in applied statistics, software engineering, machine learning, deep learning, natural language processing, and computer vision."
+    },
     "competencies": [
-      "Visión por Computadora",
-      "Procesamiento de Lenguaje Natural",
-      "Aprendizaje por Refuerzo",
-      "Ingeniería del Software",
-      "Herramientas de Software para Análisis de Datos"
+      { "es": "Visión por Computadora", "en": "Computer Vision" },
+      { "es": "Procesamiento de Lenguaje Natural", "en": "Natural Language Processing" },
+      { "es": "Aprendizaje por Refuerzo", "en": "Reinforcement Learning" },
+      { "es": "Ingeniería del Software", "en": "Software Engineering" },
+      { "es": "Herramientas de Software para Análisis de Datos", "en": "Software Tools for Data Analysis" }
     ],
     "order": 2
   }

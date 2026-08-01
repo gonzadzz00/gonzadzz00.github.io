@@ -1,12 +1,16 @@
 ---
 import books from '../data/books.json';
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const booksTitle = strings['section.books.title'];
 ---
 
 {books.length > 0 && (
   <section id="libros" class="section">
     <h2 class="section-title">
       <span class="emoji-icon">&#128214;</span>
-      Libros
+      <span data-i18n-es={booksTitle.es} data-i18n-en={booksTitle.en}>{booksTitle.es}</span>
     </h2>
 
     <div class="grid-3">
@@ -18,7 +22,7 @@ import books from '../data/books.json';
           <h4 class="book-title">{book.title}</h4>
           <p class="book-author">{book.author}</p>
           {book.category && <span class="badge">{book.category}</span>}
-          {book.note && <p class="book-note">{book.note}</p>}
+          {book.note && <p class="book-note" data-i18n-es={book.note.es} data-i18n-en={book.note.en}>{book.note.es}</p>}
         </div>
       ))}
     </div>

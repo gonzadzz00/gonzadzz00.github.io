@@ -1,0 +1,43 @@
+{
+  "nav.miPerfil": { "es": "Mi Perfil", "en": "My Profile" },
+  "nav.educacion": { "es": "Educación", "en": "Education" },
+  "nav.proyectos": { "es": "Proyectos", "en": "Projects" },
+  "nav.certificaciones": { "es": "Certificaciones", "en": "Certifications" },
+  "nav.libros": { "es": "Libros", "en": "Books" },
+  "nav.contacto": { "es": "Contacto", "en": "Contact" },
+  "nav.openMenuAria": { "es": "Abrir menu", "en": "Open menu" },
+  "themeToggle.aria": { "es": "Cambiar tema", "en": "Toggle theme" },
+
+  "section.about.title": { "es": "Sobre mí", "en": "About Me" },
+  "section.about.focusAreas": { "es": "Áreas de Enfoque", "en": "Focus Areas" },
+  "section.about.techStack": { "es": "Tech Stack", "en": "Tech Stack" },
+
+  "section.education.title": { "es": "Educación", "en": "Education" },
+
+  "section.certifications.title": { "es": "Cursos y Certificaciones", "en": "Courses & Certifications" },
+  "certifications.verifyButton": { "es": "Ver Certificado", "en": "View Certificate" },
+
+  "section.books.title": { "es": "Libros", "en": "Books" },
+
+  "section.projects.title": { "es": "Proyectos", "en": "Projects" },
+  "projects.intro": {
+    "es": "Este repositorio está orientado a demostrar no solo habilidades técnicas, sino también una visión integral del desarrollo y despliegue de modelos, abarcando proyectos de ingeniería de datos y la creación de workflows con agentes de IA, desde la integración y automatización hasta su implementación en entornos reales.",
+    "en": "This repository is meant to demonstrate not only technical skills, but also a comprehensive view of model development and deployment, spanning data engineering projects and the creation of AI-agent workflows, from integration and automation through to real-world implementation."
+  },
+  "projects.expandAria": { "es": "Expandir proyecto", "en": "Expand project" },
+  "projects.viewDiagramButton": { "es": "Ver Diagrama", "en": "View Diagram" },
+  "projects.flowchart.title": {
+    "es": "Trazabilidad de datos · DAG shipsgo_sync_pipeline",
+    "en": "Data traceability · shipsgo_sync_pipeline DAG"
+  },
+  "projects.flowchart.subtitle": {
+    "es": "Ciclo de descubrimiento, registro, sincronización y captura de cambios — ejecución cada 2 horas.",
+    "en": "Discovery, registration, synchronization, and change-capture cycle — runs every 2 hours."
+  },
+  "projects.flowchart.closeAria": { "es": "Cerrar diagrama", "en": "Close diagram" },
+
+  "contact.thanksTitle": { "es": "¡Gracias por visitar mi portfolio!", "en": "Thanks for visiting my portfolio!" },
+  "contact.cta": { "es": "No dudes en escribirme!", "en": "Feel free to reach out!" },
+
+  "footer.rights": { "es": "Todos los derechos reservados.", "en": "All rights reserved." }
+}

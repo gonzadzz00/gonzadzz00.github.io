@@ -156,6 +156,7 @@ p {
 
 /* ===== CARD BASE ===== */
 .card {
+  position: relative;
   background: var(--card-bg);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
@@ -185,6 +186,7 @@ p {
 
 /* ===== BUTTONS ===== */
 .btn-primary {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
@@ -208,6 +210,7 @@ p {
 }
 
 .btn-outline {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
@@ -284,6 +287,51 @@ p {
 .reveal-stagger.visible > *:nth-child(4) { transition-delay: 300ms; }
 .reveal-stagger.visible > *:nth-child(5) { transition-delay: 400ms; }
 .reveal-stagger.visible > *:nth-child(6) { transition-delay: 500ms; }
+
+/* ===== HOVER SPOTLIGHT ACCENT ===== */
+.card::after,
+.btn-primary::after,
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    160px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 164, 239, 0.18),
+    transparent 70%
+  );
+  transition: opacity var(--transition-normal);
+}
+
+.card:hover::after,
+.btn-primary:hover::after,
+.btn-outline:hover::after {
+  opacity: 1;
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card::after,
+  .btn-primary::after,
+  .btn-outline::after {
+    display: none;
+  }
+
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
 /* ===== FOCUS VISIBLE ===== */
 :focus-visible {

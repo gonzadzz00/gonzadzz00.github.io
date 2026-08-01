@@ -18,10 +18,24 @@ const { images } = Astro.props;
 
     {images.length > 1 && (
       <>
-        <button class="carousel-btn prev" data-carousel-prev aria-label="Imagen anterior">
+        <button
+          class="carousel-btn prev"
+          data-carousel-prev
+          data-i18n-attr="aria-label"
+          data-i18n-attr-es="Imagen anterior"
+          data-i18n-attr-en="Previous image"
+          aria-label="Imagen anterior"
+        >
           &#10094;
         </button>
-        <button class="carousel-btn next" data-carousel-next aria-label="Imagen siguiente">
+        <button
+          class="carousel-btn next"
+          data-carousel-next
+          data-i18n-attr="aria-label"
+          data-i18n-attr-es="Imagen siguiente"
+          data-i18n-attr-en="Next image"
+          aria-label="Imagen siguiente"
+        >
           &#10095;
         </button>
         <div class="carousel-dots">
@@ -29,6 +43,9 @@ const { images } = Astro.props;
             <button
               class={`carousel-dot ${i === 0 ? 'active' : ''}`}
               data-carousel-dot={i}
+              data-i18n-attr="aria-label"
+              data-i18n-attr-es={`Ir a imagen ${i + 1}`}
+              data-i18n-attr-en={`Go to image ${i + 1}`}
               aria-label={`Ir a imagen ${i + 1}`}
             />
           ))}

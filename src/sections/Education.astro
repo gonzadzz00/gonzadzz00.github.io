@@ -1,11 +1,15 @@
 ---
 import education from '../data/education.json';
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const educationTitle = strings['section.education.title'];
 ---
 
 <section id="educacion" class="section">
   <h2 class="section-title">
     <span class="emoji-icon">&#127891;</span>
-    Educación
+    <span data-i18n-es={educationTitle.es} data-i18n-en={educationTitle.en}>{educationTitle.es}</span>
   </h2>
 
   <div class="grid-2 reveal-stagger">
@@ -17,11 +21,11 @@ import education from '../data/education.json';
           </a>
           <h3>{entry.institution}</h3>
         </div>
-        <h4 class="edu-program">{entry.program}</h4>
-        <p class="edu-description">{entry.description}</p>
+        <h4 class="edu-program" data-i18n-es={entry.program.es} data-i18n-en={entry.program.en}>{entry.program.es}</h4>
+        <p class="edu-description" data-i18n-es={entry.description.es} data-i18n-en={entry.description.en}>{entry.description.es}</p>
         <ul class="edu-competencies">
-          {entry.competencies.map((comp: string) => (
-            <li>{comp}</li>
+          {entry.competencies.map((comp: { es: string; en: string }) => (
+            <li data-i18n-es={comp.es} data-i18n-en={comp.en}>{comp.es}</li>
           ))}
         </ul>
       </div>

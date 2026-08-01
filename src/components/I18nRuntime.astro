@@ -1,0 +1,26 @@
+---
+---
+
+<script>
+  function applyLanguage() {
+    const lang = document.documentElement.getAttribute('data-lang') || 'es';
+
+    document.querySelectorAll('[data-i18n-es]').forEach(el => {
+      const es = el.getAttribute('data-i18n-es') || '';
+      const en = el.getAttribute('data-i18n-en') || '';
+      el.textContent = lang === 'en' ? (en || es) : (es || en);
+    });
+
+    document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+      const attrName = el.getAttribute('data-i18n-attr');
+      if (!attrName) return;
+      const es = el.getAttribute('data-i18n-attr-es') || '';
+      const en = el.getAttribute('data-i18n-attr-en') || '';
+      el.setAttribute(attrName, lang === 'en' ? (en || es) : (es || en));
+    });
+  }
+
+  applyLanguage();
+  document.addEventListener('astro:after-swap', applyLanguage);
+  document.addEventListener('langchange', applyLanguage);
+</script>

@@ -1,34 +1,67 @@
 [
   {
     "id": "ciencia-de-datos",
-    "name": "Ciencia de Datos",
+    "name": { "es": "Ciencia de Datos", "en": "Data Science" },
     "icon": "fas fa-atom",
     "skills": [
-      "Desarrollo de modelos de predicción, clasificación, segmentación y series temporales para apoyar la toma de decisiones.",
-      "Aplicación de algoritmos de aprendizaje supervisado y no supervisado.",
-      "Preprocesamiento de datos: limpieza, normalización, imputación, ingeniería de características y selección de variables.",
-      "Optimización y validación de modelos con técnicas de cross-validation, hiperparámetros y pipelines reproducibles en producción."
+      {
+        "es": "Desarrollo de modelos de predicción, clasificación, segmentación y series temporales para apoyar la toma de decisiones.",
+        "en": "Development of prediction, classification, segmentation, and time-series models to support decision-making."
+      },
+      {
+        "es": "Aplicación de algoritmos de aprendizaje supervisado y no supervisado.",
+        "en": "Application of supervised and unsupervised learning algorithms."
+      },
+      {
+        "es": "Preprocesamiento de datos: limpieza, normalización, imputación, ingeniería de características y selección de variables.",
+        "en": "Data preprocessing: cleaning, normalization, imputation, feature engineering, and feature selection."
+      },
+      {
+        "es": "Optimización y validación de modelos con técnicas de cross-validation, hiperparámetros y pipelines reproducibles en producción.",
+        "en": "Model optimization and validation using cross-validation, hyperparameter tuning, and reproducible production pipelines."
+      }
     ]
   },
   {
     "id": "ia",
-    "name": "Inteligencia Artificial",
+    "name": { "es": "Inteligencia Artificial", "en": "Artificial Intelligence" },
     "icon": "fa-solid fa-robot",
     "skills": [
-      "Diseño e implementación de agentes inteligentes capaces de automatizar procesos, interactuar con usuarios y tomar decisiones basadas en contexto.",
-      "Uso de frameworks como LangChain y n8n para la orquestación de flujos, integración de herramientas y construcción de pipelines escalables.",
-      "Aplicación de enfoques como prompt engineering, RAG (Retrieval-Augmented Generation) y diseño de herramientas (tools) para ampliar las capacidades de los agentes."
+      {
+        "es": "Diseño e implementación de agentes inteligentes capaces de automatizar procesos, interactuar con usuarios y tomar decisiones basadas en contexto.",
+        "en": "Design and implementation of intelligent agents capable of automating processes, interacting with users, and making context-aware decisions."
+      },
+      {
+        "es": "Uso de frameworks como LangChain y n8n para la orquestación de flujos, integración de herramientas y construcción de pipelines escalables.",
+        "en": "Use of frameworks such as LangChain and n8n for workflow orchestration, tool integration, and building scalable pipelines."
+      },
+      {
+        "es": "Aplicación de enfoques como prompt engineering, RAG (Retrieval-Augmented Generation) y diseño de herramientas (tools) para ampliar las capacidades de los agentes.",
+        "en": "Application of approaches such as prompt engineering, RAG (Retrieval-Augmented Generation), and tool design to extend agent capabilities."
+      }
     ]
   },
   {
     "id": "ingenieria-de-datos",
-    "name": "Ingeniería de Datos",
+    "name": { "es": "Ingeniería de Datos", "en": "Data Engineering" },
     "icon": "fas fa-database",
     "skills": [
-      "Administración, modelado y optimización de bases de datos relacionales y no relacionales.",
-      "Diseño y orquestación de flujos de transformación de datos (DAGs) utilizando Apache Airflow.",
-      "Construcción de pipelines de datos escalables para ingesta, transformación y carga de datos (ETL/ELT).",
-      "Implementación de estrategias de gobernanza de datos: seguridad, trazabilidad y calidad."
+      {
+        "es": "Administración, modelado y optimización de bases de datos relacionales y no relacionales.",
+        "en": "Administration, modeling, and optimization of relational and non-relational databases."
+      },
+      {
+        "es": "Diseño y orquestación de flujos de transformación de datos (DAGs) utilizando Apache Airflow.",
+        "en": "Design and orchestration of data transformation workflows (DAGs) using Apache Airflow."
+      },
+      {
+        "es": "Construcción de pipelines de datos escalables para ingesta, transformación y carga de datos (ETL/ELT).",
+        "en": "Building scalable data pipelines for ingestion, transformation, and loading (ETL/ELT)."
+      },
+      {
+        "es": "Implementación de estrategias de gobernanza de datos: seguridad, trazabilidad y calidad.",
+        "en": "Implementation of data governance strategies: security, traceability, and quality."
+      }
     ]
   }
 ]

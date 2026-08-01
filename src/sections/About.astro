@@ -2,23 +2,29 @@
 import siteConfig from '../data/site-config.json';
 import focusAreas from '../data/focus-areas.json';
 import techStack from '../data/tech-stack.json';
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const aboutTitle = strings['section.about.title'];
+const focusAreasTitle = strings['section.about.focusAreas'];
+const techStackTitle = strings['section.about.techStack'];
 ---
 
 <section id="mi-perfil" class="section">
   <h2 class="section-title">
     <span class="emoji-icon">&#128075;</span>
-    Sobre mí
+    <span data-i18n-es={aboutTitle.es} data-i18n-en={aboutTitle.en}>{aboutTitle.es}</span>
   </h2>
 
   <div class="about-bio">
-    {siteConfig.bio.map((paragraph: string) => (
-      <p>{paragraph}</p>
+    {siteConfig.bio.map((paragraph: { es: string; en: string }) => (
+      <p data-i18n-es={paragraph.es} data-i18n-en={paragraph.en}>{paragraph.es}</p>
     ))}
   </div>
 
   <h3 class="subsection-title">
     <span class="emoji-icon">&#128270;</span>
-    Áreas de Enfoque
+    <span data-i18n-es={focusAreasTitle.es} data-i18n-en={focusAreasTitle.en}>{focusAreasTitle.es}</span>
   </h3>
 
   <div class="grid-3 reveal-stagger">
@@ -27,10 +33,10 @@ import techStack from '../data/tech-stack.json';
         <div class="focus-icon">
           <i class={area.icon}></i>
         </div>
-        <h4>{area.name}</h4>
+        <h4 data-i18n-es={area.name.es} data-i18n-en={area.name.en}>{area.name.es}</h4>
         <ul class="focus-skills">
-          {area.skills.map((skill: string) => (
-            <li>{skill}</li>
+          {area.skills.map((skill: { es: string; en: string }) => (
+            <li data-i18n-es={skill.es} data-i18n-en={skill.en}>{skill.es}</li>
           ))}
         </ul>
       </div>
@@ -39,7 +45,7 @@ import techStack from '../data/tech-stack.json';
 
   <h3 class="subsection-title">
     <span class="emoji-icon">&#128736;</span>
-    Tech Stack
+    <span data-i18n-es={techStackTitle.es} data-i18n-en={techStackTitle.en}>{techStackTitle.es}</span>
   </h3>
 
   <div class="tech-badges">

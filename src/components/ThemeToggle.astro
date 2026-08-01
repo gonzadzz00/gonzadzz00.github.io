@@ -1,7 +1,16 @@
 ---
+import uiStrings from '../data/ui-strings.json';
+
+const themeAria = uiStrings['themeToggle.aria'];
 ---
 
-<label class="theme-switch" aria-label="Cambiar tema">
+<label
+  class="theme-switch"
+  data-i18n-attr="aria-label"
+  data-i18n-attr-es={themeAria.es}
+  data-i18n-attr-en={themeAria.en}
+  aria-label={themeAria.es}
+>
   <input type="checkbox" id="theme-checkbox" />
   <div class="slider">
     <i class="fas fa-sun"></i>

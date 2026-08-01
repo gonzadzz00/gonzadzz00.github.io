@@ -4,21 +4,29 @@
     "author": "Joe Reis & Matt Housley",
     "coverImage": "/icon/Fundametals_of_DE.jfif",
     "category": "Data Engineering",
-    "note": "Guía completa sobre el ciclo de vida de la ingeniería de datos, desde la generación hasta el servicio de datos, cubriendo arquitecturas, herramientas y mejores prácticas."
+    "note": {
+      "es": "Guía completa sobre el ciclo de vida de la ingeniería de datos, desde la generación hasta el servicio de datos, cubriendo arquitecturas, herramientas y mejores prácticas.",
+      "en": "A comprehensive guide to the data engineering lifecycle, from data generation to serving, covering architectures, tools, and best practices."
+    }
   },
   {
     "title": "Software Engineering for Data Scientists",
     "author": "Catherine Nelson",
     "coverImage": "/icon/Software_Eng_for_DS.jfif",
     "category": "Software Engineering",
-    "note": "Principios de ingeniería de software aplicados a proyectos de ciencia de datos, incluyendo testing, control de versiones, y diseño de código mantenible."
+    "note": {
+      "es": "Principios de ingeniería de software aplicados a proyectos de ciencia de datos, incluyendo testing, control de versiones, y diseño de código mantenible.",
+      "en": "Software engineering principles applied to data science projects, including testing, version control, and maintainable code design."
+    }
   },
-    {
+  {
     "title": "AI Engineering",
     "author": "Chip Huyen",
     "coverImage": "/icon/ia_eng.jfif",
     "category": "AI Engineering",
-    "note": "Enseña cómo diseñar, construir, evaluar y optimizar aplicaciones con modelos fundacionales de Inteligencia Artificial, incluyendo prompting, RAG, fine-tuning, datos y despliegue eficiente."
+    "note": {
+      "es": "Enseña cómo diseñar, construir, evaluar y optimizar aplicaciones con modelos fundacionales de Inteligencia Artificial, incluyendo prompting, RAG, fine-tuning, datos y despliegue eficiente.",
+      "en": "Teaches how to design, build, evaluate, and optimize applications built on foundation AI models, including prompting, RAG, fine-tuning, data, and efficient deployment."
+    }
   }
-
 ]

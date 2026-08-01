@@ -1,0 +1,101 @@
+---
+---
+
+<label class="lang-switch" aria-label="Cambiar idioma / Switch language">
+  <input type="checkbox" id="lang-checkbox" />
+  <div class="lang-slider">
+    <span class="lang-es">ES</span>
+    <span class="lang-en">EN</span>
+  </div>
+</label>
+
+<script>
+  function initLanguageToggle() {
+    const checkbox = document.getElementById('lang-checkbox') as HTMLInputElement;
+    if (!checkbox) return;
+
+    const currentLang = document.documentElement.getAttribute('data-lang');
+    checkbox.checked = currentLang === 'en';
+
+    checkbox.addEventListener('change', () => {
+      const lang = checkbox.checked ? 'en' : 'es';
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+      localStorage.setItem('lang', lang);
+      document.dispatchEvent(new CustomEvent('langchange'));
+    });
+  }
+
+  initLanguageToggle();
+  document.addEventListener('astro:after-swap', initLanguageToggle);
+</script>
+
+<style>
+  .lang-switch {
+    position: relative;
+    display: inline-block;
+    width: 56px;
+    height: 28px;
+    cursor: pointer;
+  }
+
+  .lang-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .lang-slider {
+    position: absolute;
+    inset: 0;
+    background-color: var(--border-color);
+    border-radius: 28px;
+    transition: background-color var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6px;
+  }
+
+  .lang-slider span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    z-index: 1;
+    color: var(--text-color);
+    transition: opacity var(--transition-fast);
+  }
+
+  .lang-slider .lang-es {
+    opacity: 1;
+  }
+
+  .lang-slider .lang-en {
+    opacity: 0.4;
+  }
+
+  .lang-slider::before {
+    content: '';
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    transition: transform var(--transition-normal);
+    z-index: 2;
+  }
+
+  input:checked + .lang-slider .lang-es {
+    opacity: 0.4;
+  }
+
+  input:checked + .lang-slider .lang-en {
+    opacity: 1;
+  }
+
+  input:checked + .lang-slider::before {
+    transform: translateX(24px);
+  }
+</style>

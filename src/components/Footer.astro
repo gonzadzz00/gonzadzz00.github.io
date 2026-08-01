@@ -1,9 +1,17 @@
 ---
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const rights = strings['footer.rights'];
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-text">&copy; {new Date().getFullYear()} Gonzalo Diaz. Todos los derechos reservados.</p>
+    <p class="footer-text">
+      &copy; {year} Gonzalo Diaz.
+      <span data-i18n-es={rights.es} data-i18n-en={rights.en}>{rights.es}</span>
+    </p>
   </div>
 </footer>
 

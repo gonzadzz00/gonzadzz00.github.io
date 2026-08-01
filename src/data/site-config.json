@@ -1,11 +1,23 @@
 {
   "ownerName": "Gonzalo Diaz Tamini",
-  "tagline": "Data & AI",
+  "tagline": { "es": "Data & AI", "en": "Data & AI" },
   "bio": [
-"¡Hola! Soy Gonzalo, Data & AI Engineer de Argentina. Soy Técnico Superior en Ciencia de Datos y actualmente curso la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario.",
-"Mi trabajo se centra en el desarrollo con IA: diseño y construcción de agentes inteligentes, automatización de flujos de datos y tareas de ingeniería de datos orientadas a producción. Me apasiona construir sistemas que no solo analicen información, sino que actúen sobre ella de forma autónoma y eficiente.",
-"Mi perfil combina la solidez analítica del dato con la mentalidad de ingeniería necesaria para llevarlo a sistemas reales: pipelines robustos, modelos en producción y soluciones que generan impacto concreto.",
-"Te invito a explorar mi repositorio, donde comparto proyectos en estas áreas. Si te interesa la IA aplicada, los datos o simplemente quieres intercambiar ideas, será un placer conectarnos."
+    {
+      "es": "¡Hola! Soy Gonzalo, Data & AI Engineer de Argentina. Soy Técnico Superior en Ciencia de Datos y actualmente curso la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario.",
+      "en": "Hi! I'm Gonzalo, a Data & AI Engineer from Argentina. I hold a Data Science degree and I'm currently completing my Bachelor's in Data Science at the Universidad del Gran Rosario."
+    },
+    {
+      "es": "Mi trabajo se centra en el desarrollo con IA: diseño y construcción de agentes inteligentes, automatización de flujos de datos y tareas de ingeniería de datos orientadas a producción. Me apasiona construir sistemas que no solo analicen información, sino que actúen sobre ella de forma autónoma y eficiente.",
+      "en": "My work centers on AI development: designing and building intelligent agents, automating data flows, and production-oriented data engineering tasks. I'm passionate about building systems that don't just analyze information, but act on it autonomously and efficiently."
+    },
+    {
+      "es": "Mi perfil combina la solidez analítica del dato con la mentalidad de ingeniería necesaria para llevarlo a sistemas reales: pipelines robustos, modelos en producción y soluciones que generan impacto concreto.",
+      "en": "My profile combines analytical rigor with the engineering mindset needed to bring data into real systems: robust pipelines, production models, and solutions that generate concrete impact."
+    },
+    {
+      "es": "Te invito a explorar mi repositorio, donde comparto proyectos en estas áreas. Si te interesa la IA aplicada, los datos o simplemente quieres intercambiar ideas, será un placer conectarnos.",
+      "en": "I invite you to explore my repository, where I share projects in these areas. If you're interested in applied AI, data, or would just like to exchange ideas, I'd be glad to connect."
+    }
   ],
   "profileImage": "/icon/foto1x1.jpg",
   "socialLinks": [
@@ -14,6 +26,9 @@
     { "label": "Email", "url": "mailto:gonzadiaz160400@gmail.com", "icon": "fas fa-envelope" },
     { "label": "WhatsApp", "url": "https://api.whatsapp.com/send/?phone=2974235499&text&type=phone_number&app_absent=0", "icon": "fab fa-whatsapp" }
   ],
-  "contactMessage": "Me alegra que hayas explorado mis proyectos de Data. Si te interesa charlar o colaborar, puedes contactarme a través de mi email:",
+  "contactMessage": {
+    "es": "Me alegra que hayas explorado mis proyectos de Data. Si te interesa charlar o colaborar, puedes contactarme a través de mi email:",
+    "en": "Glad you took a look through my Data projects. If you're interested in chatting or collaborating, you can reach me at my email:"
+  },
   "contactEmail": "gonzadiaz160400@gmail.com"
 }

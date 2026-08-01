@@ -1,5 +1,10 @@
 ---
 import siteConfig from '../data/site-config.json';
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const thanksTitle = strings['contact.thanksTitle'];
+const cta = strings['contact.cta'];
 ---
 
 <section id="contacto" class="section">
@@ -13,13 +18,13 @@ import siteConfig from '../data/site-config.json';
         <div class="contact-icon">
           <i class="fas fa-handshake"></i>
         </div>
-        <h2>¡Gracias por visitar mi portfolio!</h2>
-        <p>{siteConfig.contactMessage}</p>
+        <h2 data-i18n-es={thanksTitle.es} data-i18n-en={thanksTitle.en}>{thanksTitle.es}</h2>
+        <p data-i18n-es={siteConfig.contactMessage.es} data-i18n-en={siteConfig.contactMessage.en}>{siteConfig.contactMessage.es}</p>
         <a href={`mailto:${siteConfig.contactEmail}`} class="email-link">
           <i class="fas fa-envelope"></i>
           {siteConfig.contactEmail}
         </a>
-        <p class="contact-cta">No dudes en escribirme!</p>
+        <p class="contact-cta" data-i18n-es={cta.es} data-i18n-en={cta.en}>{cta.es}</p>
       </div>
 
       <div class="social-links">
