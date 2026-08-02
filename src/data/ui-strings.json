@@ -7,6 +7,7 @@
   "nav.contacto": { "es": "Contacto", "en": "Contact" },
   "nav.openMenuAria": { "es": "Abrir menu", "en": "Open menu" },
   "themeToggle.aria": { "es": "Cambiar tema", "en": "Toggle theme" },
+  "hero.scrollAria": { "es": "Desplazarse a la siguiente sección", "en": "Scroll to next section" },
 
   "section.about.title": { "es": "Sobre mí", "en": "About Me" },
   "section.about.focusAreas": { "es": "Áreas de Enfoque", "en": "Focus Areas" },
@@ -16,6 +17,8 @@
 
   "section.certifications.title": { "es": "Cursos y Certificaciones", "en": "Courses & Certifications" },
   "certifications.verifyButton": { "es": "Ver Certificado", "en": "View Certificate" },
+  "certifications.prevAria": { "es": "Certificación anterior", "en": "Previous certification" },
+  "certifications.nextAria": { "es": "Siguiente certificación", "en": "Next certification" },
 
   "section.books.title": { "es": "Libros", "en": "Books" },
 
@@ -24,7 +27,9 @@
     "es": "Este repositorio está orientado a demostrar no solo habilidades técnicas, sino también una visión integral del desarrollo y despliegue de modelos, abarcando proyectos de ingeniería de datos y la creación de workflows con agentes de IA, desde la integración y automatización hasta su implementación en entornos reales.",
     "en": "This repository is meant to demonstrate not only technical skills, but also a comprehensive view of model development and deployment, spanning data engineering projects and the creation of AI-agent workflows, from integration and automation through to real-world implementation."
   },
-  "projects.expandAria": { "es": "Expandir proyecto", "en": "Expand project" },
+  "projects.expandAria": { "es": "Ver detalles del proyecto", "en": "View project details" },
+  "projects.viewProjectButton": { "es": "Ver Proyecto", "en": "View Project" },
+  "projects.closeAria": { "es": "Cerrar detalles del proyecto", "en": "Close project details" },
   "projects.viewDiagramButton": { "es": "Ver Diagrama", "en": "View Diagram" },
   "projects.flowchart.title": {
     "es": "Trazabilidad de datos · DAG shipsgo_sync_pipeline",

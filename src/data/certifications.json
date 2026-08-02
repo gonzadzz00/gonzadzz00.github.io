@@ -4,6 +4,7 @@
     "name": { "es": "Ingeniería de Datos", "en": "Data Engineering" },
     "issuer": "Humai",
     "issuerLogo": "/icon/humai.jpg",
+    "certificateImage": "/icon/curso-humai-ingenieria-datos.jpg",
     "issuerUrl": "https://humai.lat/carreras/data_eng",
     "date": "2025",
     "description": {
@@ -18,7 +19,7 @@
       { "es": "Python Avanzado", "en": "Advanced Python" },
       { "es": "Automatización y Orquestación de Pipelines", "en": "Pipeline Automation & Orchestration" }
     ],
-    "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
+    "verificationUrl": "https://xam.humai.lat/certificate/4572c655-186d-417c-9adf-d2bbd66a5331",
     "order": 1
   },
   {
@@ -26,6 +27,7 @@
     "name": { "es": "Desarrollo con Docker", "en": "Docker Development" },
     "issuer": "Dev/Talles",
     "issuerLogo": "/icon/dev-talles.png",
+    "certificateImage": "/icon/curso-docker.jpg",
     "issuerUrl": "https://cursos.devtalles.com/courses/docker-guia-practica",
     "date": "2025",
     "description": {
@@ -38,7 +40,7 @@
       { "es": "Persistencia y Redes", "en": "Persistence & Networking" },
       { "es": "Deploy y Buenas Prácticas", "en": "Deployment & Best Practices" }
     ],
-    "verificationUrl": "https://coursera.org/share/cc48c32dd31845491480028e57ebffcc",
+    "verificationUrl": "https://ude.my/UC-f988f7e3-5a58-481b-bc78-ff526430d1d8",
     "order": 2
   },
   {
@@ -46,6 +48,7 @@
     "name": { "es": "Certificación Profesional en Análisis de Datos de Google", "en": "Google Data Analytics Professional Certificate" },
     "issuer": "Google",
     "issuerLogo": "/icon/google-data.png",
+    "certificateImage": "/icon/certificado-google.jpg",
     "issuerUrl": "https://www.coursera.org/professional-certificates/google-data-analytics",
     "date": "2024",
     "description": {
@@ -67,6 +70,7 @@
     "name": { "es": "Certificación Profesional en Análisis de Datos con Microsoft Power BI", "en": "Microsoft Power BI Data Analyst Professional Certificate" },
     "issuer": "Microsoft",
     "issuerLogo": "/icon/power-bi-data.png",
+    "certificateImage": "/icon/certificado-microsoft.jpg",
     "issuerUrl": "https://www.coursera.org/professional-certificates/microsoft-power-bi-data-analyst",
     "date": "2024",
     "description": {
@@ -82,5 +86,15 @@
     ],
     "verificationUrl": "https://coursera.org/share/22e0248ed8e190da2ca607523870ba26",
     "order": 4
+  },
+  {
+    "id": "humai-agentes-llms",
+    "name": { "es": "Ingeniería de Agentes y LLMs", "en": "Agent & LLM Engineering" },
+    "issuer": "Humai",
+    "issuerLogo": "/icon/humai.jpg",
+    "certificateImage": "/icon/curso-humai-agentes-llms.jpg",
+    "date": "2026",
+    "verificationUrl": "https://xam.humai.lat/certificate/ff2535a1-49a7-4fcb-ae37-5febec0e26e2",
+    "order": 5
   }
 ]

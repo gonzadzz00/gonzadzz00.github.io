@@ -7,19 +7,78 @@ import siteConfig from '../data/site-config.json';
     <img src="/icon/brain_portada.jpg" alt="Portada" class="hero-bg-image" />
   </div>
   <div class="hero-content">
-    <h1 class="hero-title">{siteConfig.ownerName}</h1>
+    <h1 class="hero-title" aria-label={siteConfig.ownerName}>
+      <span class="scramble-text" aria-hidden="true" data-scramble={siteConfig.ownerName}>{siteConfig.ownerName}</span>
+    </h1>
     <p class="hero-tagline" data-i18n-es={siteConfig.tagline.es} data-i18n-en={siteConfig.tagline.en}>{siteConfig.tagline.es}</p>
-    <a href="#mi-perfil" class="hero-cta">
-      <i class="fas fa-chevron-down"></i>
-    </a>
   </div>
 </header>
+
+<script>
+  function scrambleElement(el: HTMLElement, target: string) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!<>-_\\/[]{}=+*^#?';
+    const revealDelay = 28;
+    const lockDuration = 380;
+    let startTime: number | null = null;
+
+    el.classList.add('is-scrambling');
+
+    function frame(now: number) {
+      if (startTime === null) startTime = now;
+      const elapsed = now - startTime;
+      let output = '';
+      let allLocked = true;
+
+      for (let i = 0; i < target.length; i++) {
+        const char = target[i];
+        if (char === ' ') {
+          output += ' ';
+          continue;
+        }
+        const charEnd = i * revealDelay + lockDuration;
+        if (elapsed >= charEnd) {
+          output += char;
+        } else {
+          allLocked = false;
+          output += chars[Math.floor(Math.random() * chars.length)];
+        }
+      }
+
+      el.textContent = output;
+
+      if (!allLocked) {
+        requestAnimationFrame(frame);
+      } else {
+        el.textContent = target;
+        el.classList.remove('is-scrambling');
+      }
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  function initTitleScramble() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll<HTMLElement>('.scramble-text').forEach(el => {
+      const target = el.getAttribute('data-scramble') ?? el.textContent ?? '';
+      if (prefersReducedMotion) {
+        el.textContent = target;
+        return;
+      }
+      scrambleElement(el, target);
+    });
+  }
+
+  initTitleScramble();
+  document.addEventListener('astro:after-swap', initTitleScramble);
+</script>
 
 <style>
   .hero {
     position: relative;
     width: 100%;
-    min-height: 350px;
+    min-height: 100vh;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -53,6 +112,18 @@ import siteConfig from '../data/site-config.json';
     color: #fff;
     margin-bottom: var(--space-sm);
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  }
+
+  .scramble-text {
+    display: inline-block;
+    transition: color 0.4s ease, text-shadow 0.4s ease;
+  }
+
+  .scramble-text.is-scrambling {
+    color: var(--accent-color-2);
+    text-shadow: 0 0 16px rgba(123, 47, 247, 0.55);
   }
 
   .hero-tagline {
@@ -60,38 +131,21 @@ import siteConfig from '../data/site-config.json';
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: var(--space-xl);
     text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
   }
 
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-    font-size: var(--text-xl);
-    transition: background var(--transition-fast),
-                transform var(--transition-fast);
-    animation: bounce 2s infinite;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .hero-cta:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(2px);
-    color: #fff;
-    opacity: 1;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-  }
-
-  @media (max-width: 768px) {
-    .hero {
-      min-height: 250px;
+  @media (prefers-reduced-motion: reduce) {
+    .hero-title,
+    .hero-tagline {
+      opacity: 1;
+      animation: none;
+      transform: none;
     }
   }
 </style>

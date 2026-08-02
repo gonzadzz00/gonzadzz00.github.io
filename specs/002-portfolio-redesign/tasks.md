@@ -7,10 +7,12 @@
 
 **Context**: The codebase (Astro 6) already implements most of this spec — component-per-section layout, JSON-driven content, sticky scroll-spy nav, and a light/dark theme toggle. User Stories 1, 2, 3, and 5 are therefore largely **verification** tasks against existing code. The one genuinely new, substantial capability is **User Story 4 (bilingual ES/EN)**, plus the cross-cutting gradient/spotlight hover accents in Polish.
 
+**Addendum (2026-08-02)**: Phase 9 below adds **User Story 6 (visual depth / futuristic feel)** — FR-021–FR-024 — planned in `plan.md`'s addendum section and `research.md` §6–9. It extends `global.css`, `Navbar.astro`, and the section files' existing `.reveal`/`.reveal-stagger` usage; no new dependency, no changes to `SpotlightHover.astro`'s or `ScrollReveal.astro`'s script logic.
+
 ## Format: `[ID] [P?] [Story] Description`
 
 - **[P]**: Can run in parallel (different files, no dependencies)
-- **[Story]**: Maps to spec.md user stories (US1–US5)
+- **[Story]**: Maps to spec.md user stories (US1–US6)
 
 ## Path Conventions
 
@@ -145,6 +147,45 @@ No cross-story blocking work is required for this feature: User Stories 1, 2, 3,
 
 ---
 
+## Phase 9: User Story 6 - Visitor Perceives a Modern, Dynamic Interface Rather Than a Static Page (Priority: P2)
+
+**Goal**: Interactive components across all six sections read as futuristic/dynamic — layered glass/glow surfaces, richer hover/focus micro-interactions, and more dynamic entrance motion — while staying keyboard-accessible, `prefers-reduced-motion`-safe, and within the Lighthouse 90+ mobile budget.
+
+**Independent Test**: Load the page, interact with a representative card/button/nav item in each section and confirm each shows a layered glow/glass treatment and a purposeful micro-interaction on hover/focus/tap; scroll through and confirm each section's entrance motion reads as more dynamic than a flat fade; enable OS-level "reduce motion," reload, and confirm all content stays fully present and legible with the new effects disabled or reduced to a static equivalent.
+
+### Glass/glow depth tokens (foundation for this phase)
+
+- [X] T037 [P] [US6] Add glass/glow design tokens to `:root` and `[data-theme="dark"]` in `src/styles/global.css`: `--glass-bg` (semi-transparent card-bg derived alpha), `--glass-border`, `--accent-color-2` (secondary accent hue for gradient edges), `--glow-shadow`/`--glow-shadow-hover` (accent-tinted box-shadow blur), `--backdrop-blur` (per `research.md` §6) — implemented with a violet secondary accent (`#7b2ff7` light / `#9d5cff` dark) paired with the existing blue accent for the gradient/glow
+
+### Component surface treatment (depends on T037)
+
+- [X] T038 [US6] Applied `--glass-bg`/`backdrop-filter: blur(var(--backdrop-blur))` (with `-webkit-` prefix) and `--glow-shadow` to `.card`; `.btn-primary` uses a `linear-gradient(135deg, var(--accent-color), var(--accent-color-2))` background instead of a flat color (kept opaque for WCAG contrast — no transparency on solid CTA text); `.btn-outline` kept its transparent/bordered look and gained the same `--glow-shadow`; layered beneath (not replacing) the existing spotlight `::after` overlay, per FR-021
+- [X] T039 [US6] Swapped the navbar's hardcoded `blur(12px)` for `var(--backdrop-blur)`, its `border-bottom` for `var(--glass-border)`, and its `.scrolled` shadow for `var(--glow-shadow)`, in both the desktop and mobile `<style>` rules in `src/components/Navbar.astro`, per FR-021
+
+### Richer micro-interactions (depends on T038, T039)
+
+- [X] T040 [US6] Extended `.card:hover`/`:focus-within` (translateY(-6px) scale(1.015) + `--glow-shadow-hover`), `.btn-primary:hover`/`:focus-visible`, `.btn-outline:hover`/`:focus-visible` (translateY(-3px) scale(1.03) + `--glow-shadow-hover`) in `src/styles/global.css` — using `:focus-visible`/`:focus-within` alongside `:hover` so the effect also triggers via keyboard focus and tap, not just `pointermove`, per FR-022
+- [X] T041 [US6] Extended `.nav-link:hover`/`:focus-visible`/`.active` in `src/components/Navbar.astro` with a `text-shadow` glow (`0 0 12px rgba(0,164,239,.5)`) matching T040's glow treatment, per FR-022
+
+### More dynamic entrance motion (depends on T037; independent of T038–T041)
+
+- [X] T042 [US6] Extended `.reveal` and `.reveal-stagger > *` in `src/styles/global.css` with `scale(0.96)` → `scale(1)` alongside the existing `translateY`; added a new `.reveal-title` variant combining the same motion with `filter: blur(6px)` → `blur(0)`; registered `.reveal-title` in `src/components/ScrollReveal.astro`'s `querySelectorAll` alongside `.reveal`/`.reveal-stagger` so the existing `IntersectionObserver` picks it up, per FR-023
+- [X] T043 [P] [US6] Applied `.reveal-title` to the `<h2 class="section-title">` heading in `About.astro`, `Books.astro`, `Certifications.astro`, `Education.astro`, `Projects.astro`, and to Contact's (differently-classed) `<h2>` inside `.contact-card` — Contact has no `section-title` heading, so the class was applied directly to its equivalent heading for consistency (depends on T042)
+- [X] T044 [P] [US6] Added `.reveal-stagger` to `Books.astro`'s `.grid-3` and `Certifications.astro`'s `.certs-list`, and `.reveal` to `Contact.astro`'s `.contact-container` — these three sections had **zero** scroll entrance motion before this change (only About/Projects/Education used `.reveal-stagger`), which was the most visible remaining "static" gap (depends on T042)
+
+### Reduced-motion equivalence (depends on T038–T044)
+
+- [X] T045 [US6] Extended the existing `@media (prefers-reduced-motion: reduce)` block in `src/styles/global.css`: added `.reveal-title` to the forced-visible/no-transition rule (opacity/transform/filter/transition all neutralized), and added a new rule forcing `transform: none; transition: none` on `.card:hover`/`:focus-within` and `.btn-primary`/`.btn-outline` hover/focus states — the static glass/glow background, border, and box-shadow are left untouched (not motion), per FR-024
+
+### Validation
+
+- [~] T046 [US6] Manually verify per `quickstart.md` step 6: interact with a representative card/button/nav item in each of the six sections, confirming the glass/glow treatment (FR-021) and micro-interaction (FR-022); scroll through confirming richer entrance motion (FR-023); then enable OS-level "reduce motion," reload, and confirm all content remains fully present/legible with motion disabled (FR-024, SC-010, SC-011) — depends on T038–T045. **Partially completed**: no browser available in this environment (same constraint as T034/T036), so verification was done at the code/build level instead — `npm run build` succeeds cleanly; `dist/index.html` contains all 7 `reveal-title` and 6 `reveal-stagger`/`reveal` class occurrences expected across the six sections; the compiled CSS's single `prefers-reduced-motion` block correctly neutralizes `.reveal`/`.reveal-stagger`/`.reveal-title` plus the new hover `transform`/`transition` rules; `npm run preview` served HTTP 200 with zero `[object Object]` leaks. **Not completed**: live interactive click/hover/tap-through and a real "reduce motion" OS toggle test — flagged for the user to run before merging
+- [~] T047 [US6] Re-run a Lighthouse mobile audit (or the same proxy-check approach used in T034 if no browser is available) against `npm run build && npm run preview` output and confirm Performance ≥ 90 still holds after this addendum (SC-012) — depends on T046. **Could not run**: no Chrome/Chromium available in this environment, same blocker as T034. Proxy check: no new dependencies were added; the only new runtime cost is CSS (`backdrop-filter`/`box-shadow`/`filter: blur`) scoped to a bounded set of elements (cards, buttons, nav, six headings) rather than the full page, and no new JS listeners were added (T038–T045 are pure CSS plus one extra selector in the existing `ScrollReveal.astro` observer) — low risk, but **this task needs a real run in a browser-equipped environment (or CI) before merging**, same as the outstanding T034
+
+**Checkpoint**: All six user stories are independently functional; the site's interactive components read as dynamic/futuristic rather than static, with no regression to performance, accessibility, or reduced-motion support.
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -157,6 +198,7 @@ No cross-story blocking work is required for this feature: User Stories 1, 2, 3,
 - **User Story 3 (Phase 6)**: Can start after Setup; T028–T029 should re-run after Phase 5 lands, since bilingual markup changes what's being verified for legibility
 - **User Story 5 (Phase 7)**: Can start after Setup; best run after Phase 5 so the test entry exercises bilingual fields
 - **Polish (Phase 8)**: After all desired user stories are complete
+- **User Story 6 (Phase 9)**: Can start after Setup; independent of US1–US5's content/i18n work (pure CSS/visual layer) but layers on top of the Polish-phase spotlight/reveal mechanisms (Phase 8), so run it after Phase 8; internally: tokens (T037) → surfaces (T038–T039) → micro-interactions (T040–T041) and entrance motion (T042–T044) can proceed in parallel once T037/T042 land → reduced-motion (T045) → validation (T046–T047)
 
 ### Parallel Opportunities
 
@@ -166,6 +208,7 @@ No cross-story blocking work is required for this feature: User Stories 1, 2, 3,
 - T013–T018 (US4 bilingual data files) in parallel — six different JSON files
 - T028–T029 (US3) in parallel
 - T032–T033 (Polish CSS/motion work) in parallel
+- T043 and T044 (US6 entrance-motion wiring) in parallel — different section files
 
 ---
 
@@ -195,17 +238,19 @@ User Story 1 (P1) already passes against the current codebase — the "MVP" is e
 3. Phase 5 (US4) — the real build: bilingual infrastructure, data, and section wiring; this is where nearly all new code is written
 4. Phase 6 (US3) + Phase 7 (US5) — re-verify theme legibility and content-only updates against the now-bilingual site
 5. Phase 8 (Polish) — hover accents, reduced-motion gating, Lighthouse/WCAG sign-off, final quickstart run
+6. Phase 9 (US6, addendum) — glass/glow depth tokens, richer micro-interactions, more dynamic entrance motion, extended reduced-motion gating, re-verified Lighthouse/WCAG sign-off
 
 ### Suggested next action
 
-Start Phase 5 (T008) directly — Phases 3 and 4 are cheap verification passes that can be done in parallel or deferred to just before merge, but Phase 5 is the critical path containing all substantial new work.
+Phases 1–8 are already implemented and shipped. Start Phase 9 (T037) directly for the visual-depth addendum — it's the only remaining phase.
 
 ---
 
 ## Notes
 
 - [P] tasks touch different files with no dependency on an incomplete task
-- [Story] labels map every user-story-phase task to spec.md's US1–US5
+- [Story] labels map every user-story-phase task to spec.md's US1–US6
 - Most "implementation" here is verification against an already-largely-complete codebase; treat any discovered gap as a small follow-up task in that story's phase, not a reason to expand scope
 - Commit after each task or logical group
 - Avoid: touching `index.html`/`styles.css`/`carousel.js` at the repo root — these are legacy pre-Astro files unrelated to this feature (see plan.md Structure Decision)
+- Phase 9 (US6) is purely additive CSS/markup-class work on top of already-shipped mechanisms (`SpotlightHover.astro`, `ScrollReveal.astro`) — no new dependency, no changes to those scripts' JS logic

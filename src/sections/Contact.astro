@@ -8,7 +8,7 @@ const cta = strings['contact.cta'];
 ---
 
 <section id="contacto" class="section">
-  <div class="contact-container">
+  <div class="contact-container reveal">
     <div class="contact-photo">
       <img src={siteConfig.profileImage} alt={siteConfig.ownerName} loading="lazy" />
     </div>
@@ -18,7 +18,7 @@ const cta = strings['contact.cta'];
         <div class="contact-icon">
           <i class="fas fa-handshake"></i>
         </div>
-        <h2 data-i18n-es={thanksTitle.es} data-i18n-en={thanksTitle.en}>{thanksTitle.es}</h2>
+        <h2 class="reveal-title" data-i18n-es={thanksTitle.es} data-i18n-en={thanksTitle.en}>{thanksTitle.es}</h2>
         <p data-i18n-es={siteConfig.contactMessage.es} data-i18n-en={siteConfig.contactMessage.en}>{siteConfig.contactMessage.es}</p>
         <a href={`mailto:${siteConfig.contactEmail}`} class="email-link">
           <i class="fas fa-envelope"></i>

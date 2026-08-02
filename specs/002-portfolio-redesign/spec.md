@@ -12,6 +12,7 @@
 - **Reference structure/aesthetic to adopt**: single scrollable page, one component per section, all content driven from a single centralized data source, in-page anchor navigation, a cohesive modern visual system, restrained scroll-triggered animations plus subtle animated gradient/spotlight hover accents, light/dark theme toggle.
 - **Reference sections with no current equivalent** (Testimonials, Experience-as-review, Approach) are out of scope unless explicitly added later.
 - **Language**: the site adds an English translation alongside the existing Spanish content, with a visitor-facing language switch. Magnetic-button-style interactions are explicitly excluded (deemed unnecessary polish relative to its performance/accessibility cost).
+- **Visual depth update (added 2026-08-02)**: the initial redesign and its restrained gradient/spotlight hover accents are implemented; the maintainer now wants the visual language pushed further toward a more futuristic, visually striking feel, with components that read as dynamic/alive rather than static, while keeping all existing content, structure, navigation, bilingual support, and theme toggle unchanged.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -94,6 +95,24 @@ As the sole developer, the maintainer updates the content of any section (e.g., 
 
 ---
 
+### User Story 6 - Visitor Perceives a Modern, Dynamic Interface Rather Than a Static Page (Priority: P2)
+
+A visitor browsing the site senses a more futuristic, visually rich interface — components have depth, subtle motion, and glow/accent treatments that respond to their presence — rather than a flat, static page, while everything still loads fast and remains fully readable.
+
+**Why this priority**: This is the differentiating impression the portfolio makes in the first few seconds of a recruiter's visit — it doesn't change what content is delivered (Story 1 still holds), but it materially affects whether the site is perceived as current and polished versus generic.
+
+**Independent Test**: Can be fully tested by loading the page and interacting with representative components from each section type (hero, project card, timeline entry, book card, nav, buttons), confirming each exhibits a distinctive dynamic/futuristic treatment (e.g., layered depth, glow accents, animated micro-interactions on interaction or scroll) beyond a flat static card, without any layout shift, jank, or unreadable content.
+
+**Acceptance Scenarios**:
+
+1. **Given** a visitor loads any section, **When** the section's components render, **Then** they exhibit a distinct futuristic visual treatment (e.g., layered/glass or glow surfaces, gradient depth, animated accents) consistent with the site's overall visual system, not just flat single-color cards.
+2. **Given** a visitor hovers, focuses, or taps an interactive component (card, button, nav item), **When** they interact with it, **Then** it responds with a smooth, purposeful micro-interaction (e.g., glow intensification, elevation/depth shift, subtle motion) that reinforces the futuristic feel without being distracting.
+3. **Given** a visitor scrolls through the page, **When** sections and components enter the viewport, **Then** they present richer, more dynamic entrance motion than a simple static fade, while still resolving to fully readable, stable content.
+4. **Given** a visitor has "reduce motion" enabled at the OS level, **When** they load or interact with the page, **Then** all dynamic/futuristic treatments that rely on motion are disabled or reduced to a static equivalent, with content still fully present and legible.
+5. **Given** a visitor loads the page on a low/mid-range mobile device, **When** the dynamic visual treatments render, **Then** the page still meets the Lighthouse 90+ mobile performance target with no visible jank.
+
+---
+
 ### Edge Cases
 
 - What happens when a project, certification, or book entry is missing an image? The layout MUST NOT break or leave a visibly broken image placeholder.
@@ -131,6 +150,10 @@ As the sole developer, the maintainer updates the content of any section (e.g., 
 - **FR-013**: The site MAY include scroll-triggered entrance animations, but they MUST be restrained and MUST respect a visitor's "reduce motion" preference, and MUST NOT degrade page performance below the Lighthouse 90+ mobile target.
 - **FR-014**: The site MAY include subtle animated gradient or spotlight hover accents (e.g., on cards or buttons) as long as they respect "reduce motion" preferences and do not degrade the Lighthouse 90+ mobile target. Magnetic-cursor-style button interactions are explicitly excluded.
 - **FR-015**: The layout MUST be responsive and render correctly across mobile, tablet, and desktop viewports, with no horizontal scrolling or overlapping content.
+- **FR-021**: Interactive components (cards, buttons, nav items) MUST express a more futuristic visual language than flat single-color surfaces — e.g., layered depth, glass/translucent surfaces, glow or gradient-edge accents — applied consistently across all six sections as part of the one cohesive visual system (FR-011), not as one-off per-section styling.
+- **FR-022**: Interactive components MUST provide a purposeful micro-interaction on hover/focus/tap (e.g., glow intensification, elevation/depth shift, subtle scale or motion) that goes beyond the existing gradient/spotlight hover accent (FR-014), while remaining restrained enough not to distract from content.
+- **FR-023**: Section and component entrance animations MUST read as more dynamic than a plain static fade (e.g., staggered reveals, depth/parallax-style transitions), while remaining subject to the same constraints as FR-013: respecting "reduce motion" and not degrading the Lighthouse 90+ mobile target.
+- **FR-024**: All motion and glow/depth effects introduced under FR-021–FR-023 MUST degrade gracefully to a fully static, legible equivalent when the visitor has "reduce motion" enabled, consistent with FR-013.
 
 #### Language
 - **FR-016**: The site MUST provide a visitor-facing control to switch all page content between Spanish and English.
@@ -165,6 +188,9 @@ Each entity's text fields are stored per-language (Spanish and English); non-tex
 - **SC-007**: A visitor's chosen theme (light/dark) is correctly restored on 100% of subsequent visits from the same browser, absent cleared storage.
 - **SC-008**: A visitor can switch the entire page to their preferred language (Spanish or English) in a single interaction, with 100% of visible section text reflecting that language.
 - **SC-009**: A visitor's chosen language is correctly restored on 100% of subsequent visits from the same browser, absent cleared storage.
+- **SC-010**: Every interactive component type (cards, buttons, nav items) across all six sections exhibits a distinctive dynamic/futuristic visual treatment (depth, glow, or motion-based), verifiable by visual inspection of each component type with no section left visually flat/static.
+- **SC-011**: With "reduce motion" enabled, 100% of pages remain fully readable with no missing content, broken layout, or stuck mid-animation state.
+- **SC-012**: The Lighthouse Performance score of 90+ on mobile (SC-003) continues to hold after the added visual/motion treatments.
 
 ## Out of Scope
 
@@ -181,3 +207,5 @@ Each entity's text fields are stored per-language (Spanish and English); non-tex
 - "Optimized images" means appropriately compressed, modern-format images sized for their display context — no specific tooling is prescribed here (decided in planning).
 - Scroll-triggered animations, where used, default to subtle fade/slide-in effects rather than elaborate motion, to stay within the performance and "restrained" requirements; animated gradient/spotlight hover accents are included but kept lightweight for the same reason.
 - Default language on first visit (before any explicit selection) is Spanish, matching the current site.
+- "Futuristic" and "not static" (FR-021–FR-024, User Story 6) are interpreted as: depth/glass/glow surface treatments, richer hover/focus micro-interactions, and staggered/parallax-style entrance motion, introduced without any new heavy dependency, to stay within the constitution's minimal-dependency and Lighthouse 90+ constraints. Magnetic-cursor button interactions remain explicitly excluded per the existing Context note.
+- The specific color palette, shapes, and named visual motif ("futuristic") are decided during planning/design, not prescribed at the requirements level; the requirement is the presence and consistency of dynamic/depth treatment, not a specific aesthetic recipe.

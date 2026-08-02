@@ -1,0 +1,119 @@
+---
+import uiStrings from '../data/ui-strings.json';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const scrollAria = strings['hero.scrollAria'];
+---
+
+<a
+  href="#mi-perfil"
+  class="scroll-down-btn"
+  id="scroll-down-btn"
+  data-i18n-attr="aria-label"
+  data-i18n-attr-es={scrollAria.es}
+  data-i18n-attr-en={scrollAria.en}
+  aria-label={scrollAria.es}
+>
+  <i class="fas fa-chevron-down"></i>
+</a>
+
+<script>
+  function initScrollDownButton() {
+    const btn = document.getElementById('scroll-down-btn');
+    if (!btn) return;
+
+    const THRESHOLD = 80;
+
+    function getNextSection(): HTMLElement | null {
+      const sections = document.querySelectorAll<HTMLElement>('section[id]');
+      const scrollY = window.scrollY;
+      for (const section of sections) {
+        const sectionTop = section.getBoundingClientRect().top + scrollY;
+        if (sectionTop > scrollY + THRESHOLD) {
+          return section;
+        }
+      }
+      return null;
+    }
+
+    function updateVisibility() {
+      const next = getNextSection();
+      const hidden = !next;
+      btn?.classList.toggle('is-hidden', hidden);
+      btn?.setAttribute('aria-hidden', String(hidden));
+      if (btn) btn.tabIndex = hidden ? -1 : 0;
+    }
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const next = getNextSection();
+      if (next) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        next.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+    });
+
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    updateVisibility();
+  }
+
+  initScrollDownButton();
+  document.addEventListener('astro:after-swap', initScrollDownButton);
+</script>
+
+<style>
+  .scroll-down-btn {
+    position: fixed;
+    left: 50%;
+    bottom: var(--space-2xl);
+    transform: translateX(-50%);
+    z-index: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--glass-border);
+    color: var(--accent-color);
+    font-size: var(--text-xl);
+    box-shadow: var(--glow-shadow);
+    transition: background var(--transition-fast),
+                transform var(--transition-fast),
+                opacity var(--transition-normal);
+    animation: scrollBtnBounce 2s ease-in-out infinite;
+  }
+
+  .scroll-down-btn.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    animation-play-state: paused;
+  }
+
+  .scroll-down-btn:hover,
+  .scroll-down-btn:focus-visible {
+    background: var(--card-bg);
+    transform: translateX(-50%) translateY(2px);
+    opacity: 1;
+  }
+
+  @keyframes scrollBtnBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-down-btn {
+      bottom: var(--space-xl);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-down-btn {
+      animation: none;
+    }
+  }
+</style>

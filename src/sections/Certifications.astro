@@ -5,86 +5,175 @@ import uiStrings from '../data/ui-strings.json';
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const certsTitle = strings['section.certifications.title'];
 const verifyButton = strings['certifications.verifyButton'];
+const prevAria = strings['certifications.prevAria'];
+const nextAria = strings['certifications.nextAria'];
 ---
 
 {certifications.length > 0 && (
   <section id="certificaciones" class="section">
-    <h2 class="section-title">
-      <span class="emoji-icon">&#128218;</span>
+    <h2 class="section-title reveal-title">
+      <i class="fas fa-certificate section-icon"></i>
       <span data-i18n-es={certsTitle.es} data-i18n-en={certsTitle.en}>{certsTitle.es}</span>
     </h2>
 
-    <div class="certs-list">
-      {certifications.map((cert: any) => (
-        <div class="card cert-card">
-          <div class="cert-header">
-            {cert.issuerLogo && (
-              <a href={cert.issuerUrl} target="_blank" rel="noopener noreferrer">
-                <img src={cert.issuerLogo} alt={`Logo ${cert.issuer}`} class="cert-logo" loading="lazy" />
+    <div class="certs-carousel">
+      <button
+        type="button"
+        class="certs-nav-btn certs-nav-prev"
+        id="certs-prev"
+        data-i18n-attr="aria-label"
+        data-i18n-attr-es={prevAria.es}
+        data-i18n-attr-en={prevAria.en}
+        aria-label={prevAria.es}
+      >
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <div class="certs-list reveal-stagger" id="certs-list">
+        {certifications.map((cert: any) => (
+          <div class="card cert-card">
+            <div class="cert-image">
+              <img src={cert.certificateImage || cert.issuerLogo} alt={`Certificado ${cert.issuer}`} loading="lazy" />
+            </div>
+
+            <h3 class="cert-name" data-i18n-es={cert.name.es} data-i18n-en={cert.name.en}>{cert.name.es}</h3>
+            <p class="cert-issuer">{cert.issuer} &middot; {cert.date}</p>
+
+            {cert.verificationUrl && cert.verificationUrl !== "" && (
+              <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" class="btn-outline cert-verify">
+                <i class="fas fa-external-link-alt"></i>
+                <span data-i18n-es={verifyButton.es} data-i18n-en={verifyButton.en}>{verifyButton.es}</span>
               </a>
             )}
-            <div class="cert-header-text">
-              <h3 data-i18n-es={cert.name.es} data-i18n-en={cert.name.en}>{cert.name.es}</h3>
-              <p class="cert-issuer">{cert.issuer} &middot; {cert.date}</p>
-            </div>
           </div>
+        ))}
+      </div>
 
-          {cert.description && (
-            <p class="cert-description" data-i18n-es={cert.description.es} data-i18n-en={cert.description.en}>{cert.description.es}</p>
-          )}
-
-          {cert.topics && cert.topics.length > 0 && (
-            <div class="cert-topics">
-              {cert.topics.map((topic: { es: string; en: string }) => (
-                <span class="cert-topic" data-i18n-es={topic.es} data-i18n-en={topic.en}>{topic.es}</span>
-              ))}
-            </div>
-          )}
-
-          {cert.verificationUrl && cert.verificationUrl !== "" && (
-            <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" class="btn-outline cert-verify">
-              <i class="fas fa-external-link-alt"></i>
-              <span data-i18n-es={verifyButton.es} data-i18n-en={verifyButton.en}>{verifyButton.es}</span>
-            </a>
-          )}
-        </div>
-      ))}
+      <button
+        type="button"
+        class="certs-nav-btn certs-nav-next"
+        id="certs-next"
+        data-i18n-attr="aria-label"
+        data-i18n-attr-es={nextAria.es}
+        data-i18n-attr-en={nextAria.en}
+        aria-label={nextAria.es}
+      >
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
   </section>
 )}
 
+<script>
+  function initCertsCarousel() {
+    const list = document.getElementById('certs-list');
+    const prevBtn = document.getElementById('certs-prev');
+    const nextBtn = document.getElementById('certs-next');
+    if (!list || !prevBtn || !nextBtn) return;
+
+    function updateButtons() {
+      if (!list) return;
+      const maxScroll = list.scrollWidth - list.clientWidth;
+      prevBtn?.toggleAttribute('disabled', list.scrollLeft <= 4);
+      nextBtn?.toggleAttribute('disabled', list.scrollLeft >= maxScroll - 4);
+    }
+
+    function scrollByPage(direction: number) {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      list?.scrollBy({
+        left: direction * (list?.clientWidth ?? 0),
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      });
+    }
+
+    prevBtn.addEventListener('click', () => scrollByPage(-1));
+    nextBtn.addEventListener('click', () => scrollByPage(1));
+
+    list.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+  }
+
+  initCertsCarousel();
+  document.addEventListener('astro:after-swap', initCertsCarousel);
+</script>
+
 <style>
-  .certs-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-
-  .cert-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .cert-header {
+  .certs-carousel {
     display: flex;
     align-items: center;
     gap: var(--space-md);
   }
 
-  .cert-logo {
-    width: 56px;
-    height: 56px;
-    object-fit: contain;
-    border-radius: var(--radius-sm);
-    flex-shrink: 0;
-    background: #fff;
-    padding: 4px;
+  .certs-list {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    gap: var(--space-lg);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
-  .cert-header-text h3 {
+  .certs-nav-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--glass-border);
+    color: var(--accent-color);
     font-size: var(--text-lg);
-    margin: 0 0 var(--space-xs);
+    cursor: pointer;
+    box-shadow: var(--glow-shadow);
+    transition: transform var(--transition-fast),
+                box-shadow var(--transition-normal),
+                opacity var(--transition-fast);
+  }
+
+  .certs-nav-btn:hover:not(:disabled),
+  .certs-nav-btn:focus-visible:not(:disabled) {
+    transform: scale(1.08);
+    box-shadow: var(--glow-shadow-hover);
+  }
+
+  .certs-nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .cert-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 0 0 calc((100% - 2 * var(--space-lg)) / 3);
+  }
+
+  .cert-image {
+    width: 100%;
+    height: 200px;
+    border-radius: var(--radius-sm);
+    background: #fff;
+    padding: var(--space-sm);
+  }
+
+  .cert-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .cert-name {
+    font-size: var(--text-base);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .cert-issuer {
@@ -93,29 +182,26 @@ const verifyButton = strings['certifications.verifyButton'];
     margin: 0;
   }
 
-  .cert-description {
-    font-size: var(--text-sm);
-    color: var(--secondary-text);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .cert-topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-  }
-
-  .cert-topic {
-    background: var(--bg-color);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: var(--radius-sm);
-    font-size: var(--text-xs);
-    color: var(--secondary-text);
-    border: 1px solid var(--border-color);
-  }
-
   .cert-verify {
-    align-self: flex-start;
+    align-self: center;
+    margin-top: auto;
+  }
+
+  @media (max-width: 768px) {
+    .cert-card {
+      flex-basis: calc((100% - var(--space-lg)) / 2);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cert-card {
+      flex-basis: 100%;
+    }
+
+    .certs-nav-btn {
+      width: 36px;
+      height: 36px;
+      font-size: var(--text-base);
+    }
   }
 </style>

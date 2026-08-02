@@ -1,12 +1,15 @@
 [
-  { "name": "Python", "badgeUrl": "https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff" },
-  { "name": "Computer Vision", "badgeUrl": "https://img.shields.io/badge/OpenCV-5C3EE8?logo=opencv&logoColor=fff" },
-  { "name": "PyTorch", "badgeUrl": "https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white" },
-  { "name": "PostgreSQL", "badgeUrl": "https://img.shields.io/badge/Postgres-%23316192.svg?logo=postgresql&logoColor=white" },
-  { "name": "Docker", "badgeUrl": "https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff" },
-  { "name": "Linux", "badgeUrl": "https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black" },
-  { "name": "Django", "badgeUrl": "https://img.shields.io/badge/Django-%23092E20.svg?logo=django&logoColor=white" },
-  { "name": "Apache Airflow", "badgeUrl": "https://img.shields.io/badge/Apache%20Airflow-017CEE?logo=apacheairflow&logoColor=fff" },
-  { "name": "LangChain", "badgeUrl": "https://img.shields.io/badge/LangChain-1c3c3c.svg?logo=langchain&logoColor=white" },
-  { "name": "n8n", "badgeUrl": "https://img.shields.io/badge/n8n-EA4B71.svg?style=for-the-badge&logo=n8n&logoColor=white" }
+  { "name": "Python", "color": "#3776AB", "iconUrl": "https://cdn.simpleicons.org/python/3776AB" },
+  { "name": "OpenCV", "color": "#5C3EE8", "iconUrl": "https://cdn.simpleicons.org/opencv/5C3EE8" },
+  { "name": "PyTorch", "color": "#EE4C2C", "iconUrl": "https://cdn.simpleicons.org/pytorch/EE4C2C" },
+  { "name": "PostgreSQL", "color": "#4169E1", "iconUrl": "https://cdn.simpleicons.org/postgresql/4169E1" },
+  { "name": "Docker", "color": "#2496ED", "iconUrl": "https://cdn.simpleicons.org/docker/2496ED" },
+  { "name": "Linux", "color": "#FCC624", "iconUrl": "https://cdn.simpleicons.org/linux/FCC624" },
+  { "name": "Django", "color": "#092E20", "iconUrl": "https://cdn.simpleicons.org/django/092E20" },
+  { "name": "Apache Airflow", "color": "#017CEE", "iconUrl": "https://cdn.simpleicons.org/apacheairflow/017CEE" },
+  { "name": "LangChain", "color": "#1C3C3C", "iconUrl": "https://cdn.simpleicons.org/langchain/1C3C3C" },
+  { "name": "n8n", "color": "#EA4B71", "iconUrl": "https://cdn.simpleicons.org/n8n/EA4B71" },
+  { "name": "React", "color": "#61DAFB", "iconUrl": "https://cdn.simpleicons.org/react/61DAFB" },
+  { "name": "Ollama", "color": "#000000", "iconUrl": "https://cdn.simpleicons.org/ollama/000000" },
+  { "name": "Anthropic", "color": "#191919", "iconUrl": "https://cdn.simpleicons.org/anthropic/191919" }
 ]

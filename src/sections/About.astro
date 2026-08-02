@@ -11,8 +11,8 @@ const techStackTitle = strings['section.about.techStack'];
 ---
 
 <section id="mi-perfil" class="section">
-  <h2 class="section-title">
-    <span class="emoji-icon">&#128075;</span>
+  <h2 class="section-title reveal-title">
+    <i class="fas fa-user section-icon"></i>
     <span data-i18n-es={aboutTitle.es} data-i18n-en={aboutTitle.en}>{aboutTitle.es}</span>
   </h2>
 
@@ -23,7 +23,7 @@ const techStackTitle = strings['section.about.techStack'];
   </div>
 
   <h3 class="subsection-title">
-    <span class="emoji-icon">&#128270;</span>
+    <i class="fas fa-bullseye section-icon"></i>
     <span data-i18n-es={focusAreasTitle.es} data-i18n-en={focusAreasTitle.en}>{focusAreasTitle.es}</span>
   </h3>
 
@@ -44,16 +44,43 @@ const techStackTitle = strings['section.about.techStack'];
   </div>
 
   <h3 class="subsection-title">
-    <span class="emoji-icon">&#128736;</span>
+    <i class="fas fa-wrench section-icon"></i>
     <span data-i18n-es={techStackTitle.es} data-i18n-en={techStackTitle.en}>{techStackTitle.es}</span>
   </h3>
 
-  <div class="tech-badges">
-    {techStack.map((tech: any) => (
-      <img src={tech.badgeUrl} alt={tech.name} loading="lazy" />
-    ))}
+  <div class="tech-badges" id="tech-badges">
+    <div class="tech-badges-track" id="tech-badges-track">
+      {techStack.map((tech: any) => (
+        <div class="tech-chip" style={`--tech-color: ${tech.color}`}>
+          <span class="tech-chip-icon">
+            <img src={tech.iconUrl} alt="" loading="lazy" />
+          </span>
+          <span class="tech-chip-name">{tech.name}</span>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
+
+<script>
+  function initTechAutoSlide() {
+    const wrapper = document.getElementById('tech-badges');
+    const track = document.getElementById('tech-badges-track');
+    if (!wrapper || !track) return;
+
+    function updateDistance() {
+      if (!wrapper || !track) return;
+      const distance = track.scrollWidth - wrapper.clientWidth;
+      track.style.setProperty('--tech-scroll-distance', `-${Math.max(distance, 0)}px`);
+    }
+
+    updateDistance();
+    window.addEventListener('resize', updateDistance);
+  }
+
+  initTechAutoSlide();
+  document.addEventListener('astro:after-swap', initTechAutoSlide);
+</script>
 
 <style>
   .about-bio {
@@ -73,6 +100,10 @@ const techStackTitle = strings['section.about.techStack'];
     display: flex;
     align-items: center;
     gap: var(--space-sm);
+  }
+
+  .subsection-title .section-icon {
+    font-size: var(--text-xl);
   }
 
   .focus-card {
@@ -111,14 +142,80 @@ const techStackTitle = strings['section.about.techStack'];
   }
 
   .tech-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
+    overflow: hidden;
     margin-top: var(--space-md);
   }
 
-  .tech-badges img {
-    height: 28px;
-    width: auto;
+  .tech-badges-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--space-md);
+    width: max-content;
+    animation: tech-auto-slide 22s ease-in-out infinite alternate;
+  }
+
+  .tech-badges:hover .tech-badges-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes tech-auto-slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(var(--tech-scroll-distance, 0)); }
+  }
+
+  .tech-chip {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-md) var(--space-xs) var(--space-xs);
+    border-radius: 999px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    transition: box-shadow var(--transition-normal),
+                transform var(--transition-fast);
+  }
+
+  .tech-chip:hover {
+    box-shadow: 0 0 20px var(--tech-color);
+    transform: translateY(-3px);
+  }
+
+  .tech-chip-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 7px;
+  }
+
+  .tech-chip-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .tech-chip-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-color);
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-badges-track {
+      animation: none;
+      transform: none !important;
+      flex-wrap: wrap;
+      width: auto;
+    }
+
+    .tech-chip:hover {
+      transform: none;
+    }
   }
 </style>

@@ -16,6 +16,7 @@ Opens the Astro dev server (default `http://localhost:4321`). The site is a sing
 3. **Theme toggle (US3)**: Toggle light/dark via the navbar switch, reload the page, confirm the theme persisted.
 4. **Language toggle (US4)**: Toggle ES/EN via the new language switch, confirm every section's visible text changes (not just headings), reload, confirm the language persisted.
 5. **Content update without layout changes (US5)**: Add a new entry to `src/data/books.json` (see `contracts/content-schema.md` for the shape, including `es`/`en` fields), reload, confirm it appears in Libros with no other file touched.
+6. **Visual depth / futuristic feel (US6)**: Load each section and interact (hover/focus/tap) with a representative card, button, and nav item; confirm each shows the layered glass/glow depth treatment (FR-021) and a purposeful hover/focus micro-interaction beyond the base spotlight (FR-022), and that section/component entrance motion reads as more dynamic than a plain fade (FR-023). Then enable "reduce motion" at the OS level, reload, and confirm all content is still fully present and legible with the motion/glow effects disabled or reduced to a static equivalent (FR-024, SC-011).
 
 ## Build & performance check
 

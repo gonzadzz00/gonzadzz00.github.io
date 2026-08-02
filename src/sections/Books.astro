@@ -8,12 +8,12 @@ const booksTitle = strings['section.books.title'];
 
 {books.length > 0 && (
   <section id="libros" class="section">
-    <h2 class="section-title">
-      <span class="emoji-icon">&#128214;</span>
+    <h2 class="section-title reveal-title">
+      <i class="fas fa-book-open section-icon"></i>
       <span data-i18n-es={booksTitle.es} data-i18n-en={booksTitle.en}>{booksTitle.es}</span>
     </h2>
 
-    <div class="grid-3">
+    <div class="grid-3 reveal-stagger">
       {books.map((book: any) => (
         <div class="card book-card">
           {book.coverImage && (
@@ -39,8 +39,8 @@ const booksTitle = strings['section.books.title'];
   }
 
   .book-cover {
-    width: 140px;
-    height: 200px;
+    width: 190px;
+    height: 270px;
     object-fit: cover;
     border-radius: var(--radius-sm);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
