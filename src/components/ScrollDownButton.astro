@@ -3,31 +3,50 @@ import uiStrings from '../data/ui-strings.json';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const scrollAria = strings['hero.scrollAria'];
+const scrollPrevAria = strings['hero.scrollPrevAria'];
 ---
 
-<a
-  href="#mi-perfil"
-  class="scroll-down-btn"
-  id="scroll-down-btn"
-  data-i18n-attr="aria-label"
-  data-i18n-attr-es={scrollAria.es}
-  data-i18n-attr-en={scrollAria.en}
-  aria-label={scrollAria.es}
->
-  <i class="fas fa-chevron-down"></i>
-</a>
+<div class="section-nav" id="section-nav">
+  <a
+    href="#"
+    class="section-nav-btn section-nav-prev"
+    id="section-nav-prev"
+    data-i18n-attr="aria-label"
+    data-i18n-attr-es={scrollPrevAria.es}
+    data-i18n-attr-en={scrollPrevAria.en}
+    aria-label={scrollPrevAria.es}
+  >
+    <i class="fas fa-chevron-up"></i>
+  </a>
+
+  <a
+    href="#mi-perfil"
+    class="section-nav-btn section-nav-next"
+    id="scroll-down-btn"
+    data-i18n-attr="aria-label"
+    data-i18n-attr-es={scrollAria.es}
+    data-i18n-attr-en={scrollAria.en}
+    aria-label={scrollAria.es}
+  >
+    <i class="fas fa-chevron-down"></i>
+  </a>
+</div>
 
 <script>
   function initScrollDownButton() {
-    const btn = document.getElementById('scroll-down-btn');
-    if (!btn) return;
+    const prevBtn = document.getElementById('section-nav-prev');
+    const nextBtn = document.getElementById('scroll-down-btn');
+    if (!prevBtn || !nextBtn) return;
 
     const THRESHOLD = 80;
 
+    function getSections(): HTMLElement[] {
+      return Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
+    }
+
     function getNextSection(): HTMLElement | null {
-      const sections = document.querySelectorAll<HTMLElement>('section[id]');
       const scrollY = window.scrollY;
-      for (const section of sections) {
+      for (const section of getSections()) {
         const sectionTop = section.getBoundingClientRect().top + scrollY;
         if (sectionTop > scrollY + THRESHOLD) {
           return section;
@@ -36,21 +55,53 @@ const scrollAria = strings['hero.scrollAria'];
       return null;
     }
 
-    function updateVisibility() {
-      const next = getNextSection();
-      const hidden = !next;
-      btn?.classList.toggle('is-hidden', hidden);
-      btn?.setAttribute('aria-hidden', String(hidden));
-      if (btn) btn.tabIndex = hidden ? -1 : 0;
+    function getPrevSection(): HTMLElement | null {
+      const scrollY = window.scrollY;
+      let prev: HTMLElement | null = null;
+      for (const section of getSections()) {
+        const sectionTop = section.getBoundingClientRect().top + scrollY;
+        if (sectionTop < scrollY - THRESHOLD) {
+          prev = section;
+        } else {
+          break;
+        }
+      }
+      return prev;
     }
 
-    btn.addEventListener('click', (e) => {
+    function scrollToTarget(target: HTMLElement | Window) {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+      if (target instanceof Window) {
+        target.scrollTo({ top: 0, behavior });
+      } else {
+        target.scrollIntoView({ behavior, block: 'start' });
+      }
+    }
+
+    function updateVisibility() {
+      const next = getNextSection();
+      const nextHidden = !next;
+      nextBtn?.classList.toggle('is-hidden', nextHidden);
+      nextBtn?.setAttribute('aria-hidden', String(nextHidden));
+      if (nextBtn) nextBtn.tabIndex = nextHidden ? -1 : 0;
+
+      const prevHidden = window.scrollY <= THRESHOLD;
+      prevBtn?.classList.toggle('is-hidden', prevHidden);
+      prevBtn?.setAttribute('aria-hidden', String(prevHidden));
+      if (prevBtn) prevBtn.tabIndex = prevHidden ? -1 : 0;
+    }
+
+    nextBtn.addEventListener('click', (e) => {
       e.preventDefault();
       const next = getNextSection();
-      if (next) {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        next.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-      }
+      if (next) scrollToTarget(next);
+    });
+
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const prev = getPrevSection();
+      scrollToTarget(prev ?? window);
     });
 
     window.addEventListener('scroll', updateVisibility, { passive: true });
@@ -62,12 +113,16 @@ const scrollAria = strings['hero.scrollAria'];
 </script>
 
 <style>
-  .scroll-down-btn {
+  .section-nav {
     position: fixed;
+    z-index: 500;
     left: 50%;
     bottom: var(--space-2xl);
     transform: translateX(-50%);
-    z-index: 500;
+    display: flex;
+  }
+
+  .section-nav-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -84,35 +139,72 @@ const scrollAria = strings['hero.scrollAria'];
     transition: background var(--transition-fast),
                 transform var(--transition-fast),
                 opacity var(--transition-normal);
-    animation: scrollBtnBounce 2s ease-in-out infinite;
   }
 
-  .scroll-down-btn.is-hidden {
+  .section-nav-btn.is-hidden {
     opacity: 0;
     pointer-events: none;
-    animation-play-state: paused;
   }
 
-  .scroll-down-btn:hover,
-  .scroll-down-btn:focus-visible {
+  .section-nav-btn:hover,
+  .section-nav-btn:focus-visible {
     background: var(--card-bg);
-    transform: translateX(-50%) translateY(2px);
     opacity: 1;
   }
 
+  /* Mobile: keep today's behavior — a single bottom-center "next section" arrow */
+  .section-nav-prev {
+    display: none;
+  }
+
+  .section-nav-next {
+    animation: scrollBtnBounce 2s ease-in-out infinite;
+  }
+
+  .section-nav-next:hover,
+  .section-nav-next:focus-visible {
+    transform: translateY(2px);
+  }
+
   @keyframes scrollBtnBounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
   }
 
   @media (max-width: 768px) {
-    .scroll-down-btn {
+    .section-nav {
       bottom: var(--space-xl);
     }
   }
 
+  /* Desktop: move off the content into a vertical stack on the right edge */
+  @media (min-width: 769px) {
+    .section-nav {
+      left: auto;
+      right: var(--space-lg);
+      bottom: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .section-nav-prev {
+      display: inline-flex;
+    }
+
+    .section-nav-next {
+      animation: none;
+    }
+
+    .section-nav-btn:hover,
+    .section-nav-btn:focus-visible {
+      transform: scale(1.08);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .scroll-down-btn {
+    .section-nav-next {
       animation: none;
     }
   }

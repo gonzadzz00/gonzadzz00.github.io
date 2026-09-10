@@ -8,6 +8,7 @@
   "nav.openMenuAria": { "es": "Abrir menu", "en": "Open menu" },
   "themeToggle.aria": { "es": "Cambiar tema", "en": "Toggle theme" },
   "hero.scrollAria": { "es": "Desplazarse a la siguiente sección", "en": "Scroll to next section" },
+  "hero.scrollPrevAria": { "es": "Desplazarse a la sección anterior", "en": "Scroll to previous section" },
 
   "section.about.title": { "es": "Sobre mí", "en": "About Me" },
   "section.about.focusAreas": { "es": "Áreas de Enfoque", "en": "Focus Areas" },
