@@ -30,10 +30,16 @@ const nextAria = strings['certifications.nextAria'];
       </button>
 
       <div class="certs-list reveal-stagger" id="certs-list">
-        {certifications.map((cert: any) => (
+        {certifications.map((cert: any, i: number) => (
           <div class="card cert-card">
             <div class="cert-image">
-              <img src={cert.certificateImage || cert.issuerLogo} alt={`Certificado ${cert.issuer}`} loading="lazy" />
+              <img
+                src={cert.certificateImage || cert.issuerLogo}
+                alt={`Certificado ${cert.issuer}`}
+                loading="lazy"
+                data-lightbox-open
+                data-lightbox-index={i}
+              />
             </div>
 
             <h3 class="cert-name" data-i18n-es={cert.name.es} data-i18n-en={cert.name.en}>{cert.name.es}</h3>
@@ -60,6 +66,42 @@ const nextAria = strings['certifications.nextAria'];
       >
         <i class="fas fa-chevron-right"></i>
       </button>
+    </div>
+
+    <div class="cert-lightbox-overlay" data-cert-lightbox tabindex="-1">
+      <button
+        class="cert-lightbox-close"
+        data-cert-lightbox-close
+        data-i18n-attr="aria-label"
+        data-i18n-attr-es="Cerrar vista previa"
+        data-i18n-attr-en="Close preview"
+        aria-label="Cerrar vista previa"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+
+      <button
+        class="cert-lightbox-btn prev"
+        data-cert-lightbox-prev
+        data-i18n-attr="aria-label"
+        data-i18n-attr-es="Certificado anterior"
+        data-i18n-attr-en="Previous certificate"
+        aria-label="Certificado anterior"
+      >
+        &#10094;
+      </button>
+      <button
+        class="cert-lightbox-btn next"
+        data-cert-lightbox-next
+        data-i18n-attr="aria-label"
+        data-i18n-attr-es="Certificado siguiente"
+        data-i18n-attr-en="Next certificate"
+        aria-label="Certificado siguiente"
+      >
+        &#10095;
+      </button>
+
+      <img class="cert-lightbox-img" data-cert-lightbox-img src="" alt="" />
     </div>
   </section>
 )}
@@ -94,8 +136,89 @@ const nextAria = strings['certifications.nextAria'];
     updateButtons();
   }
 
+  function initCertsLightbox() {
+    const lightbox = document.querySelector<HTMLElement>('[data-cert-lightbox]');
+    const lightboxImg = lightbox?.querySelector<HTMLImageElement>('[data-cert-lightbox-img]');
+    const closeBtn = lightbox?.querySelector('[data-cert-lightbox-close]');
+    const prevBtn = lightbox?.querySelector('[data-cert-lightbox-prev]');
+    const nextBtn = lightbox?.querySelector('[data-cert-lightbox-next]');
+    const triggers = Array.from(document.querySelectorAll<HTMLImageElement>('[data-lightbox-open][data-lightbox-index]'));
+    if (!lightbox || !lightboxImg || triggers.length === 0) return;
+
+    let current = 0;
+    let startX = 0;
+
+    function syncImage() {
+      const source = triggers[current];
+      if (!source || !lightboxImg) return;
+      lightboxImg.src = source.src;
+      lightboxImg.alt = source.alt;
+    }
+
+    function goTo(index: number) {
+      current = (index + triggers.length) % triggers.length;
+      syncImage();
+    }
+
+    function openLightbox(index: number) {
+      if (!lightbox) return;
+      current = index;
+      if (lightbox.parentElement !== document.body) {
+        document.body.appendChild(lightbox);
+      }
+      syncImage();
+      lightbox.classList.add('active');
+      lightbox.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    triggers.forEach((trigger, i) => {
+      trigger.addEventListener('click', () => openLightbox(i));
+    });
+
+    closeBtn?.addEventListener('click', closeLightbox);
+    prevBtn?.addEventListener('click', () => goTo(current - 1));
+    nextBtn?.addEventListener('click', () => goTo(current + 1));
+
+    lightbox.addEventListener('click', (e: Event) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    lightbox.addEventListener('touchstart', (e: Event) => {
+      startX = (e as TouchEvent).touches[0].clientX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e: Event) => {
+      const diff = startX - (e as TouchEvent).changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        goTo(diff > 0 ? current + 1 : current - 1);
+      }
+    }, { passive: true });
+
+    // Capture phase + stopPropagation so this always wins over any other
+    // Escape handler on the page, regardless of script load order.
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') {
+        closeLightbox();
+        e.stopPropagation();
+      }
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    }, true);
+  }
+
   initCertsCarousel();
-  document.addEventListener('astro:after-swap', initCertsCarousel);
+  initCertsLightbox();
+  document.addEventListener('astro:after-swap', () => {
+    initCertsCarousel();
+    initCertsLightbox();
+  });
 </script>
 
 <style>
@@ -110,8 +233,15 @@ const nextAria = strings['certifications.nextAria'];
     flex: 1;
     min-width: 0;
     gap: var(--space-lg);
-    overflow-x: hidden;
+    overflow-x: auto;
     scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .certs-list::-webkit-scrollbar {
+    display: none;
   }
 
   .certs-nav-btn {
@@ -151,6 +281,7 @@ const nextAria = strings['certifications.nextAria'];
     flex-direction: column;
     gap: var(--space-sm);
     flex: 0 0 calc((100% - 2 * var(--space-lg)) / 3);
+    scroll-snap-align: start;
   }
 
   .cert-image {
@@ -165,6 +296,7 @@ const nextAria = strings['certifications.nextAria'];
     width: 100%;
     height: 100%;
     object-fit: contain;
+    cursor: zoom-in;
   }
 
   .cert-name {
@@ -203,5 +335,96 @@ const nextAria = strings['certifications.nextAria'];
       height: 36px;
       font-size: var(--text-base);
     }
+  }
+
+  .cert-lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1150;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl, 24px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s, visibility 0.25s;
+    outline: none;
+  }
+
+  .cert-lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cert-lightbox-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-md);
+    cursor: default;
+  }
+
+  .cert-lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast);
+    z-index: 2;
+  }
+
+  .cert-lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  .cert-lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast);
+    z-index: 2;
+  }
+
+  .cert-lightbox-btn:hover {
+    background: rgba(255, 255, 255, 0.24);
+  }
+
+  .cert-lightbox-btn.prev { left: 16px; }
+  .cert-lightbox-btn.next { right: 16px; }
+
+  @media (max-width: 600px) {
+    .cert-lightbox-overlay {
+      padding: 12px;
+    }
+
+    .cert-lightbox-close {
+      top: 8px;
+      right: 8px;
+    }
+
+    .cert-lightbox-btn.prev { left: 8px; }
+    .cert-lightbox-btn.next { right: 8px; }
   }
 </style>
