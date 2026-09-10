@@ -6,10 +6,10 @@
       "en": "Project 1: Price Web Scraping & Price Intelligence"
     },
     "description": {
-      "es": "Solución conceptual de Price Intelligence para retail que integra Web Scraping, OCR, LLM y embeddings para capturar y estructurar precios y promociones de supermercados mayoristas desde sitios web y flyers. Mediante búsqueda por similitud semántica se resuelve el Product Matching entre catálogos de distintas fuentes, y un pipeline orquestado con n8n garantiza trazabilidad hasta la evidencia original, generando indicadores de posicionamiento competitivo para el área de Pricing.",
+      "es": "Aplicación de Price Intelligence para retail que integra Web Scraping e Inteligencia Artificial para capturar y estructurar precios y promociones de supermercados mayoristas desde sitios web y flyers. Mediante búsqueda por similitud semántica se resuelve el Product Matching entre catálogos de distintas fuentes, y un pipeline orquestado con n8n garantiza trazabilidad hasta la evidencia original, generando indicadores de posicionamiento competitivo para el área de Pricing.",
       "en": "A conceptual Price Intelligence solution for retail that combines Web Scraping, OCR, LLMs and embeddings to capture and structure prices and promotions from wholesale supermarkets across websites and flyers. Semantic similarity search powers Product Matching against multiple source catalogs, while an n8n-orchestrated pipeline preserves traceability back to the original evidence, producing competitive positioning indicators for the Pricing team."
     },
-    "tools": ["Web Scraping", "OCR & LLM", "Price Intelligence"],
+    "tools": ["Web Scraping", "Embeddings", "Analytics"],
     "images": [
       { "src": "/icon/web-scraping-diagram.png", "alt": "Diagrama de arquitectura - Web Scraping de Precios y Price Intelligence" }
     ],

@@ -352,6 +352,8 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
     document.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape') return;
 
+      if (document.querySelector('[data-lightbox].active')) return;
+
       const flowchart = document.getElementById('flowchart-modal');
       if (flowchart?.classList.contains('active')) {
         closeModal(flowchart);
