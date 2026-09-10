@@ -1,24 +1,22 @@
 [
   {
-    "id": "visualizacion-estadisticas",
+    "id": "web-scraping-precios",
     "title": {
-      "es": "Proyecto 1: Visualización de Estadísticas",
-      "en": "Project 1: Statistics Visualization"
+      "es": "Proyecto 1: Web Scraping de Precios y Price Intelligence",
+      "en": "Project 1: Price Web Scraping & Price Intelligence"
     },
     "description": {
-      "es": "El objetivo de este proyecto es analizar y visualizar la fase ofensiva del Manchester City durante la temporada 2023/2024 en la Premier League, con un enfoque especial en los pases y tiros. Para realizar este análisis, se extrajeron datos mediante scraping de una página web de estadísticas de fútbol utilizando Python, y luego fueron transformados para su visualización en Power BI.",
-      "en": "This project analyzes and visualizes Manchester City's offensive phase during the 2023/2024 Premier League season, with a particular focus on passes and shots. Data was extracted via web scraping from a football statistics site using Python, then transformed for visualization in Power BI."
+      "es": "Solución conceptual de Price Intelligence para retail que integra Web Scraping, OCR, LLM y embeddings para capturar y estructurar precios y promociones de supermercados mayoristas desde sitios web y flyers. Mediante búsqueda por similitud semántica se resuelve el Product Matching entre catálogos de distintas fuentes, y un pipeline orquestado con n8n garantiza trazabilidad hasta la evidencia original, generando indicadores de posicionamiento competitivo para el área de Pricing.",
+      "en": "A conceptual Price Intelligence solution for retail that combines Web Scraping, OCR, LLMs and embeddings to capture and structure prices and promotions from wholesale supermarkets across websites and flyers. Semantic similarity search powers Product Matching against multiple source catalogs, while an n8n-orchestrated pipeline preserves traceability back to the original evidence, producing competitive positioning indicators for the Pricing team."
     },
-    "tools": ["Python", "Web Scraping", "Power BI"],
+    "tools": ["Web Scraping", "OCR & LLM", "Price Intelligence"],
     "images": [
-      { "src": "/icon/mancity1.jpg", "alt": "Dashboard Manchester City - Vista 1" },
-      { "src": "/icon/mancity2.jpg", "alt": "Dashboard Manchester City - Vista 2" },
-      { "src": "/icon/mancity3.jpg", "alt": "Dashboard Manchester City - Vista 3" }
+      { "src": "/icon/web-scraping-diagram.png", "alt": "Diagrama de arquitectura - Web Scraping de Precios y Price Intelligence" }
     ],
     "links": [
-      { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://github.com/gonzadzz00/Proyectos/blob/main/%23Proyecto1%3A%20Web%20Scraping/README.md", "icon": "fab fa-github" }
+      { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://github.com/gonzadzz00/WebScrapingdePrecios/tree/main", "icon": "fab fa-github" }
     ],
-    "category": "visualization",
+    "category": "data engineering",
     "order": 1
   },
   {
