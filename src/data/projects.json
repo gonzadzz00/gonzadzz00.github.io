@@ -11,7 +11,9 @@
     },
     "tools": ["Web Scraping", "Embeddings", "Analytics"],
     "images": [
-      { "src": "/icon/web-scraping-diagram.png", "alt": "Diagrama de arquitectura - Web Scraping de Precios y Price Intelligence" }
+      { "src": "/icon/web-scraping-diagram.png", "alt": "Diagrama de arquitectura - Web Scraping de Precios y Price Intelligence" },
+      { "src": "/icon/web_scrap_2.png", "alt": "Web Scraping de Precios - captura 2" },
+      { "src": "/icon/web_scrap_3.png", "alt": "Web Scraping de Precios - captura 3" }
     ],
     "links": [
       { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://github.com/gonzadzz00/WebScrapingdePrecios/tree/main", "icon": "fab fa-github" }
