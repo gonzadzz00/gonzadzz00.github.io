@@ -1,6 +1,7 @@
 ---
 import education from '../data/education.json';
 import uiStrings from '../data/ui-strings.json';
+import Illustration from '../components/Illustration.astro';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const educationTitle = strings['section.education.title'];
@@ -12,9 +13,17 @@ const educationTitle = strings['section.education.title'];
     <span data-i18n-es={educationTitle.es} data-i18n-en={educationTitle.en}>{educationTitle.es}</span>
   </h2>
 
-  <div class="grid-2 reveal-stagger">
+  <Illustration
+    assetId="education"
+    float
+    class="education-art"
+    alt={{ es: 'Ilustración de logro académico', en: 'Illustration of academic achievement' }}
+  />
+
+  <div class="timeline reveal-stagger" data-timeline>
     {education.map((entry: any) => (
-      <div class="card education-card">
+      <div class="timeline-item">
+      <div class="card education-card" data-tilt>
         <div class="edu-header">
           <a href={entry.institutionUrl} target="_blank" rel="noopener noreferrer">
             <img src={entry.institutionLogo} alt={`Logo ${entry.institution}`} class="edu-logo" loading="lazy" />
@@ -29,11 +38,80 @@ const educationTitle = strings['section.education.title'];
           ))}
         </ul>
       </div>
+      </div>
     ))}
   </div>
 </section>
 
 <style>
+  .education-art {
+    width: 220px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  /* Vertical timeline: the line draws itself when the list scrolls into view */
+  .timeline {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    padding-left: var(--space-2xl);
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-color), var(--accent-color-2));
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform var(--motion-duration-slow) var(--motion-ease);
+  }
+
+  .timeline.visible::before {
+    transform: scaleY(1);
+  }
+
+  .timeline-item {
+    position: relative;
+  }
+
+  .timeline-item + .timeline-item {
+    margin-top: var(--space-xl);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--space-2xl) * -1 + 3px);
+    top: var(--space-xl);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(0, 164, 239, 0.18);
+  }
+
+  @media (max-width: 480px) {
+    .timeline {
+      padding-left: var(--space-xl);
+    }
+
+    .timeline-item::before {
+      left: calc(var(--space-xl) * -1 + 3px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .timeline::before {
+      transform: scaleY(1);
+      transition: none;
+    }
+  }
+
   .education-card {
     display: flex;
     flex-direction: column;

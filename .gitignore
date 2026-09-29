@@ -19,3 +19,11 @@ Thumbs.db
 .idea/
 *.swp
 *.tmp
+
+# Lighthouse / browser audit leftovers
+C:*
+.lighthouseci/
+lighthouse-*.json
+
+# Claude Code local settings
+.claude/settings.local.json

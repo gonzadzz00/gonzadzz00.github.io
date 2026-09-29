@@ -1,0 +1,72 @@
+[
+  {
+    "id": "hero-brain",
+    "kind": "model3d",
+    "title": "Brain",
+    "author": "J-Toastie",
+    "sourceUrl": "https://poly.pizza/m/YihDCHsOPO",
+    "license": "CC-BY",
+    "attributionRequired": true,
+    "file": "public/models/hero-brain.glb",
+    "usedIn": [
+      "hero"
+    ],
+    "sizeBytes": 121876
+  },
+  {
+    "id": "project-cart",
+    "kind": "model3d",
+    "title": "Shopping cart",
+    "author": "Poly by Google",
+    "sourceUrl": "https://poly.pizza/m/4lhRcMbl1pw",
+    "license": "CC-BY",
+    "attributionRequired": true,
+    "file": "public/models/cart.glb",
+    "usedIn": [
+      "projects"
+    ],
+    "sizeBytes": 212860
+  },
+  {
+    "id": "project-ship",
+    "kind": "model3d",
+    "title": "Container Ship",
+    "author": "Alex Safayan",
+    "sourceUrl": "https://poly.pizza/m/3AmDGcCu6Ll",
+    "license": "CC-BY",
+    "attributionRequired": true,
+    "file": "public/models/ship.glb",
+    "usedIn": [
+      "projects"
+    ],
+    "sizeBytes": 203056
+  },
+  {
+    "id": "project-container",
+    "kind": "model3d",
+    "title": "Container Small",
+    "author": "Quaternius",
+    "sourceUrl": "https://poly.pizza/m/B79i6fHgVU",
+    "license": "CC0",
+    "attributionRequired": false,
+    "file": "public/models/container.glb",
+    "usedIn": [
+      "projects"
+    ],
+    "sizeBytes": 40124
+  },
+  {
+    "id": "contact-mailbox",
+    "kind": "model3d",
+    "title": "Mailbox",
+    "author": "J-Toastie",
+    "sourceUrl": "https://poly.pizza/m/9gbHlg1IlY",
+    "license": "CC-BY",
+    "attributionRequired": true,
+    "file": "public/models/mailbox.glb",
+    "usedIn": [
+      "contact"
+    ],
+    "sizeBytes": 24008
+  }
+]

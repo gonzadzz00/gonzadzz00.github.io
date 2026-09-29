@@ -42,8 +42,20 @@ const booksTitle = strings['section.books.title'];
     width: 190px;
     height: 270px;
     object-fit: cover;
-    border-radius: var(--radius-sm);
+    border-radius: 2px var(--radius-sm) var(--radius-sm) 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform-origin: left center;
+    transition: transform var(--motion-duration-base) var(--motion-ease),
+                box-shadow var(--motion-duration-base) var(--motion-ease);
+  }
+
+  /* CSS-only 3D book: the cover swings open around its spine on hover/focus */
+  @media (prefers-reduced-motion: no-preference) {
+    .book-card:hover .book-cover,
+    .book-card:focus-within .book-cover {
+      transform: perspective(700px) rotateY(-24deg);
+      box-shadow: 10px 6px 18px rgba(0, 0, 0, 0.35);
+    }
   }
 
   .book-title {

@@ -31,7 +31,7 @@ const nextAria = strings['certifications.nextAria'];
 
       <div class="certs-list reveal-stagger" id="certs-list">
         {certifications.map((cert: any, i: number) => (
-          <div class="card cert-card">
+          <div class="card cert-card" data-tilt>
             <div class="cert-image">
               <img
                 src={cert.certificateImage || cert.issuerLogo}

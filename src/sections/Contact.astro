@@ -1,16 +1,26 @@
 ---
 import siteConfig from '../data/site-config.json';
 import uiStrings from '../data/ui-strings.json';
+import Illustration from '../components/Illustration.astro';
+import ModelBadge from '../components/ModelBadge.astro';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const thanksTitle = strings['contact.thanksTitle'];
 const cta = strings['contact.cta'];
+const writeMe = strings['contact.writeMe'];
 ---
 
 <section id="contacto" class="section">
   <div class="contact-container reveal">
     <div class="contact-photo">
       <img src={siteConfig.profileImage} alt={siteConfig.ownerName} loading="lazy" />
+      <ModelBadge assetId="contact-mailbox" alt={{ es: 'Modelo 3D de un buzón', en: '3D mailbox model' }} class="contact-model" />
+      <Illustration
+        assetId="contact"
+        float
+        class="contact-art"
+        alt={{ es: 'Ilustración de correo y conversación', en: 'Illustration of mail and conversation' }}
+      />
     </div>
 
     <div class="contact-content">
@@ -25,6 +35,10 @@ const cta = strings['contact.cta'];
           {siteConfig.contactEmail}
         </a>
         <p class="contact-cta" data-i18n-es={cta.es} data-i18n-en={cta.en}>{cta.es}</p>
+        <a href={`mailto:${siteConfig.contactEmail}`} class="btn-primary contact-write">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          <span data-i18n-es={writeMe.es} data-i18n-en={writeMe.en}>{writeMe.es}</span>
+        </a>
       </div>
 
       <div class="social-links">
@@ -48,7 +62,15 @@ const cta = strings['contact.cta'];
   }
 
   .contact-photo {
+    position: relative;
     flex-shrink: 0;
+  }
+
+  .contact-photo :global(.contact-model) {
+    right: -48px;
+    bottom: -8px;
+    width: 96px;
+    height: 96px;
   }
 
   .contact-photo img {
@@ -91,6 +113,15 @@ const cta = strings['contact.cta'];
     font-weight: 600;
     font-size: var(--text-lg);
     margin: var(--space-md) 0;
+  }
+
+  .contact-write {
+    margin-top: var(--space-sm);
+  }
+
+  .contact-art {
+    width: 180px;
+    margin: var(--space-lg) auto 0;
   }
 
   .contact-cta {

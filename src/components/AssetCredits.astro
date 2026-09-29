@@ -1,0 +1,56 @@
+---
+import assets from '../data/assets.json';
+import uiStrings from '../data/ui-strings.json';
+
+interface Asset {
+  id: string;
+  kind: 'model3d' | 'illustration';
+  title: string;
+  author: string;
+  sourceUrl: string;
+  attributionRequired: boolean;
+}
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const list = assets as Asset[];
+const models = list.filter(a => a.kind === 'model3d');
+const illustrations = list.filter(a => a.kind === 'illustration');
+---
+
+{(models.length > 0 || illustrations.length > 0) && (
+  <p class="footer-credits">
+    {models.length > 0 && (
+      <span>
+        <span data-i18n-es={strings['credits.models'].es} data-i18n-en={strings['credits.models'].en}>{strings['credits.models'].es}</span>:
+        {models.map((m, i) => (
+          <>
+            {i > 0 && ', '}
+            <a href={m.sourceUrl} target="_blank" rel="noopener noreferrer">{m.title} ({m.author})</a>
+          </>
+        ))}
+        {' '}<span data-i18n-es={strings['credits.via'].es} data-i18n-en={strings['credits.via'].en}>{strings['credits.via'].es}</span>
+        {' '}<a href="https://poly.pizza/" target="_blank" rel="noopener noreferrer">Poly Pizza</a>
+      </span>
+    )}
+    {models.length > 0 && illustrations.length > 0 && ' · '}
+    {illustrations.length > 0 && (
+      <span>
+        <span data-i18n-es={strings['credits.illustrations'].es} data-i18n-en={strings['credits.illustrations'].en}>{strings['credits.illustrations'].es}</span>:
+        {' '}<a href="https://icons8.com/" target="_blank" rel="noopener noreferrer">Icons8</a>
+      </span>
+    )}
+  </p>
+)}
+
+<style>
+  .footer-credits {
+    font-size: var(--text-sm);
+    opacity: 0.7;
+    margin: var(--space-sm) 0 0;
+  }
+
+  .footer-credits a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>

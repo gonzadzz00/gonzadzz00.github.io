@@ -9,17 +9,44 @@
       "es": "Aplicación de Price Intelligence para retail que integra Web Scraping e Inteligencia Artificial para capturar y estructurar precios y promociones de supermercados mayoristas desde sitios web y flyers. Mediante búsqueda por similitud semántica se resuelve el Product Matching entre catálogos de distintas fuentes, y un pipeline orquestado con n8n garantiza trazabilidad hasta la evidencia original, generando indicadores de posicionamiento competitivo para el área de Pricing.",
       "en": "A conceptual Price Intelligence solution for retail that combines Web Scraping, OCR, LLMs and embeddings to capture and structure prices and promotions from wholesale supermarkets across websites and flyers. Semantic similarity search powers Product Matching against multiple source catalogs, while an n8n-orchestrated pipeline preserves traceability back to the original evidence, producing competitive positioning indicators for the Pricing team."
     },
-    "tools": ["Web Scraping", "Embeddings", "Analytics"],
+    "tools": [
+      "Web Scraping",
+      "Embeddings",
+      "Analytics"
+    ],
     "images": [
-      { "src": "/icon/web-scraping-diagram.png", "alt": "Diagrama de arquitectura - Web Scraping de Precios y Price Intelligence" },
-      { "src": "/icon/web_scrap_2.png", "alt": "Web Scraping de Precios - captura 2" },
-      { "src": "/icon/web_scrap_3.png", "alt": "Web Scraping de Precios - captura 3" }
+      {
+        "src": "/icon/web-scraping-diagram.png",
+        "alt": "Diagrama de arquitectura - Web Scraping de Precios y Price Intelligence"
+      },
+      {
+        "src": "/icon/web_scrap_2.png",
+        "alt": "Web Scraping de Precios - captura 2"
+      },
+      {
+        "src": "/icon/web_scrap_3.png",
+        "alt": "Web Scraping de Precios - captura 3"
+      }
     ],
     "links": [
-      { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://github.com/gonzadzz00/WebScrapingdePrecios/tree/main", "icon": "fab fa-github" }
+      {
+        "label": {
+          "es": "Ver Proyecto",
+          "en": "View Project"
+        },
+        "url": "https://github.com/gonzadzz00/WebScrapingdePrecios/tree/main",
+        "icon": "fab fa-github"
+      }
     ],
     "category": "data engineering",
-    "order": 1
+    "order": 1,
+    "model3d": {
+      "assetId": "project-cart",
+      "alt": {
+        "es": "Modelo 3D de un carrito de compras",
+        "en": "3D shopping cart model"
+      }
+    }
   },
   {
     "id": "caso-negocio",
@@ -31,18 +58,48 @@
       "es": "Sistema de orquestación y automatización de datos que unifica la información logística de exportación integrando las bases de datos con la API de tracking marítimo ShipsGo. El pipeline combina sincronización programada en Airflow con eventos en tiempo real en n8n, garantizando información estandarizada, confiable y siempre actualizada para la toma de decisiones operativas.",
       "en": "A data orchestration and automation system that unifies export logistics information by integrating internal databases with the ShipsGo maritime tracking API. The pipeline combines scheduled synchronization in Airflow with real-time events in n8n, ensuring standardized, reliable, and always up-to-date information for operational decision-making."
     },
-    "tools": ["Airflow", "n8n", "Automatización"],
+    "tools": [
+      "Airflow",
+      "n8n",
+      "Automatización"
+    ],
     "images": [
-      { "src": "/icon/shipsgo-dashboard.jpg", "alt": "ShipsGo Dashboard - Trazabilidad de envíos" },
-      { "src": "/icon/DAG.jpg", "alt": "Airflow DAG - Pipeline de sincronización" },
-      { "src": "/icon/n8n.jpg", "alt": "n8n Workflow - Automatización de webhooks" },
-      { "src": "/icon/webhook.jpg", "alt": "Webhook Event History - Eventos de actualización" }
+      {
+        "src": "/icon/shipsgo-dashboard.jpg",
+        "alt": "ShipsGo Dashboard - Trazabilidad de envíos"
+      },
+      {
+        "src": "/icon/DAG.jpg",
+        "alt": "Airflow DAG - Pipeline de sincronización"
+      },
+      {
+        "src": "/icon/n8n.jpg",
+        "alt": "n8n Workflow - Automatización de webhooks"
+      },
+      {
+        "src": "/icon/webhook.jpg",
+        "alt": "Webhook Event History - Eventos de actualización"
+      }
     ],
     "links": [
-      { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://drive.google.com/file/d/19meaUGymJVXe5fFibb5R8NV6XeJJXzyE/view?usp=sharing", "icon": "fas fa-file-pdf" }
+      {
+        "label": {
+          "es": "Ver Proyecto",
+          "en": "View Project"
+        },
+        "url": "https://drive.google.com/file/d/19meaUGymJVXe5fFibb5R8NV6XeJJXzyE/view?usp=sharing",
+        "icon": "fas fa-file-pdf"
+      }
     ],
     "category": "data engineering",
-    "order": 2
+    "order": 2,
+    "model3d": {
+      "assetId": "project-ship",
+      "alt": {
+        "es": "Modelo 3D de un buque portacontenedores",
+        "en": "3D container ship model"
+      }
+    }
   },
   {
     "id": "shipping-container-ocr",
@@ -54,18 +111,55 @@
       "es": "Este proyecto implementa un pipeline híbrido de detección y OCR para identificar, validar y hacer seguimiento de códigos ISO 6346 en contenedores marítimos. Combina modelos YOLOv8 para detección de regiones y caracteres con EasyOCR como método de respaldo y métodos de validación.",
       "en": "This project implements a hybrid detection and OCR pipeline to identify, validate, and track ISO 6346 codes on shipping containers. It combines YOLOv8 models for region and character detection with EasyOCR as a fallback method, plus validation logic."
     },
-    "tools": ["YOLO", "EasyOCR", "Computer Vision"],
+    "tools": [
+      "YOLO",
+      "EasyOCR",
+      "Computer Vision"
+    ],
     "images": [
-      { "src": "/icon/0919.gif", "alt": "Demo OCR en contenedores" },
-      { "src": "/icon/vertical_to_horizontal.jpg", "alt": "Transformación vertical a horizontal" },
-      { "src": "/icon/container_example_label.jpg", "alt": "Ejemplo de etiqueta de contenedor" },
-      { "src": "/icon/modal.jpg", "alt": "Modal de resultado" }
+      {
+        "src": "/icon/0919.gif",
+        "alt": "Demo OCR en contenedores"
+      },
+      {
+        "src": "/icon/vertical_to_horizontal.jpg",
+        "alt": "Transformación vertical a horizontal"
+      },
+      {
+        "src": "/icon/container_example_label.jpg",
+        "alt": "Ejemplo de etiqueta de contenedor"
+      },
+      {
+        "src": "/icon/modal.jpg",
+        "alt": "Modal de resultado"
+      }
     ],
     "links": [
-      { "label": { "es": "Ver Proyecto", "en": "View Project" }, "url": "https://github.com/gonzadiazfrp/yolo11_container#", "icon": "fab fa-github" },
-      { "label": { "es": "Ir a YouTube", "en": "Go to YouTube" }, "url": "https://www.youtube.com/watch?v=Fv6g6Z_yxNo", "icon": "fab fa-youtube" }
+      {
+        "label": {
+          "es": "Ver Proyecto",
+          "en": "View Project"
+        },
+        "url": "https://github.com/gonzadiazfrp/yolo11_container#",
+        "icon": "fab fa-github"
+      },
+      {
+        "label": {
+          "es": "Ir a YouTube",
+          "en": "Go to YouTube"
+        },
+        "url": "https://www.youtube.com/watch?v=Fv6g6Z_yxNo",
+        "icon": "fab fa-youtube"
+      }
     ],
     "category": "ml",
-    "order": 3
+    "order": 3,
+    "model3d": {
+      "assetId": "project-container",
+      "alt": {
+        "es": "Modelo 3D de un contenedor de carga",
+        "en": "3D shipping container model"
+      }
+    }
   }
 ]

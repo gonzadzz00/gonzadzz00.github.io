@@ -1,6 +1,7 @@
 ---
 import projects from '../data/projects.json';
 import ImageCarousel from '../components/ImageCarousel.astro';
+import ModelBadge from '../components/ModelBadge.astro';
 import uiStrings from '../data/ui-strings.json';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
@@ -12,6 +13,8 @@ const viewDiagramButton = strings['projects.viewDiagramButton'];
 const flowchartTitle = strings['projects.flowchart.title'];
 const flowchartSubtitle = strings['projects.flowchart.subtitle'];
 const flowchartCloseAria = strings['projects.flowchart.closeAria'];
+const flowPause = strings['flow.pause'];
+const flowResume = strings['flow.resume'];
 ---
 
 <section id="mis-proyectos" class="section">
@@ -26,10 +29,11 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
 
   <div class="projects-list reveal-stagger">
     {projects.map((project: any) => (
-      <div class="card project-card" data-project-card data-open-project={project.id}>
+      <div class="card project-card" data-project-card data-tilt data-open-project={project.id}>
         {project.images.length > 0 && (
           <div class="project-cover">
             <img src={project.images[0].src} alt={project.images[0].alt} loading="lazy" />
+            {project.model3d && <ModelBadge assetId={project.model3d.assetId} alt={project.model3d.alt} class="project-model" />}
           </div>
         )}
 
@@ -112,8 +116,14 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
     <div class="diagram-wrapper">
       <h3 data-i18n-es={flowchartTitle.es} data-i18n-en={flowchartTitle.en}>{flowchartTitle.es}</h3>
       <p class="subtitle" data-i18n-es={flowchartSubtitle.es} data-i18n-en={flowchartSubtitle.en}>{flowchartSubtitle.es}</p>
-      <svg viewBox="0 0 920 1180" role="img" xmlns="http://www.w3.org/2000/svg">
-        <title>Diagrama de flujo del pipeline de sincronización ShipsGo</title>
+      <button type="button" class="btn-outline flow-toggle" data-flow-toggle aria-pressed="false">
+        <i class="fas fa-pause flow-toggle-icon flow-toggle-icon--pause" aria-hidden="true"></i>
+        <i class="fas fa-play flow-toggle-icon flow-toggle-icon--play" aria-hidden="true"></i>
+        <span class="flow-toggle-label flow-toggle-label--pause" data-i18n-es={flowPause.es} data-i18n-en={flowPause.en}>{flowPause.es}</span>
+        <span class="flow-toggle-label flow-toggle-label--play" data-i18n-es={flowResume.es} data-i18n-en={flowResume.en}>{flowResume.es}</span>
+      </button>
+      <svg viewBox="0 0 920 1180" role="group" aria-labelledby="flow-svg-title" xmlns="http://www.w3.org/2000/svg">
+        <title id="flow-svg-title">Diagrama de flujo del pipeline de sincronización ShipsGo</title>
         <desc>Flujo completo del DAG: descubrimiento de bookings, registro contra la API ShipsGo, máquina de estados de sincronización, captura de cambios CDC y propagación de eventos en tiempo real vía n8n.</desc>
         <defs>
           <marker id="fc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -126,34 +136,34 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
         <!-- ETAPA 1: DESCUBRIMIENTO -->
         <text class="section-label" x="40" y="32">01 · Descubrimiento</text>
         <line x1="40" y1="42" x2="880" y2="42" stroke="#d8d2c2" stroke-width="0.5"/>
-        <g>
+        <g data-flow-node="tms" tabindex="0" role="img" aria-label="tms.pedidos" data-flow-desc-es={strings['flow.node.tms'].es} data-flow-desc-en={strings['flow.node.tms'].en}>
           <rect x="60" y="70" width="220" height="64" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
           <text class="th" x="170" y="96" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A">tms.pedidos</text>
           <text class="ts" x="170" y="116" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">Base interna · Exportación</text>
         </g>
-        <g>
+        <g data-flow-node="discover" tabindex="0" role="img" aria-label="discover_new_bookings" data-flow-desc-es={strings['flow.node.discover'].es} data-flow-desc-en={strings['flow.node.discover'].en}>
           <rect x="350" y="70" width="220" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
           <text class="th" x="460" y="96" text-anchor="middle" dominant-baseline="central" fill="#3C3489">discover_new_bookings</text>
           <text class="ts" x="460" y="116" text-anchor="middle" dominant-baseline="central" fill="#534AB7">Filtra sub-pedidos · ventana 3d</text>
         </g>
-        <g>
+        <g data-flow-node="booking" tabindex="0" role="img" aria-label="shipsgo.booking" data-flow-desc-es={strings['flow.node.booking'].es} data-flow-desc-en={strings['flow.node.booking'].en}>
           <rect x="640" y="70" width="220" height="64" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
           <text class="th" x="750" y="96" text-anchor="middle" dominant-baseline="central" fill="#085041">shipsgo.booking</text>
           <text class="ts" x="750" y="116" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">Bulk insert · sync_status=PENDING</text>
         </g>
-        <line x1="280" y1="102" x2="346" y2="102" stroke="#5F5E5A" stroke-width="1" marker-end="url(#fc-arrow)"/>
-        <line x1="570" y1="102" x2="636" y2="102" stroke="#5F5E5A" stroke-width="1" marker-end="url(#fc-arrow)"/>
+        <line x1="280" y1="102" x2="346" y2="102" stroke="#5F5E5A" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
+        <line x1="570" y1="102" x2="636" y2="102" stroke="#5F5E5A" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
         <text class="ts" x="313" y="92" text-anchor="middle">SELECT</text>
         <text class="ts" x="603" y="92" text-anchor="middle">INSERT</text>
         <!-- ETAPA 2: SELECCIÓN PRIORIZADA -->
         <text class="section-label" x="40" y="190">02 · Selección priorizada</text>
         <line x1="40" y1="200" x2="880" y2="200" stroke="#d8d2c2" stroke-width="0.5"/>
-        <g>
+        <g data-flow-node="select" tabindex="0" role="img" aria-label="get_bookings_to_sync" data-flow-desc-es={strings['flow.node.select'].es} data-flow-desc-en={strings['flow.node.select'].en}>
           <rect x="350" y="228" width="220" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
           <text class="th" x="460" y="254" text-anchor="middle" dominant-baseline="central" fill="#3C3489">get_bookings_to_sync</text>
           <text class="ts" x="460" y="274" text-anchor="middle" dominant-baseline="central" fill="#534AB7">batch_size=200 · elegibilidad</text>
         </g>
-        <g>
+        <g data-flow-node="queue" tabindex="0" role="img" aria-label="Cola de prioridades" data-flow-desc-es={strings['flow.node.queue'].es} data-flow-desc-en={strings['flow.node.queue'].en}>
           <rect x="60" y="228" width="220" height="120" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
           <text class="th" x="170" y="252" text-anchor="middle" fill="#633806">Cola de prioridades</text>
           <line x1="80" y1="266" x2="260" y2="266" stroke="#BA7517" stroke-width="0.5" stroke-dasharray="2 2"/>
@@ -161,7 +171,7 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
           <text class="ts" x="80" y="308" fill="#854F0B">2. RETRY</text>
           <text class="ts" x="80" y="328" fill="#854F0B">3. SYNCED (refresh)</text>
         </g>
-        <g>
+        <g data-flow-node="filters" tabindex="0" role="img" aria-label="Filtros de elegibilidad" data-flow-desc-es={strings['flow.node.filters'].es} data-flow-desc-en={strings['flow.node.filters'].en}>
           <rect x="640" y="228" width="220" height="120" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
           <text class="th" x="750" y="252" text-anchor="middle" fill="#633806">Filtros de elegibilidad</text>
           <line x1="660" y1="266" x2="840" y2="266" stroke="#BA7517" stroke-width="0.5" stroke-dasharray="2 2"/>
@@ -169,95 +179,95 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
           <text class="ts" x="660" y="308" fill="#854F0B">sync_attempts &lt; 7</text>
           <text class="ts" x="660" y="328" fill="#854F0B">is_active = TRUE</text>
         </g>
-        <line x1="280" y1="260" x2="346" y2="260" stroke="#BA7517" stroke-width="1" marker-end="url(#fc-arrow)"/>
-        <line x1="640" y1="260" x2="574" y2="260" stroke="#BA7517" stroke-width="1" marker-end="url(#fc-arrow)"/>
+        <line x1="280" y1="260" x2="346" y2="260" stroke="#BA7517" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
+        <line x1="640" y1="260" x2="574" y2="260" stroke="#BA7517" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
         <!-- ETAPA 3: SINCRONIZACIÓN -->
         <text class="section-label" x="40" y="400">03 · Sincronización por booking · sync_booking()</text>
         <line x1="40" y1="410" x2="880" y2="410" stroke="#d8d2c2" stroke-width="0.5"/>
         <rect x="60" y="438" width="800" height="220" rx="12" fill="none" stroke="#888780" stroke-width="0.5" stroke-dasharray="4 4"/>
         <text class="ts" x="76" y="458" fill="#6b6862">sync_all_bookings_in_series · loop con 1s sleep entre llamadas</text>
-        <g>
+        <g data-flow-node="register" tabindex="0" role="img" aria-label="register_booking()" data-flow-desc-es={strings['flow.node.register'].es} data-flow-desc-en={strings['flow.node.register'].en}>
           <rect x="90" y="478" width="180" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
           <text class="th" x="180" y="504" text-anchor="middle" dominant-baseline="central" fill="#0C447C">register_booking()</text>
           <text class="ts" x="180" y="524" text-anchor="middle" dominant-baseline="central" fill="#185FA5">POST /ocean/shipments</text>
         </g>
-        <g>
+        <g data-flow-node="api" tabindex="0" role="img" aria-label="ShipsGo API" data-flow-desc-es={strings['flow.node.api'].es} data-flow-desc-en={strings['flow.node.api'].en}>
           <rect x="350" y="478" width="220" height="64" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
           <text class="th" x="460" y="504" text-anchor="middle" dominant-baseline="central" fill="#712B13">ShipsGo API</text>
           <text class="ts" x="460" y="524" text-anchor="middle" dominant-baseline="central" fill="#993C1D">Tracking multi-naviera</text>
         </g>
-        <g>
+        <g data-flow-node="details" tabindex="0" role="img" aria-label="get_shipment_details()" data-flow-desc-es={strings['flow.node.details'].es} data-flow-desc-en={strings['flow.node.details'].en}>
           <rect x="650" y="478" width="180" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
           <text class="th" x="740" y="504" text-anchor="middle" dominant-baseline="central" fill="#0C447C">get_shipment_details()</text>
           <text class="ts" x="740" y="524" text-anchor="middle" dominant-baseline="central" fill="#185FA5">GET /shipments/&lt;id&gt;</text>
         </g>
-        <g>
+        <g data-flow-node="upsert" tabindex="0" role="img" aria-label="upsert_full_snapshot()" data-flow-desc-es={strings['flow.node.upsert'].es} data-flow-desc-en={strings['flow.node.upsert'].en}>
           <rect x="350" y="578" width="220" height="64" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
           <text class="th" x="460" y="604" text-anchor="middle" dominant-baseline="central" fill="#085041">upsert_full_snapshot()</text>
           <text class="ts" x="460" y="624" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">shipment + containers · transacción</text>
         </g>
-        <line x1="270" y1="510" x2="346" y2="510" stroke="#185FA5" stroke-width="1" marker-end="url(#fc-arrow)"/>
-        <line x1="570" y1="510" x2="646" y2="510" stroke="#185FA5" stroke-width="1" marker-end="url(#fc-arrow)"/>
-        <line x1="740" y1="542" x2="740" y2="610" stroke="#0F6E56" stroke-width="1" fill="none" marker-end="url(#fc-arrow)"/>
-        <line x1="740" y1="610" x2="574" y2="610" stroke="#0F6E56" stroke-width="1" fill="none" marker-end="url(#fc-arrow)"/>
-        <path d="M460 292 L460 472" fill="none" stroke="#534AB7" stroke-width="1" marker-end="url(#fc-arrow)"/>
+        <line x1="270" y1="510" x2="346" y2="510" stroke="#185FA5" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
+        <line x1="570" y1="510" x2="646" y2="510" stroke="#185FA5" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
+        <line x1="740" y1="542" x2="740" y2="610" stroke="#0F6E56" stroke-width="1" fill="none" class="flow-edge" marker-end="url(#fc-arrow)"/>
+        <line x1="740" y1="610" x2="574" y2="610" stroke="#0F6E56" stroke-width="1" fill="none" class="flow-edge" marker-end="url(#fc-arrow)"/>
+        <path d="M460 292 L460 472" fill="none" stroke="#534AB7" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
         <!-- ETAPA 4: MÁQUINA DE ESTADOS -->
         <text class="section-label" x="40" y="700">04 · Resolución de estado · sync_status</text>
         <line x1="40" y1="710" x2="880" y2="710" stroke="#d8d2c2" stroke-width="0.5"/>
-        <g>
+        <g data-flow-node="pending" tabindex="0" role="img" aria-label="PENDING" data-flow-desc-es={strings['flow.node.pending'].es} data-flow-desc-en={strings['flow.node.pending'].en}>
           <rect x="40" y="740" width="156" height="80" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
           <text class="th" x="118" y="764" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A">PENDING</text>
           <text class="ts" x="118" y="788" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">Recién descubierto</text>
           <text class="ts" x="118" y="806" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">delay inicial 1h</text>
         </g>
-        <g>
+        <g data-flow-node="retry" tabindex="0" role="img" aria-label="RETRY" data-flow-desc-es={strings['flow.node.retry'].es} data-flow-desc-en={strings['flow.node.retry'].en}>
           <rect x="216" y="740" width="156" height="80" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
           <text class="th" x="294" y="764" text-anchor="middle" dominant-baseline="central" fill="#633806">RETRY</text>
           <text class="ts" x="294" y="788" text-anchor="middle" dominant-baseline="central" fill="#854F0B">Backoff exponencial</text>
           <text class="ts" x="294" y="806" text-anchor="middle" dominant-baseline="central" fill="#854F0B">attempts² + interval</text>
         </g>
-        <g>
+        <g data-flow-node="synced" tabindex="0" role="img" aria-label="SYNCED" data-flow-desc-es={strings['flow.node.synced'].es} data-flow-desc-en={strings['flow.node.synced'].en}>
           <rect x="392" y="740" width="156" height="80" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
           <text class="th" x="470" y="764" text-anchor="middle" dominant-baseline="central" fill="#085041">SYNCED</text>
           <text class="ts" x="470" y="788" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">Tracking activo</text>
           <text class="ts" x="470" y="806" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">refresh cada 2h</text>
         </g>
-        <g>
+        <g data-flow-node="completed" tabindex="0" role="img" aria-label="COMPLETED" data-flow-desc-es={strings['flow.node.completed'].es} data-flow-desc-en={strings['flow.node.completed'].en}>
           <rect x="568" y="740" width="156" height="80" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
           <text class="th" x="646" y="764" text-anchor="middle" dominant-baseline="central" fill="#3C3489">COMPLETED</text>
           <text class="ts" x="646" y="788" text-anchor="middle" dominant-baseline="central" fill="#534AB7">Entregado · DISCHARGED</text>
           <text class="ts" x="646" y="806" text-anchor="middle" dominant-baseline="central" fill="#534AB7">is_active = FALSE</text>
         </g>
-        <g>
+        <g data-flow-node="error" tabindex="0" role="img" aria-label="PERMANENT_ERROR" data-flow-desc-es={strings['flow.node.error'].es} data-flow-desc-en={strings['flow.node.error'].en}>
           <rect x="744" y="740" width="156" height="80" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.5"/>
           <text class="th" x="822" y="764" text-anchor="middle" dominant-baseline="central" fill="#791F1F">PERMANENT_ERROR</text>
           <text class="ts" x="822" y="788" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">Booking inválido</text>
           <text class="ts" x="822" y="806" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">o max attempts (7)</text>
         </g>
-        <path d="M460 642 L460 736" fill="none" stroke="#0F6E56" stroke-width="1" marker-end="url(#fc-arrow)"/>
+        <path d="M460 642 L460 736" fill="none" stroke="#0F6E56" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
         <text class="ts" x="468" y="690" fill="#0F6E56">resultado del sync</text>
         <!-- ETAPA 5: PERSISTENCIA Y CDC -->
         <text class="section-label" x="40" y="880">05 · Persistencia y captura de cambios (CDC)</text>
         <line x1="40" y1="890" x2="880" y2="890" stroke="#d8d2c2" stroke-width="0.5"/>
-        <g>
+        <g data-flow-node="shipment" tabindex="0" role="img" aria-label="shipsgo.shipment" data-flow-desc-es={strings['flow.node.shipment'].es} data-flow-desc-en={strings['flow.node.shipment'].en}>
           <rect x="60" y="918" width="200" height="80" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
           <text class="th" x="160" y="942" text-anchor="middle" dominant-baseline="central" fill="#085041">shipsgo.shipment</text>
           <text class="ts" x="160" y="966" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">Estado actual del viaje</text>
           <text class="ts" x="160" y="984" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">ETA · vessel · status</text>
         </g>
-        <g>
+        <g data-flow-node="container" tabindex="0" role="img" aria-label="shipsgo.container" data-flow-desc-es={strings['flow.node.container'].es} data-flow-desc-en={strings['flow.node.container'].en}>
           <rect x="280" y="918" width="200" height="80" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
           <text class="th" x="380" y="942" text-anchor="middle" dominant-baseline="central" fill="#085041">shipsgo.container</text>
           <text class="ts" x="380" y="966" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">Tracking por contenedor</text>
           <text class="ts" x="380" y="984" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">last_movement</text>
         </g>
-        <g>
+        <g data-flow-node="shipmentHistory" tabindex="0" role="img" aria-label="shipment_history" data-flow-desc-es={strings['flow.node.shipmentHistory'].es} data-flow-desc-en={strings['flow.node.shipmentHistory'].en}>
           <rect x="500" y="918" width="180" height="80" rx="8" fill="#FBEAF0" stroke="#993556" stroke-width="0.5"/>
           <text class="th" x="590" y="942" text-anchor="middle" dominant-baseline="central" fill="#72243E">shipment_history</text>
           <text class="ts" x="590" y="966" text-anchor="middle" dominant-baseline="central" fill="#993556">CDC · insert-only</text>
           <text class="ts" x="590" y="984" text-anchor="middle" dominant-baseline="central" fill="#993556">changed_fields[]</text>
         </g>
-        <g>
+        <g data-flow-node="containerHistory" tabindex="0" role="img" aria-label="container_history" data-flow-desc-es={strings['flow.node.containerHistory'].es} data-flow-desc-en={strings['flow.node.containerHistory'].en}>
           <rect x="700" y="918" width="180" height="80" rx="8" fill="#FBEAF0" stroke="#993556" stroke-width="0.5"/>
           <text class="th" x="790" y="942" text-anchor="middle" dominant-baseline="central" fill="#72243E">container_history</text>
           <text class="ts" x="790" y="966" text-anchor="middle" dominant-baseline="central" fill="#993556">CDC · insert-only</text>
@@ -266,29 +276,30 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
         <!-- ETAPA 6: EVENTOS EN TIEMPO REAL -->
         <text class="section-label" x="40" y="1050">06 · Eventos en tiempo real</text>
         <line x1="40" y1="1060" x2="880" y2="1060" stroke="#d8d2c2" stroke-width="0.5"/>
-        <g>
+        <g data-flow-node="eta" tabindex="0" role="img" aria-label="ETA change detection" data-flow-desc-es={strings['flow.node.eta'].es} data-flow-desc-en={strings['flow.node.eta'].en}>
           <rect x="60" y="1088" width="240" height="64" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
           <text class="th" x="180" y="1114" text-anchor="middle" dominant-baseline="central" fill="#633806">ETA change detection</text>
           <text class="ts" x="180" y="1134" text-anchor="middle" dominant-baseline="central" fill="#854F0B">freeze 1d · eta_diff_days</text>
         </g>
-        <g>
+        <g data-flow-node="n8n" tabindex="0" role="img" aria-label="n8n · webhooks" data-flow-desc-es={strings['flow.node.n8n'].es} data-flow-desc-en={strings['flow.node.n8n'].en}>
           <rect x="360" y="1088" width="200" height="64" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
           <text class="th" x="460" y="1114" text-anchor="middle" dominant-baseline="central" fill="#712B13">n8n · webhooks</text>
           <text class="ts" x="460" y="1134" text-anchor="middle" dominant-baseline="central" fill="#993C1D">Lógica de eventos</text>
         </g>
-        <g>
+        <g data-flow-node="teams" tabindex="0" role="img" aria-label="Equipos · BD interna" data-flow-desc-es={strings['flow.node.teams'].es} data-flow-desc-en={strings['flow.node.teams'].en}>
           <rect x="620" y="1088" width="240" height="64" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
           <text class="th" x="740" y="1114" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A">Equipos · BD interna</text>
           <text class="ts" x="740" y="1134" text-anchor="middle" dominant-baseline="central" fill="#5F5E5A">Notificación + actualización</text>
         </g>
-        <line x1="300" y1="1120" x2="356" y2="1120" stroke="#993C1D" stroke-width="1" marker-end="url(#fc-arrow)"/>
-        <line x1="560" y1="1120" x2="616" y2="1120" stroke="#993C1D" stroke-width="1" marker-end="url(#fc-arrow)"/>
+        <line x1="300" y1="1120" x2="356" y2="1120" stroke="#993C1D" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
+        <line x1="560" y1="1120" x2="616" y2="1120" stroke="#993C1D" stroke-width="1" class="flow-edge" marker-end="url(#fc-arrow)"/>
         <path d="M460 642 L460 670 L160 670 L160 914" fill="none" stroke="#0F6E56" stroke-width="0.5" stroke-dasharray="3 3"/>
         <path d="M460 670 L380 670 L380 914" fill="none" stroke="#0F6E56" stroke-width="0.5" stroke-dasharray="3 3"/>
         <path d="M460 670 L590 670 L590 914" fill="none" stroke="#993556" stroke-width="0.5" stroke-dasharray="3 3"/>
         <path d="M590 670 L790 670 L790 914" fill="none" stroke="#993556" stroke-width="0.5" stroke-dasharray="3 3"/>
         <path d="M160 998 L160 1086" fill="none" stroke="#854F0B" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#fc-arrow-dashed)"/>
       </svg>
+      <div class="flow-tooltip" id="flow-tooltip" role="tooltip" hidden></div>
       <div class="legend">
         <div class="legend-item"><span class="legend-swatch" style="background:#EEEDFE;border-color:#534AB7"></span>Tareas Airflow</div>
         <div class="legend-item"><span class="legend-swatch" style="background:#E6F1FB;border-color:#185FA5"></span>API ShipsGo</div>
@@ -302,16 +313,32 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
 </div>
 
 <script>
+  function setFlowState(modal: HTMLElement, playing: boolean) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    modal.classList.toggle('is-playing', playing && !reduced);
+    modal.classList.remove('is-paused');
+    modal.querySelector('[data-flow-toggle]')?.setAttribute('aria-pressed', 'false');
+    if (!playing) hideFlowTooltip(modal);
+  }
+
+  function hideFlowTooltip(modal: HTMLElement) {
+    const tooltip = modal.querySelector<HTMLElement>('#flow-tooltip');
+    if (tooltip) tooltip.hidden = true;
+    modal.querySelectorAll('[aria-describedby="flow-tooltip"]').forEach(n => n.removeAttribute('aria-describedby'));
+  }
+
   function openModal(modal: HTMLElement | null) {
     if (!modal) return;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    if (modal.id === 'flowchart-modal') setFlowState(modal, true);
   }
 
   function closeModal(modal: HTMLElement | null) {
     if (!modal) return;
     modal.classList.remove('active');
     document.body.style.overflow = '';
+    if (modal.id === 'flowchart-modal') setFlowState(modal, false);
   }
 
   function initProjectModals() {
@@ -331,10 +358,59 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
     });
   }
 
+  function initFlowInteractions(modal: HTMLElement) {
+    if (modal.dataset.flowReady === 'true') return;
+    modal.dataset.flowReady = 'true';
+
+    modal.querySelectorAll<SVGElement>('.flow-edge').forEach((edge, i) => {
+      edge.style.setProperty('--i', String(i));
+    });
+
+    const toggle = modal.querySelector<HTMLButtonElement>('[data-flow-toggle]');
+    toggle?.addEventListener('click', () => {
+      const paused = modal.classList.toggle('is-paused');
+      toggle.setAttribute('aria-pressed', String(paused));
+    });
+
+    const tooltip = modal.querySelector<HTMLElement>('#flow-tooltip');
+    const wrapper = modal.querySelector<HTMLElement>('.diagram-wrapper');
+    if (!tooltip || !wrapper) return;
+
+    const show = (node: Element) => {
+      const lang = document.documentElement.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+      const text = node.getAttribute(lang === 'en' ? 'data-flow-desc-en' : 'data-flow-desc-es');
+      if (!text) return;
+      tooltip.textContent = text;
+      tooltip.hidden = false;
+      node.setAttribute('aria-describedby', 'flow-tooltip');
+
+      const box = node.getBoundingClientRect();
+      const wrap = wrapper.getBoundingClientRect();
+      const tipWidth = tooltip.offsetWidth;
+      const center = box.left - wrap.left + box.width / 2;
+      const left = Math.min(Math.max(center, tipWidth / 2 + 8), wrap.width - tipWidth / 2 - 8);
+      const above = box.top - wrap.top - tooltip.offsetHeight - 8;
+      const top = above > 0 ? above : box.bottom - wrap.top + 8;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${top}px`;
+    };
+
+    const hide = () => hideFlowTooltip(modal);
+
+    modal.querySelectorAll('[data-flow-node]').forEach(node => {
+      node.addEventListener('pointerenter', () => show(node));
+      node.addEventListener('pointerleave', hide);
+      node.addEventListener('focus', () => show(node));
+      node.addEventListener('blur', hide);
+    });
+  }
+
   function initFlowchartModal() {
     const modal = document.getElementById('flowchart-modal');
     const openBtn = document.querySelector('[data-open-flowchart]');
     const closeBtn = modal?.querySelector('.flowchart-modal-close');
+
+    if (modal) initFlowInteractions(modal);
 
     openBtn?.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -396,10 +472,16 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
   }
 
   .project-cover {
+    position: relative;
     width: 100%;
     height: 200px;
     border-radius: var(--radius-md);
     overflow: hidden;
+  }
+
+  .project-cover :global(.project-model) {
+    right: var(--space-sm);
+    bottom: var(--space-sm);
   }
 
   .project-cover img {
@@ -612,10 +694,91 @@ const flowchartCloseAria = strings['projects.flowchart.closeAria'];
     margin: 0 0 24px;
   }
 
+  .flowchart-modal .diagram-wrapper {
+    position: relative;
+  }
+
   .flowchart-modal .diagram-wrapper svg {
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  /* Data-flow animation: dashes travel along the solid connectors while the modal is open */
+  .flowchart-modal-overlay.is-playing .flow-edge {
+    stroke-dasharray: 6 6;
+    animation: flow-dash var(--motion-duration-slow) linear infinite;
+    animation-delay: calc(var(--i, 0) * -120ms);
+  }
+
+  .flowchart-modal-overlay.is-playing.is-paused .flow-edge {
+    animation-play-state: paused;
+  }
+
+  @keyframes flow-dash {
+    to { stroke-dashoffset: -12; }
+  }
+
+  .flow-toggle {
+    margin: 0 0 var(--space-md);
+    font-size: var(--text-sm);
+  }
+
+  .flow-toggle-label--play,
+  .flow-toggle-icon--play {
+    display: none;
+  }
+
+  .flow-toggle[aria-pressed='true'] .flow-toggle-label--pause,
+  .flow-toggle[aria-pressed='true'] .flow-toggle-icon--pause {
+    display: none;
+  }
+
+  .flow-toggle[aria-pressed='true'] .flow-toggle-label--play,
+  .flow-toggle[aria-pressed='true'] .flow-toggle-icon--play {
+    display: inline;
+  }
+
+  .flowchart-modal .diagram-wrapper [data-flow-node] {
+    cursor: default;
+    outline: none;
+    transition: filter var(--motion-duration-fast) var(--motion-ease);
+  }
+
+  .flowchart-modal .diagram-wrapper [data-flow-node]:hover,
+  .flowchart-modal .diagram-wrapper [data-flow-node]:focus-visible {
+    filter: drop-shadow(0 0 6px var(--accent-color));
+  }
+
+  .flowchart-modal .diagram-wrapper [data-flow-node]:focus-visible rect {
+    stroke: var(--accent-color);
+    stroke-width: 2;
+  }
+
+  .flow-tooltip {
+    position: absolute;
+    z-index: 5;
+    max-width: 260px;
+    padding: var(--space-sm) var(--space-md);
+    transform: translateX(-50%);
+    background: var(--text-color);
+    color: var(--card-bg);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    line-height: 1.4;
+    pointer-events: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .flow-tooltip[hidden] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flowchart-modal-overlay.is-playing .flow-edge {
+      animation: none;
+      stroke-dasharray: none;
+    }
   }
 
   .flowchart-modal .diagram-wrapper .legend {

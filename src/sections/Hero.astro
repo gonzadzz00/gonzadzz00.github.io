@@ -1,11 +1,16 @@
 ---
 import siteConfig from '../data/site-config.json';
+import HeroScene from '../components/HeroScene.astro';
 ---
 
 <header class="hero">
   <div class="hero-bg">
-    <img src="/icon/brain_portada.jpg" alt="Portada" class="hero-bg-image" />
+    <img src="/images/hero-poster.webp" alt="Portada" class="hero-bg-image" width="1584" height="656" fetchpriority="high" decoding="async" />
   </div>
+  <HeroScene
+    modelSrc="/models/hero-brain.glb"
+    floatingIcons={['Python', 'PyTorch', 'Apache Airflow', 'n8n', 'Docker', 'LangChain']}
+  />
   <div class="hero-content">
     <h1 class="hero-title" aria-label={siteConfig.ownerName}>
       <span class="scramble-text" aria-hidden="true" data-scramble={siteConfig.ownerName}>{siteConfig.ownerName}</span>
@@ -20,6 +25,14 @@ import siteConfig from '../data/site-config.json';
     const revealDelay = 28;
     const lockDuration = 380;
     let startTime: number | null = null;
+
+    // Freeze the box at the final text size so random glyph widths never shift the layout
+    const box = el.getBoundingClientRect();
+    el.style.width = `${box.width}px`;
+    el.style.height = `${box.height}px`;
+    el.style.whiteSpace = 'nowrap';
+    el.style.overflow = 'hidden';
+    el.style.verticalAlign = 'top';
 
     el.classList.add('is-scrambling');
 
@@ -51,6 +64,7 @@ import siteConfig from '../data/site-config.json';
       } else {
         el.textContent = target;
         el.classList.remove('is-scrambling');
+        ['width', 'height', 'whiteSpace', 'overflow', 'verticalAlign'].forEach(prop => el.style.removeProperty(prop.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`)));
       }
     }
 
@@ -138,6 +152,25 @@ import siteConfig from '../data/site-config.json';
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Two-column layout so the 3D scene never sits on top of the text */
+  @media (min-width: 992px) {
+    .hero {
+      justify-content: flex-start;
+    }
+
+    .hero-content {
+      text-align: left;
+      max-width: 54%;
+      padding-left: clamp(4rem, 9vw, 9rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      padding-bottom: 20rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

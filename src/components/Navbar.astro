@@ -108,7 +108,10 @@ const openMenuAria = strings['nav.openMenuAria'];
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute('id');
             links?.querySelectorAll('.nav-link').forEach(link => {
-              link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+              const isActive = link.getAttribute('href') === `#${id}`;
+              link.classList.toggle('active', isActive);
+              if (isActive) link.setAttribute('aria-current', 'true');
+              else link.removeAttribute('aria-current');
             });
           }
         });

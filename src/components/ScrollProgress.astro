@@ -1,0 +1,56 @@
+---
+---
+
+<div class="scroll-progress" aria-hidden="true">
+  <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+</div>
+
+<script>
+  function initScrollProgress() {
+    const bar = document.getElementById('scroll-progress-bar');
+    if (!bar) return;
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+      bar.style.transform = `scaleX(${ratio})`;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  }
+
+  initScrollProgress();
+  document.addEventListener('astro:after-swap', initScrollProgress);
+</script>
+
+<style is:global>
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 1050;
+    pointer-events: none;
+  }
+
+  .scroll-progress-bar {
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-progress {
+      display: none;
+    }
+  }
+</style>

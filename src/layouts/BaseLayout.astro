@@ -9,9 +9,13 @@ interface Props {
 }
 
 const {
-  title = 'Portfolio | Gonzalo Diaz',
-  description = 'Gonzalo Diaz — Data Analyst & Analytics Engineer. Portfolio de proyectos de ciencia de datos, ingeniería de datos y machine learning.'
+  title = 'Gonzalo Diaz | Data & AI Engineer',
+  description = 'Gonzalo Diaz — Data & AI Engineer. Portfolio de proyectos de ciencia de datos, ingeniería de datos y machine learning.'
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://gonzadzz00.github.io');
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL('/images/og-cover.jpg', siteUrl).href;
 ---
 
 <!DOCTYPE html>
@@ -25,12 +29,15 @@ const {
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:url" content="https://gonzadzz00.github.io" />
-  <meta property="og:image" content="https://gonzadzz00.github.io/icon/foto1x1.jpg" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
   <title>{title}</title>
   <link rel="icon" type="image/svg+xml" href="/icon/logo gon ultimos-01.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png" />

@@ -1,0 +1,35 @@
+---
+---
+
+<script>
+  const MAX_TILT = 6;
+
+  function initTilt() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const isTouchOnly = window.matchMedia('(hover: none)').matches;
+    if (isTouchOnly) return;
+
+    document.querySelectorAll<HTMLElement>('[data-tilt]').forEach(el => {
+      if (el.dataset.tiltReady === 'true') return;
+      el.dataset.tiltReady = 'true';
+
+      el.addEventListener('pointermove', (e: PointerEvent) => {
+        const rect = el.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.setProperty('--tilt-x', `${(-py * MAX_TILT * 2).toFixed(2)}deg`);
+        el.style.setProperty('--tilt-y', `${(px * MAX_TILT * 2).toFixed(2)}deg`);
+      });
+
+      el.addEventListener('pointerleave', () => {
+        el.style.removeProperty('--tilt-x');
+        el.style.removeProperty('--tilt-y');
+      });
+    });
+  }
+
+  initTilt();
+  document.addEventListener('astro:after-swap', initTilt);
+</script>

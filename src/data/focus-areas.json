@@ -1,7 +1,10 @@
 [
   {
     "id": "ciencia-de-datos",
-    "name": { "es": "Ciencia de Datos", "en": "Data Science" },
+    "name": {
+      "es": "Ciencia de Datos",
+      "en": "Data Science"
+    },
     "icon": "fas fa-atom",
     "skills": [
       {
@@ -20,11 +23,15 @@
         "es": "Optimización y validación de modelos con técnicas de cross-validation, hiperparámetros y pipelines reproducibles en producción.",
         "en": "Model optimization and validation using cross-validation, hyperparameter tuning, and reproducible production pipelines."
       }
-    ]
+    ],
+    "illustration": "data-science"
   },
   {
     "id": "ia",
-    "name": { "es": "Inteligencia Artificial", "en": "Artificial Intelligence" },
+    "name": {
+      "es": "Inteligencia Artificial",
+      "en": "Artificial Intelligence"
+    },
     "icon": "fa-solid fa-robot",
     "skills": [
       {
@@ -39,11 +46,15 @@
         "es": "Aplicación de enfoques como prompt engineering, RAG (Retrieval-Augmented Generation) y diseño de herramientas (tools) para ampliar las capacidades de los agentes.",
         "en": "Application of approaches such as prompt engineering, RAG (Retrieval-Augmented Generation), and tool design to extend agent capabilities."
       }
-    ]
+    ],
+    "illustration": "ai"
   },
   {
     "id": "ingenieria-de-datos",
-    "name": { "es": "Ingeniería de Datos", "en": "Data Engineering" },
+    "name": {
+      "es": "Ingeniería de Datos",
+      "en": "Data Engineering"
+    },
     "icon": "fas fa-database",
     "skills": [
       {
@@ -62,6 +73,7 @@
         "es": "Implementación de estrategias de gobernanza de datos: seguridad, trazabilidad y calidad.",
         "en": "Implementation of data governance strategies: security, traceability, and quality."
       }
-    ]
+    ],
+    "illustration": "data-eng"
   }
 ]

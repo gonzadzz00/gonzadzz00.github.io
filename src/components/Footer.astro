@@ -1,5 +1,6 @@
 ---
 import uiStrings from '../data/ui-strings.json';
+import AssetCredits from './AssetCredits.astro';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const rights = strings['footer.rights'];
@@ -12,6 +13,7 @@ const year = new Date().getFullYear();
       &copy; {year} Gonzalo Diaz.
       <span data-i18n-es={rights.es} data-i18n-en={rights.en}>{rights.es}</span>
     </p>
+    <AssetCredits />
   </div>
 </footer>
 

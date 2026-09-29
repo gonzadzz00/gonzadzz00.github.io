@@ -1,0 +1,63 @@
+---
+import assets from '../data/assets.json';
+
+interface Props {
+  assetId: string;
+  alt: { es: string; en: string };
+  class?: string;
+}
+
+const { assetId, alt, class: className = '' } = Astro.props;
+const asset = (assets as Array<{ id: string; file: string }>).find(a => a.id === assetId);
+const src = asset ? `/${asset.file.replace(/^public\//, '')}` : undefined;
+---
+
+{src && (
+  <div
+    class:list={['model-badge', className]}
+    data-model-badge
+    data-src={src}
+    data-alt-es={alt.es}
+    data-alt-en={alt.en}
+    aria-hidden="true"
+  >
+  </div>
+)}
+
+<script>
+  import { mountModel } from './modelLoader';
+
+  function initModelBadges() {
+    document.querySelectorAll<HTMLElement>('[data-model-badge]').forEach(el => {
+      mountModel(el, { interactive: false });
+    });
+  }
+
+  initModelBadges();
+  document.addEventListener('astro:after-swap', initModelBadges);
+</script>
+
+<style is:global>
+  .model-badge {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--motion-duration-slow) var(--motion-ease);
+  }
+
+  .model-badge.is-ready {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .model-badge .model-viewer-el {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    --poster-color: transparent;
+    pointer-events: none;
+  }
+</style>

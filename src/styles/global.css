@@ -35,6 +35,12 @@
   --space-2xl: 3rem;     /* 48px */
   --space-3xl: 4rem;     /* 64px */
 
+  /* Motion */
+  --motion-duration-fast: 150ms;
+  --motion-duration-base: 500ms;
+  --motion-duration-slow: 900ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
   /* Typography */
   --font-heading: 'Montserrat', sans-serif;
   --font-body: 'Open Sans', sans-serif;
@@ -202,6 +208,19 @@ p {
   transform: translateY(-6px) scale(1.015);
 }
 
+/* Pointer-driven 3D tilt (variables set by TiltHover.astro) */
+.card[data-tilt] {
+  transition: box-shadow var(--transition-normal),
+              transform var(--motion-duration-fast) var(--motion-ease);
+}
+
+.card[data-tilt]:hover {
+  transform: perspective(900px)
+             rotateX(var(--tilt-x, 0deg))
+             rotateY(var(--tilt-y, 0deg))
+             translateY(-6px) scale(1.015);
+}
+
 /* ===== GRID LAYOUTS ===== */
 .grid-2 {
   display: grid;
@@ -300,8 +319,8 @@ p {
 .reveal {
   opacity: 0;
   transform: translateY(30px) scale(0.96);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity var(--motion-duration-base) var(--motion-ease),
+              transform var(--motion-duration-base) var(--motion-ease);
 }
 
 .reveal.visible {
@@ -313,8 +332,8 @@ p {
 .reveal-stagger > * {
   opacity: 0;
   transform: translateY(20px) scale(0.96);
-  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity var(--motion-duration-base) var(--motion-ease),
+              transform var(--motion-duration-base) var(--motion-ease);
 }
 
 .reveal-stagger.visible > * {
@@ -325,9 +344,9 @@ p {
 /* Heading "materialize" variant — blur-in alongside the base reveal motion */
 .reveal-title {
   filter: blur(6px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity var(--motion-duration-base) var(--motion-ease),
+              transform var(--motion-duration-base) var(--motion-ease),
+              filter var(--motion-duration-base) var(--motion-ease);
 }
 
 .reveal-title.visible {

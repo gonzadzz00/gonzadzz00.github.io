@@ -45,5 +45,40 @@
   "contact.thanksTitle": { "es": "¡Gracias por visitar mi portfolio!", "en": "Thanks for visiting my portfolio!" },
   "contact.cta": { "es": "No dudes en escribirme!", "en": "Feel free to reach out!" },
 
-  "footer.rights": { "es": "Todos los derechos reservados.", "en": "All rights reserved." }
+  "footer.rights": { "es": "Todos los derechos reservados.", "en": "All rights reserved." },
+  "credits.models": { "es": "Modelos 3D", "en": "3D models" },
+  "credits.illustrations": { "es": "Ilustraciones", "en": "Illustrations" },
+  "credits.via": { "es": "vía", "en": "via" },
+
+  "hero.modelAlt": { "es": "Modelo 3D de un cerebro", "en": "3D brain model" },
+
+  "focus.more": { "es": "Ver más", "en": "Show more" },
+  "focus.less": { "es": "Ver menos", "en": "Show less" },
+
+  "contact.writeMe": { "es": "Escribime", "en": "Write me" },
+
+  "flow.pause": { "es": "Pausar animación", "en": "Pause animation" },
+  "flow.resume": { "es": "Reanudar animación", "en": "Resume animation" },
+  "flow.node.tms": { "es": "Base interna de pedidos de exportación de donde se toman los bookings.", "en": "Internal export-order database where the bookings come from." },
+  "flow.node.discover": { "es": "Tarea que filtra los sub-pedidos de una ventana de 3 días y detecta bookings nuevos.", "en": "Task that filters sub-orders from a 3-day window and detects new bookings." },
+  "flow.node.booking": { "es": "Se insertan en bloque los bookings nuevos con sync_status=PENDING.", "en": "New bookings are bulk-inserted with sync_status=PENDING." },
+  "flow.node.select": { "es": "Elige hasta 200 bookings por corrida según elegibilidad y prioridad.", "en": "Picks up to 200 bookings per run based on eligibility and priority." },
+  "flow.node.queue": { "es": "Orden de atención: primero PENDING, luego RETRY y al final SYNCED para refrescar.", "en": "Processing order: PENDING first, then RETRY, and finally SYNCED for refresh." },
+  "flow.node.filters": { "es": "Solo entran bookings activos, con reintento vencido y menos de 7 intentos.", "en": "Only active bookings whose retry time has passed and with fewer than 7 attempts qualify." },
+  "flow.node.register": { "es": "Registra el booking en ShipsGo con POST /ocean/shipments.", "en": "Registers the booking in ShipsGo via POST /ocean/shipments." },
+  "flow.node.api": { "es": "API externa de tracking multi-naviera.", "en": "External multi-carrier tracking API." },
+  "flow.node.details": { "es": "Consulta el detalle del envío con GET /shipments/<id>.", "en": "Fetches the shipment details with GET /shipments/<id>." },
+  "flow.node.upsert": { "es": "Guarda en una sola transacción el envío y sus contenedores.", "en": "Stores the shipment and its containers in a single transaction." },
+  "flow.node.pending": { "es": "Booking recién descubierto; primer intento tras un delay inicial de 1 hora.", "en": "Newly discovered booking; first attempt after an initial 1-hour delay." },
+  "flow.node.retry": { "es": "Reintento con backoff exponencial (intentos² + intervalo).", "en": "Retry with exponential backoff (attempts² + interval)." },
+  "flow.node.synced": { "es": "Tracking activo; se refresca cada 2 horas.", "en": "Active tracking; refreshed every 2 hours." },
+  "flow.node.completed": { "es": "Envío entregado (DISCHARGED); se desactiva el seguimiento.", "en": "Shipment delivered (DISCHARGED); tracking is switched off." },
+  "flow.node.error": { "es": "Booking inválido o con el máximo de intentos (7) agotado.", "en": "Invalid booking, or the maximum of 7 attempts is exhausted." },
+  "flow.node.shipment": { "es": "Estado actual del viaje: ETA, buque y estado.", "en": "Current voyage state: ETA, vessel and status." },
+  "flow.node.container": { "es": "Tracking por contenedor con su último movimiento.", "en": "Per-container tracking with its last movement." },
+  "flow.node.shipmentHistory": { "es": "Historial CDC de solo inserciones con los campos que cambiaron.", "en": "Insert-only CDC history with the fields that changed." },
+  "flow.node.containerHistory": { "es": "Historial CDC de solo inserciones por número de contenedor.", "en": "Insert-only CDC history per container number." },
+  "flow.node.eta": { "es": "Detecta cambios de ETA (congelado 1 día, diferencia en días).", "en": "Detects ETA changes (1-day freeze, difference in days)." },
+  "flow.node.n8n": { "es": "Workflows de n8n que reciben webhooks y aplican la lógica de eventos.", "en": "n8n workflows that receive webhooks and apply the event logic." },
+  "flow.node.teams": { "es": "Notifica a los equipos y actualiza la base de datos interna.", "en": "Notifies the teams and updates the internal database." }
 }

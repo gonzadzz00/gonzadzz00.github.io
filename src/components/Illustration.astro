@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import assets from '../data/assets.json';
+
+interface Props {
+  assetId: string;
+  alt?: { es: string; en: string };
+  decorative?: boolean;
+  float?: boolean;
+  class?: string;
+}
+
+const { assetId, alt, decorative = false, float = false, class: className = '' } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/illustrations/*.{webp,png,jpg,jpeg,svg}',
+  { eager: true }
+);
+
+const asset = (assets as Array<{ id: string; file: string }>).find(a => a.id === assetId);
+const image = asset ? images[`/${asset.file}`]?.default : undefined;
+const altEs = decorative ? '' : alt?.es ?? '';
+const altEn = decorative ? '' : alt?.en ?? altEs;
+---
+
+{image && (
+  <Image
+    src={image}
+    alt={altEs}
+    class:list={['illustration', { 'illustration--float': float }, className]}
+    loading="lazy"
+    decoding="async"
+    aria-hidden={decorative ? 'true' : undefined}
+    data-i18n-attr={decorative ? undefined : 'alt'}
+    data-i18n-attr-es={decorative ? undefined : altEs}
+    data-i18n-attr-en={decorative ? undefined : altEn}
+  />
+)}
+
+<style is:global>
+  .illustration {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .illustration--float {
+      animation: illustration-float calc(var(--motion-duration-slow) * 6) ease-in-out infinite alternate;
+    }
+  }
+
+  @keyframes illustration-float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-8px); }
+  }
+</style>

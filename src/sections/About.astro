@@ -3,11 +3,17 @@ import siteConfig from '../data/site-config.json';
 import focusAreas from '../data/focus-areas.json';
 import techStack from '../data/tech-stack.json';
 import uiStrings from '../data/ui-strings.json';
+import assets from '../data/assets.json';
+import Illustration from '../components/Illustration.astro';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const aboutTitle = strings['section.about.title'];
 const focusAreasTitle = strings['section.about.focusAreas'];
 const techStackTitle = strings['section.about.techStack'];
+const focusMore = strings['focus.more'];
+const focusLess = strings['focus.less'];
+const VISIBLE_SKILLS = 2;
+const hasAboutIllustration = (assets as Array<{ id: string }>).some(a => a.id === 'about');
 ---
 
 <section id="mi-perfil" class="section">
@@ -16,10 +22,18 @@ const techStackTitle = strings['section.about.techStack'];
     <span data-i18n-es={aboutTitle.es} data-i18n-en={aboutTitle.en}>{aboutTitle.es}</span>
   </h2>
 
-  <div class="about-bio">
-    {siteConfig.bio.map((paragraph: { es: string; en: string }) => (
-      <p data-i18n-es={paragraph.es} data-i18n-en={paragraph.en}>{paragraph.es}</p>
-    ))}
+  <div class:list={['about-intro', { 'about-intro--with-art': hasAboutIllustration }]}>
+    <div class="about-bio">
+      {siteConfig.bio.map((paragraph: { es: string; en: string }) => (
+        <p data-i18n-es={paragraph.es} data-i18n-en={paragraph.en}>{paragraph.es}</p>
+      ))}
+    </div>
+    <Illustration
+      assetId="about"
+      float
+      class="about-art"
+      alt={{ es: 'Ilustración de una persona trabajando con datos en una laptop', en: 'Illustration of a person working with data on a laptop' }}
+    />
   </div>
 
   <h3 class="subsection-title">
@@ -29,16 +43,39 @@ const techStackTitle = strings['section.about.techStack'];
 
   <div class="grid-3 reveal-stagger">
     {focusAreas.map((area: any) => (
-      <div class="card focus-card">
+      <div class="card focus-card" data-tilt data-focus-card>
+        <Illustration assetId={area.illustration} decorative class="focus-art" />
         <div class="focus-icon">
           <i class={area.icon}></i>
         </div>
         <h4 data-i18n-es={area.name.es} data-i18n-en={area.name.en}>{area.name.es}</h4>
         <ul class="focus-skills">
-          {area.skills.map((skill: { es: string; en: string }) => (
+          {area.skills.slice(0, VISIBLE_SKILLS).map((skill: { es: string; en: string }) => (
             <li data-i18n-es={skill.es} data-i18n-en={skill.en}>{skill.es}</li>
           ))}
         </ul>
+        {area.skills.length > VISIBLE_SKILLS && (
+          <>
+            <div class="focus-extra" id={`focus-extra-${area.id}`}>
+              <ul class="focus-skills">
+                {area.skills.slice(VISIBLE_SKILLS).map((skill: { es: string; en: string }) => (
+                  <li data-i18n-es={skill.es} data-i18n-en={skill.en}>{skill.es}</li>
+                ))}
+              </ul>
+            </div>
+            <button
+              type="button"
+              class="focus-more"
+              aria-expanded="false"
+              aria-controls={`focus-extra-${area.id}`}
+              data-focus-toggle
+            >
+              <span class="focus-more-label focus-more-label--more" data-i18n-es={focusMore.es} data-i18n-en={focusMore.en}>{focusMore.es}</span>
+              <span class="focus-more-label focus-more-label--less" data-i18n-es={focusLess.es} data-i18n-en={focusLess.en}>{focusLess.es}</span>
+              <i class="fas fa-chevron-down focus-more-icon" aria-hidden="true"></i>
+            </button>
+          </>
+        )}
       </div>
     ))}
   </div>
@@ -48,10 +85,10 @@ const techStackTitle = strings['section.about.techStack'];
     <span data-i18n-es={techStackTitle.es} data-i18n-en={techStackTitle.en}>{techStackTitle.es}</span>
   </h3>
 
-  <div class="tech-badges" id="tech-badges">
+  <div class="tech-badges reveal-chips" id="tech-badges">
     <div class="tech-badges-track" id="tech-badges-track">
-      {techStack.map((tech: any) => (
-        <div class="tech-chip" style={`--tech-color: ${tech.color}`}>
+      {techStack.map((tech: any, i: number) => (
+        <div class="tech-chip" style={`--tech-color: ${tech.color}; --i: ${i}`}>
           <span class="tech-chip-icon">
             <img src={tech.iconUrl} alt="" loading="lazy" />
           </span>
@@ -61,6 +98,23 @@ const techStackTitle = strings['section.about.techStack'];
     </div>
   </div>
 </section>
+
+<script>
+  function initFocusToggles() {
+    document.querySelectorAll<HTMLButtonElement>('[data-focus-toggle]').forEach(button => {
+      if (button.dataset.ready === 'true') return;
+      button.dataset.ready = 'true';
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!expanded));
+        button.closest('[data-focus-card]')?.classList.toggle('is-expanded', !expanded);
+      });
+    });
+  }
+
+  initFocusToggles();
+  document.addEventListener('astro:after-swap', initFocusToggles);
+</script>
 
 <script>
   function initTechAutoSlide() {
@@ -83,9 +137,82 @@ const techStackTitle = strings['section.about.techStack'];
 </script>
 
 <style>
+  .about-intro {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .about-intro--with-art {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 320px);
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
   .about-bio {
     max-width: 800px;
-    margin-bottom: var(--space-2xl);
+  }
+
+  .focus-art {
+    width: 96px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .focus-extra {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--motion-duration-base) var(--motion-ease);
+  }
+
+  .focus-extra > .focus-skills {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .focus-card.is-expanded .focus-extra {
+    grid-template-rows: 1fr;
+  }
+
+  .focus-more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+    padding: var(--space-xs) 0;
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .focus-more-label--less,
+  .focus-more[aria-expanded='true'] .focus-more-label--more {
+    display: none;
+  }
+
+  .focus-more[aria-expanded='true'] .focus-more-label--less {
+    display: inline;
+  }
+
+  .focus-more-icon {
+    transition: transform var(--motion-duration-fast) var(--motion-ease);
+  }
+
+  .focus-more[aria-expanded='true'] .focus-more-icon {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 768px) {
+    .about-intro--with-art {
+      grid-template-columns: 1fr;
+    }
+
+    .about-art {
+      max-width: 240px;
+      margin: 0 auto;
+    }
   }
 
   .about-bio p {
@@ -184,6 +311,20 @@ const techStackTitle = strings['section.about.techStack'];
     transform: translateY(-3px);
   }
 
+  /* Staggered entrance: chips fade/slide in once the strip scrolls into view */
+  .reveal-chips:not(.visible) .tech-chip {
+    opacity: 0;
+  }
+
+  .reveal-chips.visible .tech-chip {
+    animation: tech-chip-in var(--motion-duration-base) var(--motion-ease) backwards;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+
+  @keyframes tech-chip-in {
+    from { opacity: 0; transform: translateY(14px); }
+  }
+
   .tech-chip-icon {
     flex-shrink: 0;
     display: flex;
@@ -210,6 +351,19 @@ const techStackTitle = strings['section.about.techStack'];
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .focus-extra,
+    .focus-more-icon {
+      transition: none;
+    }
+
+    .reveal-chips:not(.visible) .tech-chip {
+      opacity: 1;
+    }
+
+    .reveal-chips.visible .tech-chip {
+      animation: none;
+    }
+
     .tech-badges-track {
       animation: none;
       transform: none !important;
