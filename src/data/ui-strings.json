@@ -42,8 +42,8 @@
   },
   "projects.flowchart.closeAria": { "es": "Cerrar diagrama", "en": "Close diagram" },
 
-  "contact.thanksTitle": { "es": "¡Gracias por visitar mi portfolio!", "en": "Thanks for visiting my portfolio!" },
-  "contact.cta": { "es": "No dudes en escribirme!", "en": "Feel free to reach out!" },
+  "contact.thanksTitle": { "es": "Gracias por visitar mi portfolio", "en": "Thank you for visiting my portfolio" },
+  "contact.cta": { "es": "Conversemos sobre tu proyecto.", "en": "Let's talk about your project." },
 
   "footer.rights": { "es": "Todos los derechos reservados.", "en": "All rights reserved." },
   "credits.models": { "es": "Modelos 3D", "en": "3D models" },
@@ -55,7 +55,7 @@
   "focus.more": { "es": "Ver más", "en": "Show more" },
   "focus.less": { "es": "Ver menos", "en": "Show less" },
 
-  "contact.writeMe": { "es": "Escribime", "en": "Write me" },
+  "contact.writeMe": { "es": "Escríbeme", "en": "Write me" },
 
   "flow.pause": { "es": "Pausar animación", "en": "Pause animation" },
   "flow.resume": { "es": "Reanudar animación", "en": "Resume animation" },
