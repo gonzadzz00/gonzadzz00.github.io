@@ -135,9 +135,9 @@ Cada proyecto puede mostrar un pequeño modelo 3D temático (precios, barco de c
 - Solo se usan assets gratuitos; las ilustraciones se animan sobre imágenes estáticas (sin animaciones prefabricadas de pago).
 - La elección de la herramienta para renderizar 3D se define en la fase de planificación.
 - Fuera de alcance: reescritura de contenido, cambio de tecnología del sitio y assets de pago.
-- Se admite hasta 1 escena 3D principal y hasta 3 modelos secundarios.
+- Solo se usa la escena 3D principal del hero; los modelos 3D secundarios (proyectos y contacto) se descartaron tras probarlos, y en Contacto se animan los botones en su lugar.
 - El diagrama del pipeline se muestra en una ventana modal; "entrar en pantalla" equivale a abrir esa ventana, y la animación se detiene al cerrarla.
-- El modelo 3D del hero se superpone a la imagen de portada actual, que sirve como póster y como alternativa estática.
+- El modelo 3D del cerebro (con los íconos del stack flotando) se ubica en el espacio vacío a la derecha del texto de "Sobre mí", no en el hero, que conserva la portada original. La imagen de portada sirve como póster y como alternativa estática dentro de ese recuadro.
 
 ## Success Criteria *(mandatory)*
 

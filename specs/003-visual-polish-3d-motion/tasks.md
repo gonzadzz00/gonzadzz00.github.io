@@ -86,6 +86,8 @@
 
 **Checkpoint**: US1 completa y desplegable — MVP.
 
+> Cambio posterior (2026-09-29): el cerebro 3D se movió del hero a la columna derecha de "Sobre mí" (`HeroScene.astro` pasó a `BrainScene.astro`, con la portada como póster y fallback). El hero volvió a su diseño original centrado. La ranura de ilustración de Sobre mí se eliminó (ya no hace falta el asset `about`).
+
 > Nota de implementación (T010–T011 pendientes): el dominio no se cambió en `astro.config.mjs` hasta que se confirme que `portfolio.octopus-data-ai.com` sirve el sitio. Los metadatos ya se construyen con `Astro.site`, así que es un cambio de una línea. T026: el 3D se carga tras la primera interacción (ver [research.md](./research.md) D2); Lighthouse móvil quedó en 73–74 frente a 63 de `main` (ver [quickstart.md](./quickstart.md)).
 
 ---
@@ -169,6 +171,8 @@
 - [X] T062 [US5] Verificar que con reducir movimiento o sin WebGL los modelos secundarios no se descargan (pestaña Network) y que el peso total de assets nuevos sigue ≤ 3 MB; si Lighthouse baja de 90, recortar primero estos modelos
 
 **Checkpoint**: las cinco historias completas.
+
+> Revertido a pedido (2026-09-29): T057–T062 se implementaron y luego se quitaron. Los modelos 3D de proyectos y el buzón de Contacto ya no existen (se eliminaron `ModelBadge.astro`, los GLB secundarios y el campo `model3d`). El 3D queda solo en el hero. En su lugar se animaron los botones de Contacto (Escribime, redes y enlace de email).
 
 ---
 

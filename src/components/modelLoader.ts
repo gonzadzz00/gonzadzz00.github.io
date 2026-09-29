@@ -1,5 +1,5 @@
 /**
- * Lazy 3D model mounting shared by the hero and the project cards.
+ * Lazy 3D model mounting for the hero scene.
  * The <model-viewer> bundle is imported only when the device is capable,
  * the user has not asked for reduced motion, the container is on screen
  * and the visitor has interacted with the page.
@@ -15,8 +15,6 @@ export interface MountOptions {
   tint?: [number, number, number];
   /** Tilt the camera vertically following the pointer (desktop only). */
   parallax?: boolean;
-  /** Let the visitor drag to rotate. Decorative badges set this to false. Defaults to true. */
-  interactive?: boolean;
 }
 
 export function canLoad3D(): boolean {
@@ -99,11 +97,9 @@ export async function mountModel(container: HTMLElement, options: MountOptions =
   viewer.setAttribute('src', src);
   viewer.setAttribute('auto-rotate', '');
   viewer.setAttribute('rotation-per-second', '18deg');
-  if (options.interactive !== false) {
-    viewer.setAttribute('camera-controls', '');
-    viewer.setAttribute('disable-zoom', '');
-    viewer.setAttribute('disable-pan', '');
-  }
+  viewer.setAttribute('camera-controls', '');
+  viewer.setAttribute('disable-zoom', '');
+  viewer.setAttribute('disable-pan', '');
   viewer.setAttribute('interaction-prompt', 'none');
   viewer.setAttribute('touch-action', 'pan-y');
   viewer.setAttribute('shadow-intensity', '0');

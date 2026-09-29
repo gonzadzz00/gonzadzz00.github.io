@@ -3,8 +3,8 @@ import siteConfig from '../data/site-config.json';
 import focusAreas from '../data/focus-areas.json';
 import techStack from '../data/tech-stack.json';
 import uiStrings from '../data/ui-strings.json';
-import assets from '../data/assets.json';
 import Illustration from '../components/Illustration.astro';
+import BrainScene from '../components/BrainScene.astro';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const aboutTitle = strings['section.about.title'];
@@ -13,7 +13,6 @@ const techStackTitle = strings['section.about.techStack'];
 const focusMore = strings['focus.more'];
 const focusLess = strings['focus.less'];
 const VISIBLE_SKILLS = 2;
-const hasAboutIllustration = (assets as Array<{ id: string }>).some(a => a.id === 'about');
 ---
 
 <section id="mi-perfil" class="section">
@@ -22,17 +21,16 @@ const hasAboutIllustration = (assets as Array<{ id: string }>).some(a => a.id ==
     <span data-i18n-es={aboutTitle.es} data-i18n-en={aboutTitle.en}>{aboutTitle.es}</span>
   </h2>
 
-  <div class:list={['about-intro', { 'about-intro--with-art': hasAboutIllustration }]}>
+  <div class="about-intro">
     <div class="about-bio">
       {siteConfig.bio.map((paragraph: { es: string; en: string }) => (
         <p data-i18n-es={paragraph.es} data-i18n-en={paragraph.en}>{paragraph.es}</p>
       ))}
     </div>
-    <Illustration
-      assetId="about"
-      float
-      class="about-art"
-      alt={{ es: 'Ilustración de una persona trabajando con datos en una laptop', en: 'Illustration of a person working with data on a laptop' }}
+    <BrainScene
+      modelSrc="/models/hero-brain.glb"
+      posterSrc="/images/hero-poster.webp"
+      floatingIcons={['Python', 'PyTorch', 'Apache Airflow', 'n8n', 'Docker', 'LangChain']}
     />
   </div>
 
@@ -139,11 +137,8 @@ const hasAboutIllustration = (assets as Array<{ id: string }>).some(a => a.id ==
 <style>
   .about-intro {
     margin-bottom: var(--space-2xl);
-  }
-
-  .about-intro--with-art {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(200px, 320px);
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
     gap: var(--space-2xl);
     align-items: center;
   }
@@ -204,14 +199,13 @@ const hasAboutIllustration = (assets as Array<{ id: string }>).some(a => a.id ==
     transform: rotate(180deg);
   }
 
-  @media (max-width: 768px) {
-    .about-intro--with-art {
+  @media (max-width: 900px) {
+    .about-intro {
       grid-template-columns: 1fr;
     }
 
-    .about-art {
-      max-width: 240px;
-      margin: 0 auto;
+    .about-intro :global(.brain-scene) {
+      width: min(80vw, 320px);
     }
   }
 

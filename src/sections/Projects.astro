@@ -1,7 +1,6 @@
 ---
 import projects from '../data/projects.json';
 import ImageCarousel from '../components/ImageCarousel.astro';
-import ModelBadge from '../components/ModelBadge.astro';
 import uiStrings from '../data/ui-strings.json';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
@@ -33,7 +32,6 @@ const flowResume = strings['flow.resume'];
         {project.images.length > 0 && (
           <div class="project-cover">
             <img src={project.images[0].src} alt={project.images[0].alt} loading="lazy" />
-            {project.model3d && <ModelBadge assetId={project.model3d.assetId} alt={project.model3d.alt} class="project-model" />}
           </div>
         )}
 
@@ -477,11 +475,6 @@ const flowResume = strings['flow.resume'];
     height: 200px;
     border-radius: var(--radius-md);
     overflow: hidden;
-  }
-
-  .project-cover :global(.project-model) {
-    right: var(--space-sm);
-    bottom: var(--space-sm);
   }
 
   .project-cover img {

@@ -50,7 +50,7 @@
   "credits.illustrations": { "es": "Ilustraciones", "en": "Illustrations" },
   "credits.via": { "es": "vía", "en": "via" },
 
-  "hero.modelAlt": { "es": "Modelo 3D de un cerebro", "en": "3D brain model" },
+  "about.modelAlt": { "es": "Modelo 3D de un cerebro", "en": "3D brain model" },
 
   "focus.more": { "es": "Ver más", "en": "Show more" },
   "focus.less": { "es": "Ver menos", "en": "Show less" },

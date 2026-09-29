@@ -39,14 +39,7 @@
       }
     ],
     "category": "data engineering",
-    "order": 1,
-    "model3d": {
-      "assetId": "project-cart",
-      "alt": {
-        "es": "Modelo 3D de un carrito de compras",
-        "en": "3D shopping cart model"
-      }
-    }
+    "order": 1
   },
   {
     "id": "caso-negocio",
@@ -92,14 +85,7 @@
       }
     ],
     "category": "data engineering",
-    "order": 2,
-    "model3d": {
-      "assetId": "project-ship",
-      "alt": {
-        "es": "Modelo 3D de un buque portacontenedores",
-        "en": "3D container ship model"
-      }
-    }
+    "order": 2
   },
   {
     "id": "shipping-container-ocr",
@@ -153,13 +139,6 @@
       }
     ],
     "category": "ml",
-    "order": 3,
-    "model3d": {
-      "assetId": "project-container",
-      "alt": {
-        "es": "Modelo 3D de un contenedor de carga",
-        "en": "3D shipping container model"
-      }
-    }
+    "order": 3
   }
 ]
