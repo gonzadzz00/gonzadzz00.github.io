@@ -1,16 +1,17 @@
 ---
 import siteConfig from '../data/site-config.json';
+import HeroBackground from '../components/HeroBackground.astro';
 ---
 
 <header class="hero">
-  <div class="hero-bg">
-    <img src="/images/hero-poster.webp" alt="Portada" class="hero-bg-image" width="1584" height="656" fetchpriority="high" decoding="async" />
-  </div>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <HeroBackground />
   <div class="hero-content">
     <h1 class="hero-title" aria-label={siteConfig.ownerName}>
       <span class="scramble-text" aria-hidden="true" data-scramble={siteConfig.ownerName}>{siteConfig.ownerName}</span>
     </h1>
     <p class="hero-tagline" data-i18n-es={siteConfig.tagline.es} data-i18n-en={siteConfig.tagline.en}>{siteConfig.tagline.es}</p>
+    <span class="hero-rule" aria-hidden="true"></span>
   </div>
 </header>
 
@@ -79,8 +80,21 @@ import siteConfig from '../data/site-config.json';
     });
   }
 
+  // Pause the artwork animations while the hero is off screen
+  function initHeroVisibility() {
+    const hero = document.querySelector<HTMLElement>('.hero');
+    if (!hero) return;
+    new IntersectionObserver(entries => {
+      hero.classList.toggle('is-offscreen', !entries.some(e => e.isIntersecting));
+    }).observe(hero);
+  }
+
   initTitleScramble();
-  document.addEventListener('astro:after-swap', initTitleScramble);
+  initHeroVisibility();
+  document.addEventListener('astro:after-swap', () => {
+    initTitleScramble();
+    initHeroVisibility();
+  });
 </script>
 
 <style>
@@ -95,16 +109,38 @@ import siteConfig from '../data/site-config.json';
     border-bottom: 4px solid var(--accent-color);
   }
 
+  /* Same palette as the previous cover: teal light top-left fading into deep navy */
   .hero-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
+    background:
+      radial-gradient(ellipse 55% 75% at 0% 12%, rgba(84, 146, 171, 0.8), transparent 62%),
+      radial-gradient(ellipse 45% 60% at 74% 48%, rgba(18, 98, 121, 0.6), transparent 68%),
+      linear-gradient(160deg, #0f4162 0%, #0b2e4c 34%, #061b36 66%, #030b20 100%);
   }
 
-  .hero-bg-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1.3px);
+    background-size: 34px 34px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 70% 50%, #000, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 80% at 70% 50%, #000, transparent 75%);
+    opacity: 0.55;
+  }
+
+  .hero-rule {
+    display: block;
+    width: 84px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
+    box-shadow: 0 0 16px rgba(0, 164, 239, 0.6);
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
   }
 
   .hero-content {
@@ -149,7 +185,45 @@ import siteConfig from '../data/site-config.json';
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* Desktop: text on the left, artwork on the right */
+  @media (min-width: 992px) {
+    .hero {
+      justify-content: flex-start;
+    }
+
+    .hero-content {
+      text-align: left;
+      max-width: 54%;
+      padding-left: clamp(4rem, 9vw, 9rem);
+    }
+
+    .hero-rule {
+      margin: 0;
+    }
+  }
+
+  /* Mobile: title on top, chip artwork underneath */
+  @media (max-width: 991px) {
+    .hero {
+      align-items: flex-start;
+    }
+
+    .hero-content {
+      padding-top: 22vh;
+    }
+
+    /* Soft scrim so circuit lines never fight with the title */
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      inset: 8% -6% 0;
+      z-index: -1;
+      background: radial-gradient(ellipse at center, rgba(3, 11, 32, 0.6), transparent 70%);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
+    .hero-rule,
     .hero-title,
     .hero-tagline {
       opacity: 1;
