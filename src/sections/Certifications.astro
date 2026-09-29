@@ -120,10 +120,17 @@ const nextAria = strings['certifications.nextAria'];
       nextBtn?.toggleAttribute('disabled', list.scrollLeft >= maxScroll - 4);
     }
 
+    // The visible page excludes the horizontal padding reserved for the glow
+    function pageWidth() {
+      if (!list) return 0;
+      const padding = parseFloat(getComputedStyle(list).paddingLeft) || 0;
+      return list.clientWidth - padding * 2;
+    }
+
     function scrollByPage(direction: number) {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       list?.scrollBy({
-        left: direction * (list?.clientWidth ?? 0),
+        left: direction * pageWidth(),
         behavior: prefersReducedMotion ? 'auto' : 'smooth',
       });
     }
@@ -228,11 +235,19 @@ const nextAria = strings['certifications.nextAria'];
     gap: var(--space-md);
   }
 
+  /* overflow-x:auto also clips vertically, so the cards' glow and hover lift need
+     breathing room inside the scroller. The negative margin keeps the layout unchanged;
+     the horizontal room equals the gap so the neighbouring card never peeks in. */
   .certs-list {
+    --glow-room-x: var(--space-lg);
+    --glow-room-y: 4rem;
     display: flex;
     flex: 1;
     min-width: 0;
     gap: var(--space-lg);
+    padding: var(--glow-room-y) var(--glow-room-x);
+    margin: calc(var(--glow-room-y) * -1) calc(var(--glow-room-x) * -1);
+    scroll-padding-inline: var(--glow-room-x);
     overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
@@ -245,6 +260,8 @@ const nextAria = strings['certifications.nextAria'];
   }
 
   .certs-nav-btn {
+    position: relative;
+    z-index: 2;
     flex-shrink: 0;
     display: flex;
     align-items: center;
