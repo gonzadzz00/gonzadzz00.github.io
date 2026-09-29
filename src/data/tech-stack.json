@@ -11,5 +11,6 @@
   { "name": "n8n", "color": "#EA4B71", "iconUrl": "https://cdn.simpleicons.org/n8n/EA4B71" },
   { "name": "React", "color": "#61DAFB", "iconUrl": "https://cdn.simpleicons.org/react/61DAFB" },
   { "name": "Ollama", "color": "#000000", "iconUrl": "https://cdn.simpleicons.org/ollama/000000" },
-  { "name": "Anthropic", "color": "#191919", "iconUrl": "https://cdn.simpleicons.org/anthropic/191919" }
+  { "name": "Anthropic", "color": "#191919", "iconUrl": "https://cdn.simpleicons.org/anthropic/191919" },
+  { "name": "Cloudflare", "color": "#F38020", "iconUrl": "https://cdn.simpleicons.org/cloudflare/F38020" }
 ]
