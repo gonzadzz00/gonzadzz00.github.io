@@ -23,7 +23,7 @@ const educationTitle = strings['section.education.title'];
   <div class="timeline reveal-stagger" data-timeline>
     {education.map((entry: any) => (
       <div class="timeline-item">
-      <div class="card education-card" data-tilt>
+      <div class="card education-card">
         <div class="edu-header">
           <a href={entry.institutionUrl} target="_blank" rel="noopener noreferrer">
             <img src={entry.institutionLogo} alt={`Logo ${entry.institution}`} class="edu-logo" loading="lazy" />
@@ -115,6 +115,17 @@ const educationTitle = strings['section.education.title'];
   .education-card {
     display: flex;
     flex-direction: column;
+  }
+
+  /* Static cards: no hover lift, tilt or spotlight (the timeline carries the motion) */
+  .card.education-card:hover,
+  .card.education-card:focus-within {
+    transform: none;
+    box-shadow: var(--card-shadow), var(--glow-shadow);
+  }
+
+  .card.education-card::after {
+    display: none;
   }
 
   .edu-header {
