@@ -1,0 +1,279 @@
+---
+/**
+ * Extra hero details that nod to AI and software development: a code window with an agent
+ * skeleton, a small neural network whose nodes fire in a wave, and floating tags.
+ * Purely decorative (aria-hidden) and only shown on wide screens, where there is room.
+ */
+
+const NN_LAYERS = [3, 4, 4, 2];
+const NN_W = 200;
+const NN_H = 120;
+const NN_PAD = 14;
+
+const layerX = (l: number) => NN_PAD + (l * (NN_W - NN_PAD * 2)) / (NN_LAYERS.length - 1);
+const nodeY = (count: number, i: number) =>
+  count === 1 ? NN_H / 2 : NN_PAD + (i * (NN_H - NN_PAD * 2)) / (count - 1);
+
+const nodes = NN_LAYERS.flatMap((count, l) =>
+  Array.from({ length: count }, (_, i) => ({ l, i, x: layerX(l), y: nodeY(count, i) }))
+);
+
+const edges = NN_LAYERS.slice(0, -1).flatMap((count, l) =>
+  Array.from({ length: count }, (_, i) =>
+    Array.from({ length: NN_LAYERS[l + 1] }, (_, j) => ({
+      x1: layerX(l),
+      y1: nodeY(count, i),
+      x2: layerX(l + 1),
+      y2: nodeY(NN_LAYERS[l + 1], j),
+    }))
+  ).flat()
+);
+
+const tags = ['</>', '{ }', 'LLM', '01', '.py'];
+---
+
+<div class="hero-decor" aria-hidden="true">
+  <div class="decor-card decor-code">
+    <div class="code-bar">
+      <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+      <span class="code-file">agent.py</span>
+    </div>
+    <pre class="code-body"><span class="ln" style="--n:0"><span class="k">class</span> <span class="f">Agent</span>:</span>
+<span class="ln" style="--n:1">    <span class="k">def</span> <span class="f">run</span>(<span class="v">self</span>, data):</span>
+<span class="ln" style="--n:2">        plan = <span class="v">self</span>.<span class="f">llm</span>(data)</span>
+<span class="ln" style="--n:3">        result = <span class="v">self</span>.<span class="f">tools</span>(plan)</span>
+<span class="ln" style="--n:4">        <span class="k">return</span> result<span class="caret"></span></span></pre>
+  </div>
+
+  <div class="decor-card decor-nn">
+    <svg viewBox={`0 0 ${NN_W} ${NN_H}`} xmlns="http://www.w3.org/2000/svg">
+      <g class="nn-edges">
+        {edges.map(e => (
+          <line x1={e.x1} y1={e.y1} x2={e.x2} y2={e.y2} />
+        ))}
+      </g>
+      <g class="nn-nodes">
+        {nodes.map(n => (
+          <circle
+            class={n.l === NN_LAYERS.length - 1 ? 'nn-node nn-node--out' : 'nn-node'}
+            cx={n.x}
+            cy={n.y}
+            r="5.5"
+            style={`animation-delay: ${(n.l * 0.45 + n.i * 0.08).toFixed(2)}s`}
+          />
+        ))}
+      </g>
+    </svg>
+    <span class="nn-caption">model.fit()</span>
+  </div>
+
+  {tags.map((t, i) => (
+    <span class={`decor-tag decor-tag--${i + 1}`} style={`--float-delay: ${i * -1.7}s`}>{t}</span>
+  ))}
+</div>
+
+<style is:global>
+  .hero-decor {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: none;
+    pointer-events: none;
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+  }
+
+  @media (min-width: 1200px) {
+    .hero-decor {
+      display: block;
+    }
+  }
+
+  .decor-card {
+    position: absolute;
+    background: rgba(6, 27, 54, 0.55);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(61, 224, 224, 0.32);
+    border-radius: 12px;
+    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.35), 0 0 24px rgba(0, 164, 239, 0.18);
+  }
+
+  /* ---- code window ---- */
+  .decor-code {
+    right: 4%;
+    bottom: 11%;
+    width: 320px;
+    overflow: hidden;
+  }
+
+  .code-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(61, 224, 224, 0.2);
+  }
+
+  .code-bar .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .dot--r { background: #ff6b6b; }
+  .dot--y { background: #ffd166; }
+  .dot--g { background: #5bd68a; }
+
+  .code-file {
+    margin-left: 8px;
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .code-body {
+    margin: 0;
+    padding: 14px 16px 16px;
+    font-family: inherit;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: #d6ecf7;
+    white-space: normal;
+    overflow: hidden;
+  }
+
+  .code-body .ln {
+    display: block;
+    white-space: pre;
+    animation: decor-line 0.6s var(--motion-ease) backwards;
+    animation-delay: calc(0.9s + var(--n, 0) * 0.28s);
+  }
+
+  .code-body .k { color: #b48cff; }
+  .code-body .f { color: #3de0e0; }
+  .code-body .v { color: #7cc4ff; }
+
+  .code-body .caret {
+    display: inline-block;
+    width: 7px;
+    height: 1.05em;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    background: #8ff5f5;
+    animation: decor-caret 1.05s steps(1) infinite;
+  }
+
+  /* ---- neural network ---- */
+  .decor-nn {
+    right: 6%;
+    top: 17%;
+    width: 232px;
+    padding: 14px 16px 10px;
+  }
+
+  .decor-nn svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .nn-edges line {
+    stroke: rgba(61, 224, 224, 0.28);
+    stroke-width: 0.8;
+  }
+
+  .nn-node {
+    fill: #061b36;
+    stroke: #3de0e0;
+    stroke-width: 1.4;
+    animation: decor-fire 3.2s ease-in-out infinite;
+  }
+
+  .nn-node--out {
+    stroke: #b48cff;
+  }
+
+  .nn-caption {
+    display: block;
+    margin-top: 6px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: right;
+  }
+
+  /* ---- floating tags ---- */
+  .decor-tag {
+    position: absolute;
+    padding: 5px 11px;
+    font-size: 13px;
+    color: #8ff5f5;
+    background: rgba(6, 27, 54, 0.5);
+    border: 1px solid rgba(61, 224, 224, 0.3);
+    border-radius: 999px;
+    box-shadow: 0 0 14px rgba(0, 164, 239, 0.22);
+    animation: decor-float 7s ease-in-out infinite alternate;
+    animation-delay: var(--float-delay, 0s);
+  }
+
+  .decor-tag--1 { right: 30%; top: 15%; }
+  .decor-tag--2 { right: 36%; bottom: 21%; }
+  .decor-tag--3 { right: 13%; top: 47%; }
+  .decor-tag--4 { right: 4%; top: 40%; }
+  .decor-tag--5 { right: 25%; bottom: 8%; }
+
+  /* Short laptop screens: smaller cards so they stay clear of the chip */
+  @media (min-width: 1200px) and (max-height: 760px) {
+    .decor-nn {
+      width: 190px;
+      top: 15%;
+      right: 5%;
+      padding: 10px 12px 8px;
+    }
+
+    .decor-code {
+      width: 280px;
+      bottom: 7%;
+    }
+
+    .decor-tag--1,
+    .decor-tag--5 {
+      display: none;
+    }
+  }
+
+  @keyframes decor-line {
+    from { opacity: 0; transform: translateX(-8px); }
+  }
+
+  @keyframes decor-caret {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  @keyframes decor-fire {
+    0%, 100% { fill: #061b36; }
+    18% { fill: #8ff5f5; }
+    40% { fill: #061b36; }
+  }
+
+  @keyframes decor-float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .code-body .ln,
+    .code-body .caret,
+    .nn-node,
+    .decor-tag {
+      animation: none;
+    }
+  }
+
+  /* Paused off screen by Hero.astro */
+  .hero.is-offscreen .code-body .caret,
+  .hero.is-offscreen .nn-node,
+  .hero.is-offscreen .decor-tag {
+    animation-play-state: paused;
+  }
+</style>

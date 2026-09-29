@@ -1,11 +1,13 @@
 ---
 import siteConfig from '../data/site-config.json';
 import HeroBackground from '../components/HeroBackground.astro';
+import HeroDecor from '../components/HeroDecor.astro';
 ---
 
 <header class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
   <HeroBackground />
+  <HeroDecor />
   <div class="hero-content">
     <h1 class="hero-title" aria-label={siteConfig.ownerName}>
       <span class="scramble-text" aria-hidden="true" data-scramble={siteConfig.ownerName}>{siteConfig.ownerName}</span>
