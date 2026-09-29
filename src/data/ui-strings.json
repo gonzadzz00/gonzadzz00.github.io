@@ -55,7 +55,7 @@
   "focus.more": { "es": "Ver más", "en": "Show more" },
   "focus.less": { "es": "Ver menos", "en": "Show less" },
 
-  "contact.writeMe": { "es": "Escríbeme", "en": "Write me" },
+  "contact.connect": { "es": "También puedes conectar conmigo en LinkedIn, revisar mi código en GitHub o escribirme por WhatsApp.", "en": "You can also connect with me on LinkedIn, browse my code on GitHub or message me on WhatsApp." },
 
   "flow.pause": { "es": "Pausar animación", "en": "Pause animation" },
   "flow.resume": { "es": "Reanudar animación", "en": "Resume animation" },

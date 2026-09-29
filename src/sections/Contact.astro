@@ -13,13 +13,13 @@ const brandColors: Record<string, string> = {
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const thanksTitle = strings['contact.thanksTitle'];
 const cta = strings['contact.cta'];
-const writeMe = strings['contact.writeMe'];
+const connect = strings['contact.connect'];
 ---
 
 <section id="contacto" class="section">
   <div class="contact-container reveal">
     <div class="contact-photo">
-      <img src={siteConfig.profileImage} alt={siteConfig.ownerName} width="180" height="180" loading="lazy" decoding="async" />
+      <img src={siteConfig.profileImage} alt={siteConfig.ownerName} width="240" height="240" loading="lazy" decoding="async" />
       <Illustration
         assetId="contact"
         float
@@ -40,13 +40,9 @@ const writeMe = strings['contact.writeMe'];
           {siteConfig.contactEmail}
         </a>
         <p class="contact-cta" data-i18n-es={cta.es} data-i18n-en={cta.en}>{cta.es}</p>
-        <a href={`mailto:${siteConfig.contactEmail}`} class="btn-primary contact-write">
-          <i class="fas fa-paper-plane contact-write-icon" aria-hidden="true"></i>
-          <span data-i18n-es={writeMe.es} data-i18n-en={writeMe.en}>{writeMe.es}</span>
-        </a>
-      </div>
+        <p class="contact-connect" data-i18n-es={connect.es} data-i18n-en={connect.en}>{connect.es}</p>
 
-      <div class="social-links reveal-chips">
+        <div class="social-links reveal-chips">
         {siteConfig.socialLinks.map((link: any, i: number) => (
           <a
             href={link.url}
@@ -58,6 +54,7 @@ const writeMe = strings['contact.writeMe'];
             <i class={link.icon}></i>
           </a>
         ))}
+        </div>
       </div>
     </div>
   </div>
@@ -78,8 +75,8 @@ const writeMe = strings['contact.writeMe'];
   }
 
   .contact-photo img {
-    width: 180px;
-    height: 180px;
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
@@ -120,49 +117,6 @@ const writeMe = strings['contact.writeMe'];
     margin: var(--space-md) 0;
   }
 
-  /* Primary CTA: idle pulse ring, light sweep and a paper plane that takes off on hover */
-  .contact-write {
-    margin-top: var(--space-sm);
-    overflow: hidden;
-    animation: contact-pulse calc(var(--motion-duration-slow) * 3.5) ease-out infinite;
-  }
-
-  .contact-write::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -60%;
-    width: 40%;
-    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transform: skewX(-20deg);
-    pointer-events: none;
-  }
-
-  .contact-write:hover,
-  .contact-write:focus-visible {
-    animation-play-state: paused;
-  }
-
-  .contact-write:hover::before,
-  .contact-write:focus-visible::before {
-    left: 130%;
-    transition: left calc(var(--motion-duration-slow) * 0.9) var(--motion-ease);
-  }
-
-  .contact-write-icon {
-    transition: transform var(--motion-duration-base) var(--motion-ease);
-  }
-
-  .contact-write:hover .contact-write-icon,
-  .contact-write:focus-visible .contact-write-icon {
-    transform: translate(4px, -4px) rotate(-14deg) scale(1.15);
-  }
-
-  @keyframes contact-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 164, 239, 0.45), var(--glow-shadow); }
-    70%, 100% { box-shadow: 0 0 0 14px rgba(0, 164, 239, 0), var(--glow-shadow); }
-  }
 
   .email-link {
     background: linear-gradient(currentColor, currentColor) no-repeat 50% 100% / 0 2px;
@@ -184,21 +138,29 @@ const writeMe = strings['contact.writeMe'];
     color: var(--text-color) !important;
   }
 
+  .contact-connect {
+    max-width: 480px;
+    margin: var(--space-md) auto 0;
+    text-align: center;
+    color: var(--secondary-text);
+    line-height: 1.6;
+  }
+
   .social-links {
     display: flex;
     justify-content: center;
-    gap: var(--space-xl);
-    margin-top: var(--space-lg);
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
   }
 
   .social-links a {
     position: relative;
     display: grid;
     place-items: center;
-    width: 52px;
-    height: 52px;
+    width: 68px;
+    height: 68px;
     border-radius: 50%;
-    font-size: var(--text-xl);
+    font-size: var(--text-3xl);
     color: var(--text-color);
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -271,7 +233,6 @@ const writeMe = strings['contact.writeMe'];
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-write,
     .social-links.reveal-chips.visible a,
     .social-links a:hover i,
     .social-links a:focus-visible i,
@@ -284,15 +245,22 @@ const writeMe = strings['contact.writeMe'];
       opacity: 1;
     }
 
-    .contact-write:hover .contact-write-icon,
-    .contact-write:focus-visible .contact-write-icon,
     .social-links a:hover,
     .social-links a:focus-visible {
       transform: none;
     }
+  }
 
-    .contact-write::before {
-      display: none;
+  /* Inside the card there is less width on phones: smaller buttons keep one row */
+  @media (max-width: 480px) {
+    .social-links {
+      gap: var(--space-sm);
+    }
+
+    .social-links a {
+      width: 58px;
+      height: 58px;
+      font-size: var(--text-2xl);
     }
   }
 
@@ -303,8 +271,8 @@ const writeMe = strings['contact.writeMe'];
     }
 
     .contact-photo img {
-      width: 140px;
-      height: 140px;
+      width: 190px;
+      height: 190px;
     }
   }
 </style>
