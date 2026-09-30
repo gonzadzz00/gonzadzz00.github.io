@@ -1,0 +1,431 @@
+---
+/**
+ * Circuit traces that leave the chip: 16 pins (4 per side), each with its own trace ending in a
+ * ring. Five of them plug into the three hero illustrations (three to the workflow, one to the
+ * neural network, one to computer vision); the rest wander across the cover as loose nodes.
+ *
+ * The SVGs are drawn on a 1920 x 1080 reference grid and stretched to the viewport
+ * (preserveAspectRatio="none"), so every x/y below maps 1:1 to vw/vh:
+ * x / 19.2 = vw, y / 10.8 = vh. Rings are HTML elements placed with the same vw/vh so they
+ * stay perfectly round. Loose traces are generated at build time from a seeded PRNG, so the
+ * composition is deterministic. Desktop only; under 1280px the chip stands on its own.
+ */
+
+type Point = [number, number];
+
+const VIEW_W = 1920;
+const VIEW_H = 1080;
+const CHIP = { x: 1344, y: 497, half: 125 }; // centre (70vw, 46vh), 13vw wide
+const PIN_OFFSETS = [-90, -30, 30, 90];
+const STUB = 20;
+const UNIT = 46;
+
+const toVw = (x: number) => +((x / VIEW_W) * 100).toFixed(2);
+const toVh = (y: number) => +((y / VIEW_H) * 100).toFixed(2);
+
+const chipLeft = CHIP.x - CHIP.half; // 1219
+const chipRight = CHIP.x + CHIP.half; // 1469
+
+// ---- Connectors: the traces that plug into the illustrations ----
+// Three separate ports for the workflow, stepping down and to the left (around 35-42vw, 63-72vh)
+const WF_PORTS: Point[] = [
+  [806, 680],
+  [746, 730],
+  [686, 780],
+];
+const NN_RING: Point = [1546, 281];
+const CV_RING: Point = [1546, 886];
+
+// Left side: pins 1-3 are three lanes that never cross (outer pin -> outer lane, and the
+// higher the pin the higher its port). Each one ends on its own port. Pin 0 stays loose.
+const wfPins = PIN_OFFSETS.slice(1).map(o => CHIP.y + o);
+const wfLanes = [950, 1015, 1080];
+const wfTraces = wfPins.map((py, i) => ({
+  d: `M${chipLeft} ${py} H${chipLeft - STUB} H${wfLanes[i]} V${WF_PORTS[i][1]} H${WF_PORTS[i][0]}`,
+  delay: -i * 1.3,
+  duration: 5.2 + i * 0.6,
+}));
+
+// Right side: the outer pins go to the neural network (up) and computer vision (down)
+const nnTrace = {
+  d: `M${chipRight} ${CHIP.y + PIN_OFFSETS[0]} H${chipRight + STUB} H1515 V${NN_RING[1]} H${NN_RING[0]}`,
+  delay: -2,
+  duration: 5.6,
+};
+const cvTrace = {
+  d: `M${chipRight} ${CHIP.y + PIN_OFFSETS[3]} H${chipRight + STUB} H1515 V${CV_RING[1]} H${CV_RING[0]}`,
+  delay: -4,
+  duration: 6.4,
+};
+
+// ---- Loose traces ----
+function mulberry32(seed: number) {
+  let a = seed;
+  return () => {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Zones loose traces must stay out of: the text, the illustrations, the connector corridors
+// and the scroll button. Everything is on the 1920 x 1080 grid.
+const KEEP_OUT: Array<[number, number, number, number]> = [
+  [130, 215, 960, 690], // text block
+  [650, 445, 1215, 810], // workflow connector lanes
+  [-60, 700, 650, 1090], // workflow
+  [1520, 120, 1870, 400], // neural network
+  [1495, 262, 1560, 440], // neural network connector
+  [1520, 730, 1900, 1060], // computer vision
+  [1495, 560, 1560, 905], // computer vision connector
+  [1690, 470, 1905, 650], // scroll button
+];
+const blocked = (x: number, y: number) =>
+  x < 24 || x > VIEW_W - 24 || y < 110 || y > VIEW_H - 24 || KEEP_OUT.some(([x1, y1, x2, y2]) => x > x1 && x < x2 && y > y1 && y < y2);
+const segmentClear = ([x1, y1]: Point, [x2, y2]: Point) => {
+  const steps = Math.ceil(Math.hypot(x2 - x1, y2 - y1) / 6);
+  for (let i = 1; i <= steps; i++) {
+    if (blocked(x1 + ((x2 - x1) * i) / steps, y1 + ((y2 - y1) * i) / steps)) return false;
+  }
+  return true;
+};
+
+interface Side {
+  out: Point;
+  // Where the trace is drawn from: under the chip body, so it always meets the pin
+  from: (o: number) => Point;
+  // Where the pin ends on the reference grid (chip edge + stub)
+  start: (o: number) => Point;
+  skip: number[];
+}
+const sides: Side[] = [
+  { out: [1, 0], from: o => [chipRight, CHIP.y + o], start: o => [chipRight + STUB, CHIP.y + o], skip: [0, 3] },
+  { out: [-1, 0], from: o => [chipLeft, CHIP.y + o], start: o => [chipLeft - STUB, CHIP.y + o], skip: [1, 2, 3] },
+  { out: [0, 1], from: o => [CHIP.x + o, CHIP.y + 60], start: o => [CHIP.x + o, CHIP.y + CHIP.half + STUB], skip: [] },
+  { out: [0, -1], from: o => [CHIP.x + o, CHIP.y - 60], start: o => [CHIP.x + o, CHIP.y - CHIP.half - STUB], skip: [] },
+];
+
+interface Pin {
+  d: string;
+}
+const pins: Pin[] = [];
+
+interface Loose {
+  d: string;
+  end: Point;
+  pulse: boolean;
+  delay: number;
+  duration: number;
+}
+const rand = mulberry32(11);
+const loose: Loose[] = [];
+
+sides.forEach(side => {
+  PIN_OFFSETS.forEach(offset => {
+    const f = side.from(offset);
+    const st = side.start(offset);
+    pins.push({ d: `M${f[0]} ${f[1]} L${st[0]} ${st[1]}` });
+  });
+});
+
+sides.forEach(side => {
+  PIN_OFFSETS.forEach((offset, idx) => {
+    // Always draw the random numbers so the skipped pins do not reshuffle the others
+    const runs = [rand(), rand(), rand(), rand(), rand()];
+    const jogs = [rand(), rand(), rand(), rand()];
+    const segs = 3 + Math.floor(runs[0] * 2);
+    const pulse = rand() < 0.6;
+    const delay = rand() * -8;
+    const duration = 5 + rand() * 4;
+    if (side.skip.includes(idx)) return;
+
+    const [ox, oy] = side.out;
+    const sign = offset < 0 ? -1 : 1;
+    const [px, py] = ox === 0 ? [sign, 0] : [0, sign];
+
+    const start = side.start(offset);
+    const points: Point[] = [start];
+    let [x, y] = start;
+    for (let s = 0; s < segs; s++) {
+      const run = 3 + Math.floor(runs[s + 1] * 4);
+      x += ox * UNIT * run;
+      y += oy * UNIT * run;
+      points.push([x, y]);
+      if (jogs[s] < 0.9) {
+        const jog = 1 + Math.floor(jogs[(s + 1) % 4] * 2);
+        x += (ox + px) * UNIT * jog;
+        y += (oy + py) * UNIT * jog;
+        points.push([x, y]);
+      }
+    }
+
+    // Keep each segment as far as it stays clear: a blocked one is shortened, not dropped
+    const kept: Point[] = [start];
+    for (let i = 1; i < points.length; i++) {
+      const prev = kept[kept.length - 1];
+      if (segmentClear(prev, points[i])) {
+        kept.push(points[i]);
+        continue;
+      }
+      for (let t = 0.9; t > 0; t -= 0.1) {
+        const cut: Point = [prev[0] + (points[i][0] - prev[0]) * t, prev[1] + (points[i][1] - prev[1]) * t];
+        if (Math.hypot(cut[0] - prev[0], cut[1] - prev[1]) >= 40 && segmentClear(prev, cut)) {
+          kept.push([Math.round(cut[0]), Math.round(cut[1])]);
+          break;
+        }
+      }
+      break;
+    }
+
+    const from = side.from(offset);
+    const d = `M${from[0]} ${from[1]} ` + kept.map(([px2, py2]) => `L${px2} ${py2}`).join(' ');
+    loose.push({ d, end: kept[kept.length - 1], pulse, delay, duration });
+  });
+});
+
+const rings = [
+  ...WF_PORTS.map(pos => ({ id: 'wf', pos })),
+  { id: 'nn', pos: NN_RING },
+  { id: 'cv', pos: CV_RING },
+];
+---
+
+<div class="hero-traces" aria-hidden="true">
+  <div class="hero-orb hero-orb--cyan"></div>
+  <div class="hero-orb hero-orb--purple"></div>
+
+  <!-- Loose traces: the left side stays calm so the text is easy to read -->
+  <div class="traces-loose">
+    <svg class="traces-svg" viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <g class="trace-group trace-group--loose">
+        {loose.map(t => <path class="trace" d={t.d} pathLength="100" />)}
+        {loose.filter(t => t.pulse).map(t => (
+          <path class="pulse" d={t.d} pathLength="100" style={`animation-delay: ${t.delay.toFixed(2)}s; animation-duration: ${t.duration.toFixed(2)}s`} />
+        ))}
+      </g>
+    </svg>
+    {loose.map(t => (
+      <span class="trace-ring" style={`left: ${toVw(t.end[0])}vw; top: ${toVh(t.end[1])}vh`}></span>
+    ))}
+  </div>
+
+  <!-- Pins: the bright stub of every trace, drawn from under the chip so line and pin are one -->
+  <svg class="traces-svg traces-svg--pins" viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    {pins.map(p => <path class="pin" d={p.d} />)}
+  </svg>
+
+  <!-- Connectors: plug the chip into the three illustrations -->
+  <svg class="traces-svg" viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <g class="trace-group trace-group--wf" data-ill="wf">
+      {wfTraces.map(t => <path class="trace" d={t.d} pathLength="100" />)}
+      {wfTraces.map(t => (
+        <path class="pulse" d={t.d} pathLength="100" style={`animation-delay: ${t.delay}s; animation-duration: ${t.duration}s`} />
+      ))}
+    </g>
+    <g class="trace-group trace-group--nn" data-ill="nn">
+      <path class="trace" d={nnTrace.d} pathLength="100" />
+      <path class="pulse" d={nnTrace.d} pathLength="100" style={`animation-delay: ${nnTrace.delay}s; animation-duration: ${nnTrace.duration}s`} />
+    </g>
+    <g class="trace-group trace-group--cv" data-ill="cv">
+      <path class="trace" d={cvTrace.d} pathLength="100" />
+      <path class="pulse" d={cvTrace.d} pathLength="100" style={`animation-delay: ${cvTrace.delay}s; animation-duration: ${cvTrace.duration}s`} />
+    </g>
+  </svg>
+
+  {rings.map(r => (
+    <span class={`trace-ring trace-ring--${r.id}`} data-ill={r.id} style={`left: ${toVw(r.pos[0])}vw; top: ${toVh(r.pos[1])}vh`}></span>
+  ))}
+</div>
+
+<style is:global>
+  .hero-traces {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    will-change: transform;
+  }
+
+  .hero-orb--cyan {
+    width: 46vw;
+    height: 46vw;
+    max-width: 760px;
+    max-height: 760px;
+    right: 2%;
+    top: 12%;
+    background: radial-gradient(circle, rgba(0, 164, 239, 0.32), transparent 65%);
+    animation: hero-drift 18s ease-in-out infinite alternate;
+  }
+
+  .hero-orb--purple {
+    width: 28vw;
+    height: 28vw;
+    max-width: 460px;
+    max-height: 460px;
+    right: -4%;
+    bottom: -8%;
+    background: radial-gradient(circle, rgba(123, 47, 247, 0.3), transparent 65%);
+    animation: hero-drift 22s ease-in-out infinite alternate-reverse;
+  }
+
+  /* The long traces only exist on desktop, where the three illustrations are shown */
+  .traces-loose,
+  .traces-svg,
+  .trace-ring {
+    display: none;
+  }
+
+  @media (min-width: 1280px) and (min-height: 500px) {
+    .traces-loose {
+      display: block;
+      position: absolute;
+      inset: 0;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.55) 30%, #000 55%);
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.55) 30%, #000 55%);
+    }
+
+    /* 100vw / 100vh (not 100%) so the grid scales like the vw-placed chip and rings,
+       even when a classic scrollbar narrows the page */
+    .traces-svg {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .traces-svg--pins .pin {
+      fill: none;
+      stroke: #3de0e0;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+    }
+
+    .trace-ring {
+      display: block;
+      position: absolute;
+      width: clamp(10px, 0.85vw, 18px);
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: #061b36;
+      border: 1.6px solid var(--ring, #4de0d6);
+      opacity: 0.6;
+      transition: opacity 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+
+    .trace-ring::after {
+      content: '';
+      position: absolute;
+      inset: 28%;
+      border-radius: 50%;
+      background: var(--ring, #4de0d6);
+    }
+  }
+
+  .trace-ring--wf { --ring: #4de0d6; }
+  .trace-ring--nn { --ring: #a78bfa; }
+  .trace-ring--cv { --ring: #27b5f0; }
+
+  .trace-group {
+    --c: #4de0d6;
+    opacity: 0.6;
+    transition: opacity 0.3s ease-out, filter 0.3s ease-out;
+  }
+
+  .trace-group--nn { --c: #a78bfa; }
+  .trace-group--cv { --c: #27b5f0; }
+
+  .trace-group .trace {
+    fill: none;
+    stroke: var(--c);
+    stroke-opacity: 0.7;
+    stroke-width: 1.8;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  .trace-group .pulse {
+    fill: none;
+    stroke: #dffffb;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 5 95;
+    stroke-dashoffset: 0;
+    filter: drop-shadow(0 0 5px var(--c));
+    animation: hero-pulse 7s linear infinite;
+  }
+
+  /* Hover / focus on a term lights its trace and ring; the others step back */
+  .hero[data-active] .trace-group,
+  .hero[data-active] .trace-ring {
+    opacity: 0.25;
+  }
+
+  .hero[data-active='wf'] .trace-group--wf,
+  .hero[data-active='nn'] .trace-group--nn,
+  .hero[data-active='cv'] .trace-group--cv {
+    opacity: 1;
+    filter: brightness(1.35);
+  }
+
+  .hero[data-active='wf'] .trace-ring--wf,
+  .hero[data-active='nn'] .trace-ring--nn,
+  .hero[data-active='cv'] .trace-ring--cv {
+    opacity: 1;
+    box-shadow: 0 0 12px var(--ring);
+  }
+
+  @keyframes hero-pulse {
+    to { stroke-dashoffset: -100; }
+  }
+
+  @keyframes hero-drift {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-3%, 4%, 0); }
+  }
+
+  /* Orbs: keep the glow on the chip when the layout stacks */
+  @media (max-width: 1279px) {
+    .hero-orb--cyan {
+      right: -10%;
+      top: auto;
+      bottom: 0;
+      width: 90vw;
+      height: 90vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .trace-group .pulse,
+    .hero-orb {
+      animation: none;
+    }
+
+    .trace-group,
+    .trace-ring {
+      transition: opacity 0.3s ease-out;
+    }
+
+    .hero[data-active] .trace-group {
+      filter: none;
+    }
+  }
+
+  /* Paused off screen by Hero.astro */
+  .hero.is-offscreen .trace-group .pulse,
+  .hero.is-offscreen .hero-orb {
+    animation-play-state: paused;
+  }
+</style>

@@ -9,6 +9,12 @@
   "themeToggle.aria": { "es": "Cambiar tema", "en": "Toggle theme" },
   "hero.scrollAria": { "es": "Desplazarse a la siguiente sección", "en": "Scroll to next section" },
   "hero.scrollPrevAria": { "es": "Desplazarse a la sección anterior", "en": "Scroll to previous section" },
+  "hero.term.automation": { "es": "Automatización", "en": "Automation" },
+  "hero.term.ml": { "es": "Machine Learning", "en": "Machine Learning" },
+  "hero.term.cv": { "es": "Computer Vision", "en": "Computer Vision" },
+  "hero.cta.projects": { "es": "Ver proyectos", "en": "View projects" },
+  "hero.cta.contact": { "es": "Contacto", "en": "Contact" },
+  "hero.termsAria": { "es": "Áreas de trabajo", "en": "Areas of work" },
 
   "section.about.title": { "es": "Sobre mí", "en": "About Me" },
   "section.about.focusAreas": { "es": "Áreas de Enfoque", "en": "Focus Areas" },

@@ -1,90 +1,213 @@
 ---
 /**
- * Extra hero details that nod to AI and automation: isometric illustrations of a neural
- * network, an AI workflow and computer vision.
- * Purely decorative (aria-hidden) and only shown on wide screens, where there is room.
+ * The three capabilities that come out of the chip: automation (workflow), machine learning
+ * (neural network) and computer vision. The SVGs animate with SMIL, which CSS cannot control,
+ * so they are inlined (after the first paint, to keep them off the LCP path) and paused or
+ * resumed from the script below.
  */
+import workflow from '../assets/hero/workflow.svg?raw';
+import neuralNetwork from '../assets/hero/neural-network.svg?raw';
+import computerVision from '../assets/hero/computer-vision.svg?raw';
+
+// Stagger so the three never pulse together: neural network, computer vision, workflow
+const illustrations = [
+  { id: 'nn', svg: neuralNetwork, delay: 0 },
+  { id: 'cv', svg: computerVision, delay: 1200 },
+  { id: 'wf', svg: workflow, delay: 2400 },
+];
 ---
 
 <div class="hero-decor" aria-hidden="true">
-  <img class="decor-workflow" src="/images/hero/workflow-isometrico.svg" alt="" width="640" height="430" loading="lazy" decoding="async" />
-  <img class="decor-vision" src="/images/hero/computer-vision-isometrico.svg" alt="" width="420" height="342" loading="lazy" decoding="async" />
-  <img class="decor-nn-iso" src="/images/hero/red-neuronal-isometrica.svg" alt="" width="340" height="283" loading="lazy" decoding="async" />
+  {illustrations.map(i => (
+    <div class={`ill ill--${i.id}`} data-ill={i.id} data-delay={i.delay}>
+      <template><Fragment set:html={i.svg} /></template>
+    </div>
+  ))}
 </div>
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const timers = new WeakMap<SVGSVGElement, number>();
+
+  const slots = () => Array.from(document.querySelectorAll<HTMLElement>('.hero-decor .ill'));
+  const svgOf = (slot: HTMLElement) => slot.querySelector<SVGSVGElement>('svg');
+  const shown = (slot: HTMLElement) => getComputedStyle(slot).display !== 'none';
+
+  function play(svg: SVGSVGElement, delay = 0) {
+    window.clearTimeout(timers.get(svg));
+    if (reducedMotion.matches || document.hidden) return;
+    timers.set(svg, window.setTimeout(() => svg.unpauseAnimations(), delay));
+  }
+
+  function freeze(svg: SVGSVGElement) {
+    window.clearTimeout(timers.get(svg));
+    svg.pauseAnimations();
+  }
+
+  // One observer: pause when an illustration leaves the viewport, resume when it returns
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const svg = svgOf(entry.target as HTMLElement);
+      if (!svg) return;
+      if (entry.isIntersecting) play(svg);
+      else freeze(svg);
+    });
+  });
+
+  function mount(slot: HTMLElement) {
+    const template = slot.querySelector('template');
+    if (svgOf(slot) || !template || !shown(slot)) return;
+    slot.append(template.content.cloneNode(true));
+    const svg = svgOf(slot);
+    if (!svg) return;
+
+    // Start frozen; the stagger delay decides when each one begins
+    svg.pauseAnimations();
+    if (reducedMotion.matches) svg.setCurrentTime(2.5);
+    else play(svg, Number(slot.dataset.delay ?? 0));
+    observer.observe(slot);
+  }
+
+  function mountVisible() {
+    slots().forEach(mount);
+  }
+
+  function applyMotionPreference() {
+    slots().forEach(slot => {
+      const svg = svgOf(slot);
+      if (!svg) return;
+      if (reducedMotion.matches) {
+        freeze(svg);
+        svg.setCurrentTime(2.5);
+      } else {
+        play(svg);
+      }
+    });
+  }
+
+  function init() {
+    // After the first render, so the chip and the text own the LCP
+    const start = () => mountVisible();
+    if ('requestIdleCallback' in window) window.requestIdleCallback(start, { timeout: 1200 });
+    else window.setTimeout(start, 200);
+
+    // Illustrations hidden at the current width are only inserted once they become visible
+    let resizeTimer = 0;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(mountVisible, 150);
+    });
+
+    reducedMotion.addEventListener('change', applyMotionPreference);
+    document.addEventListener('visibilitychange', () => {
+      slots().forEach(slot => {
+        const svg = svgOf(slot);
+        if (!svg) return;
+        if (document.hidden) freeze(svg);
+        else play(svg);
+      });
+    });
+  }
+
+  init();
+</script>
 
 <style is:global>
   .hero-decor {
     position: absolute;
     inset: 0;
-    z-index: 1;
-    display: none;
+    z-index: 2;
     pointer-events: none;
   }
 
-  @media (min-width: 1200px) {
-    .hero-decor {
+  .ill {
+    position: absolute;
+    display: none;
+    opacity: 0.85;
+    transform-origin: center;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+
+  .ill svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Desktop (>= 1280px), anchored to the viewport so the composition scales together */
+  @media (min-width: 1280px) and (min-height: 500px) {
+    .ill {
       display: block;
     }
-  }
 
-  /* ---- isometric neural network (top right) ---- */
-  .decor-nn-iso {
-    position: absolute;
-    right: 3%;
-    top: 13%;
-    width: min(24vw, 40vh, 380px);
-    height: auto;
-    animation: decor-bob 10s ease-in-out infinite alternate;
-    animation-delay: -3s;
-  }
+    .ill--wf {
+      left: -3vw;
+      bottom: -10.5vh;
+      width: 36vw;
+    }
 
-  /* ---- isometric computer vision (bottom right) ---- */
-  .decor-vision {
-    position: absolute;
-    right: 2%;
-    bottom: 0;
-    width: min(30vw, 50vh, 440px);
-    height: auto;
-    animation: decor-bob 11s ease-in-out infinite alternate;
-    animation-delay: -6s;
-  }
+    .ill--nn {
+      right: 4vw;
+      top: 13vh;
+      width: 15vw;
+    }
 
-  /* ---- isometric workflow (bottom left, below the title) ---- */
-  .decor-workflow {
-    position: absolute;
-    left: 4%;
-    bottom: 0;
-    width: min(46vw, 74vh, 760px);
-    height: auto;
-    animation: decor-bob 9s ease-in-out infinite alternate;
-  }
-
-  /* Short laptop screens: smaller illustrations so they stay clear of the title */
-  @media (min-width: 1200px) and (max-height: 760px) {
-    .decor-workflow {
-      width: min(40vw, 58vh);
-      left: 5%;
-      bottom: 0;
+    .ill--cv {
+      right: 2vw;
+      bottom: 6vh;
+      width: 17vw;
     }
   }
 
-  @keyframes decor-bob {
-    from { transform: translateY(0); }
-    to { transform: translateY(-8px); }
+  /* Tablet: workflow bleeding off the bottom and the neural network up top */
+  @media (min-width: 768px) and (max-width: 1279px) and (min-height: 500px) {
+    .ill--wf {
+      display: block;
+      left: -3vw;
+      bottom: -10vh;
+      width: 52vw;
+      opacity: 0.6;
+    }
+
+    .ill--nn {
+      display: block;
+      right: 4vw;
+      top: 11vh;
+      width: 20vw;
+    }
+  }
+
+  /* Mobile: one big workflow behind the chip */
+  @media (max-width: 767px) {
+    .ill--wf {
+      display: block;
+      left: -15vw;
+      bottom: -6vh;
+      width: 130vw;
+      opacity: 0.5;
+    }
+  }
+
+  /* Hover / focus on a hero term: its illustration comes forward, the others step back */
+  @media (min-width: 768px) {
+    .hero[data-active] .ill {
+      opacity: 0.45;
+    }
+
+    .hero[data-active='wf'] .ill--wf,
+    .hero[data-active='nn'] .ill--nn,
+    .hero[data-active='cv'] .ill--cv {
+      opacity: 1;
+      transform: scale(1.03);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .decor-nn-iso,
-    .decor-vision,
-    .decor-workflow {
-      animation: none;
+    .hero[data-active='wf'] .ill--wf,
+    .hero[data-active='nn'] .ill--nn,
+    .hero[data-active='cv'] .ill--cv {
+      transform: none;
     }
-  }
-
-  /* Paused off screen by Hero.astro */
-  .hero.is-offscreen .decor-nn-iso,
-  .hero.is-offscreen .decor-vision,
-  .hero.is-offscreen .decor-workflow {
-    animation-play-state: paused;
   }
 </style>

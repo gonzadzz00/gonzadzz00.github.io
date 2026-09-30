@@ -1,19 +1,48 @@
 ---
 import siteConfig from '../data/site-config.json';
-import HeroBackground from '../components/HeroBackground.astro';
+import uiStrings from '../data/ui-strings.json';
+import HeroTraces from '../components/HeroTraces.astro';
 import HeroDecor from '../components/HeroDecor.astro';
+import HeroChip from '../components/HeroChip.astro';
+
+const strings: Record<string, { es: string; en: string }> = uiStrings;
+const terms = [
+  { ill: 'wf', color: '#4de0d6', text: strings['hero.term.automation'] },
+  { ill: 'nn', color: '#a78bfa', text: strings['hero.term.ml'] },
+  { ill: 'cv', color: '#27b5f0', text: strings['hero.term.cv'] },
+];
+const ctaProjects = strings['hero.cta.projects'];
+const ctaContact = strings['hero.cta.contact'];
 ---
 
 <header class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
-  <HeroBackground />
+  <HeroTraces />
   <HeroDecor />
+  <HeroChip />
   <div class="hero-content">
     <h1 class="hero-title" aria-label={siteConfig.ownerName}>
       <span class="scramble-text" aria-hidden="true" data-scramble={siteConfig.ownerName}>{siteConfig.ownerName}</span>
     </h1>
     <p class="hero-tagline" data-i18n-es={siteConfig.tagline.es} data-i18n-en={siteConfig.tagline.en}>{siteConfig.tagline.es}</p>
-    <span class="hero-rule" aria-hidden="true"></span>
+    <ul class="hero-terms" aria-label={strings['hero.termsAria'].es} data-i18n-attr="aria-label" data-i18n-attr-es={strings['hero.termsAria'].es} data-i18n-attr-en={strings['hero.termsAria'].en}>
+      {terms.map(t => (
+        <li>
+          <a
+            class="hero-term"
+            href="#mis-proyectos"
+            data-ill={t.ill}
+            style={`--accent: ${t.color}`}
+            data-i18n-es={t.text.es}
+            data-i18n-en={t.text.en}
+          >{t.text.es}</a>
+        </li>
+      ))}
+    </ul>
+    <div class="hero-ctas">
+      <a class="hero-cta hero-cta--primary" href="#mis-proyectos" data-i18n-es={ctaProjects.es} data-i18n-en={ctaProjects.en}>{ctaProjects.es}</a>
+      <a class="hero-cta hero-cta--secondary" href="#contacto" data-i18n-es={ctaContact.es} data-i18n-en={ctaContact.en}>{ctaContact.es}</a>
+    </div>
   </div>
 </header>
 
@@ -91,11 +120,47 @@ import HeroDecor from '../components/HeroDecor.astro';
     }).observe(hero);
   }
 
+  // Terms light up their illustration (hover, keyboard focus, or first tap on touch)
+  function initHeroTerms() {
+    const hero = document.querySelector<HTMLElement>('.hero');
+    if (!hero) return;
+    const terms = Array.from(hero.querySelectorAll<HTMLAnchorElement>('.hero-term'));
+    const wide = window.matchMedia('(min-width: 768px)');
+    const coarse = window.matchMedia('(pointer: coarse)');
+    const set = (ill: string | null) => {
+      if (ill && wide.matches) hero.setAttribute('data-active', ill);
+      else hero.removeAttribute('data-active');
+    };
+
+    terms.forEach(term => {
+      const ill = term.dataset.ill ?? null;
+      term.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') set(ill); });
+      term.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') set(null); });
+      term.addEventListener('focus', () => { if (term.matches(':focus-visible')) set(ill); });
+      term.addEventListener('blur', () => set(null));
+      // Touch: the first tap activates, a second tap on the same term follows the link
+      term.addEventListener('click', e => {
+        if (!coarse.matches || !wide.matches) return;
+        if (hero.getAttribute('data-active') !== ill) {
+          e.preventDefault();
+          set(ill);
+        }
+      });
+    });
+
+    document.addEventListener('pointerdown', e => {
+      if (!(e.target as Element).closest('.hero-term')) set(null);
+    });
+    wide.addEventListener('change', () => set(null));
+  }
+
   initTitleScramble();
   initHeroVisibility();
+  initHeroTerms();
   document.addEventListener('astro:after-swap', () => {
     initTitleScramble();
     initHeroVisibility();
+    initHeroTerms();
   });
 </script>
 
@@ -105,9 +170,6 @@ import HeroDecor from '../components/HeroDecor.astro';
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-bottom: 4px solid var(--accent-color);
   }
 
@@ -133,32 +195,26 @@ import HeroDecor from '../components/HeroDecor.astro';
     opacity: 0.55;
   }
 
-  .hero-rule {
-    display: block;
-    width: 84px;
-    height: 4px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--accent-color), var(--accent-color-2));
-    box-shadow: 0 0 16px rgba(0, 164, 239, 0.6);
-    margin: 0 auto;
-    opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
-  }
-
+  /* ---- text block (above the chip and the illustrations) ---- */
   .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
+    position: absolute;
+    z-index: 4;
+    left: 8vw;
+    top: 38vh;
+    transform: translateY(-50%);
+    max-width: 40vw;
+    text-align: left;
     color: #fff;
-    padding: var(--space-2xl) var(--space-lg);
   }
 
   .hero-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
     font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(44px, 4.4vw, 84px);
+    line-height: 1.1;
     color: #fff;
-    margin-bottom: var(--space-sm);
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    margin: 0 0 8px;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
     opacity: 0;
     animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
   }
@@ -174,12 +230,97 @@ import HeroDecor from '../components/HeroDecor.astro';
   }
 
   .hero-tagline {
-    font-size: var(--text-xl);
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: var(--space-xl);
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    font-size: clamp(16px, 1.3vw, 28px);
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
     opacity: 0;
     animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+  }
+
+  .hero-terms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    font-size: clamp(14px, 1.05vw, 22px);
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+  }
+
+  .hero-term {
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+    border-radius: 4px;
+    transition: text-decoration-color 0.3s ease-out;
+  }
+
+  .hero-term:hover {
+    color: #fff;
+  }
+
+  .hero-term:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out;
+  }
+
+  .hero-cta:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  .hero-cta--primary {
+    background: #27b5f0;
+    color: #061b36;
+  }
+
+  .hero-cta--primary:hover {
+    color: #061b36;
+    background: #4cc6f7;
+    box-shadow: 0 0 18px rgba(39, 181, 240, 0.55);
+    transform: translateY(-1px);
+  }
+
+  .hero-cta--secondary {
+    border-color: #4de0d6;
+    background: transparent;
+    color: #fff;
+  }
+
+  .hero-cta--secondary:hover {
+    color: #fff;
+    background: rgba(77, 224, 214, 0.14);
+    transform: translateY(-1px);
   }
 
   @keyframes fadeInUp {
@@ -187,49 +328,89 @@ import HeroDecor from '../components/HeroDecor.astro';
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Desktop: text on the left, artwork on the right */
-  @media (min-width: 992px) {
-    .hero {
-      justify-content: flex-start;
-    }
-
+  /* Tablet */
+  @media (max-width: 1279px) {
     .hero-content {
-      text-align: left;
-      max-width: 54%;
-      padding-left: clamp(4rem, 9vw, 9rem);
-    }
-
-    .hero-rule {
-      margin: 0;
+      left: 6vw;
+      max-width: 55vw;
     }
   }
 
-  /* Mobile: title on top, chip artwork underneath */
-  @media (max-width: 991px) {
+  /* Mobile: text on top and centred, chip underneath */
+  @media (max-width: 767px) {
     .hero {
-      align-items: flex-start;
+      min-height: max(100svh, 660px);
     }
 
     .hero-content {
-      padding-top: 22vh;
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      max-width: none;
+      padding: calc(var(--navbar-height, 76px) + 28px) 24px 0;
+      text-align: center;
     }
 
-    /* Soft scrim so circuit lines never fight with the title */
-    .hero-content::before {
-      content: '';
-      position: absolute;
-      inset: 8% -6% 0;
-      z-index: -1;
-      background: radial-gradient(ellipse at center, rgba(3, 11, 32, 0.6), transparent 70%);
+    .hero-title {
+      font-size: clamp(34px, 9vw, 48px);
+    }
+
+    .hero-terms {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-cta {
+      width: 100%;
+    }
+  }
+
+  /* Landscape phones: text and chip only */
+  @media (max-height: 499px) and (min-width: 768px) {
+    .hero {
+      min-height: 100vh;
+    }
+
+    .hero-content {
+      top: 56vh;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 8vh, 40px);
+    }
+
+    .hero-terms {
+      margin-top: 10px;
+    }
+
+    .hero-ctas {
+      margin-top: 10px;
+    }
+
+    .hero-cta {
+      height: 40px;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-rule,
     .hero-title,
-    .hero-tagline {
+    .hero-tagline,
+    .hero-terms,
+    .hero-ctas {
       opacity: 1;
       animation: none;
+      transform: none;
+    }
+
+    .hero-cta:hover {
       transform: none;
     }
   }

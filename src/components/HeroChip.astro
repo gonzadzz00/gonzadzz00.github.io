@@ -1,0 +1,187 @@
+---
+/**
+ * The AI chip: the one protagonist of the cover. Drawn as inline SVG (170 x 170 grid) and sized
+ * in vw, with a cyan halo behind it. Its pins and the traces that leave it live in HeroTraces.astro.
+ */
+
+const SIZE = 170;
+
+// CPU die inside the package: 2x2 cores around a shared cache strip
+const DIE_INSET = 26;
+const dieSize = SIZE - DIE_INSET * 2;
+const DIE_PAD = 8;
+const CORE_GAP = 6;
+const CORE_W = (dieSize - DIE_PAD * 2 - CORE_GAP) / 2;
+const CORE_H = 34;
+const CACHE_H = dieSize - DIE_PAD * 2 - CORE_H * 2 - CORE_GAP * 2;
+const cores = [0, 1].flatMap(row =>
+  [0, 1].map(col => ({
+    x: DIE_INSET + DIE_PAD + col * (CORE_W + CORE_GAP),
+    y: DIE_INSET + DIE_PAD + row * (CORE_H + CACHE_H + CORE_GAP * 2),
+    delay: (row * 2 + col) * -1,
+  }))
+);
+const cacheY = DIE_INSET + DIE_PAD + CORE_H + CORE_GAP;
+---
+
+<div class="hero-chip-wrap" aria-hidden="true">
+  <div class="hero-chip-halo"></div>
+  <svg class="hero-chip" viewBox={`-20 -20 ${SIZE + 40} ${SIZE + 40}`} xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="chip-stroke" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#3de0e0" />
+        <stop offset="55%" stop-color="#00a4ef" />
+        <stop offset="100%" stop-color="#7b2ff7" />
+      </linearGradient>
+      <linearGradient id="core-fill" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#00a4ef" />
+        <stop offset="100%" stop-color="#7b2ff7" />
+      </linearGradient>
+      <linearGradient id="die-fill" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0b2e4c" />
+        <stop offset="100%" stop-color="#040f24" />
+      </linearGradient>
+      <pattern id="cpu-cells" width="5" height="5" patternUnits="userSpaceOnUse">
+        <rect x="1" y="1" width="2.6" height="2.6" rx="0.5" fill="#8ff5f5" fill-opacity="0.32" />
+      </pattern>
+      <pattern id="cpu-cache" width="4" height="4" patternUnits="userSpaceOnUse">
+        <path d="M0 3.5H4" stroke="#3de0e0" stroke-opacity="0.45" stroke-width="0.8" />
+      </pattern>
+    </defs>
+
+    <rect class="chip-body" x="0" y="0" width={SIZE} height={SIZE} rx="22" />
+    <rect class="chip-inner" x={DIE_INSET - 6} y={DIE_INSET - 6} width={dieSize + 12} height={dieSize + 12} rx="14" />
+    <polygon class="chip-notch" points="9,9 22,9 9,22" />
+    <rect class="chip-die" x={DIE_INSET} y={DIE_INSET} width={dieSize} height={dieSize} rx="8" fill="url(#die-fill)" />
+    {cores.map(c => (
+      <g>
+        <rect class="chip-core-base" x={c.x} y={c.y} width={CORE_W} height={CORE_H} rx="4" fill="url(#core-fill)" />
+        <rect x={c.x} y={c.y} width={CORE_W} height={CORE_H} rx="4" fill="url(#cpu-cells)" />
+        <rect class="chip-core-glow" x={c.x} y={c.y} width={CORE_W} height={CORE_H} rx="4" style={`animation-delay: ${c.delay}s`} />
+      </g>
+    ))}
+    <rect class="chip-cache" x={DIE_INSET + DIE_PAD} y={cacheY} width={dieSize - DIE_PAD * 2} height={CACHE_H} rx="3" />
+    <rect x={DIE_INSET + DIE_PAD} y={cacheY} width={dieSize - DIE_PAD * 2} height={CACHE_H} rx="3" fill="url(#cpu-cache)" />
+  </svg>
+</div>
+
+<style is:global>
+  .hero-chip-wrap {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+    /* Centre at (70vw, 46vh), 13vw wide (the SVG has a 20-unit margin for the pins) */
+    width: calc(13vw * 210 / 170);
+    aspect-ratio: 1;
+    left: calc(70vw - 13vw * 210 / 170 / 2);
+    top: calc(46vh - 13vw * 210 / 170 / 2);
+  }
+
+  .hero-chip-halo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 75%;
+    height: 75%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #27b5f0;
+    opacity: 0.35;
+    filter: blur(60px);
+  }
+
+  .hero-chip {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .hero-chip .chip-body {
+    fill: #061b36;
+    stroke: url(#chip-stroke);
+    stroke-width: 2.5;
+    filter: drop-shadow(0 0 18px rgba(0, 164, 239, 0.55));
+  }
+
+  .hero-chip .chip-inner {
+    fill: rgba(0, 164, 239, 0.08);
+    stroke: rgba(61, 224, 224, 0.55);
+    stroke-width: 1.2;
+  }
+
+  .hero-chip .chip-notch {
+    fill: #3de0e0;
+    opacity: 0.9;
+  }
+
+  .hero-chip .chip-die {
+    stroke: rgba(61, 224, 224, 0.75);
+    stroke-width: 1.2;
+  }
+
+  .hero-chip .chip-core-base {
+    fill-opacity: 0.75;
+    stroke: rgba(143, 245, 245, 0.7);
+    stroke-width: 0.9;
+  }
+
+  /* Cores take turns lighting up, like load moving across the die */
+  .hero-chip .chip-core-glow {
+    fill: #3de0e0;
+    opacity: 0;
+    animation: chip-core-load 4s ease-in-out infinite;
+  }
+
+  .hero-chip .chip-cache {
+    fill: rgba(0, 164, 239, 0.1);
+    stroke: rgba(61, 224, 224, 0.6);
+    stroke-width: 0.9;
+  }
+
+  @keyframes chip-core-load {
+    0%, 100% { opacity: 0; }
+    30% { opacity: 0.5; }
+  }
+
+  /* Tablet: 18vw at x 74vw; y 46vh (not 40vh) so it clears the neural network on landscape iPads */
+  @media (max-width: 1279px) {
+    .hero-chip-wrap {
+      width: calc(18vw * 210 / 170);
+      left: calc(74vw - 18vw * 210 / 170 / 2);
+      top: calc(46vh - 18vw * 210 / 170 / 2);
+    }
+  }
+
+  /* Mobile: 50vw, centred under the text */
+  @media (max-width: 767px) {
+    .hero-chip-wrap {
+      width: calc(50vw * 210 / 170);
+      left: calc(50vw - 50vw * 210 / 170 / 2);
+      top: auto;
+      bottom: calc(16vh - 50vw * 40 / 170 / 2);
+    }
+  }
+
+  /* Landscape phones: text and chip only */
+  @media (max-height: 499px) {
+    .hero-chip-wrap {
+      width: calc(18vh * 210 / 170);
+      left: calc(74vw - 18vh * 210 / 170 / 2);
+      top: calc(50vh - 18vh * 210 / 170 / 2);
+      bottom: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-chip .chip-core-glow {
+      animation: none;
+    }
+  }
+
+  /* Paused off screen by Hero.astro */
+  .hero.is-offscreen .hero-chip .chip-core-glow {
+    animation-play-state: paused;
+  }
+</style>
