@@ -1,30 +1,26 @@
 [
   {
-    "id": "ciencia-de-datos",
+    "id": "automatizacion",
     "name": {
-      "es": "Ciencia de Datos",
-      "en": "Data Science"
+      "es": "Automatización",
+      "en": "Automation"
     },
-    "icon": "fas fa-atom",
+    "icon": "fas fa-gears",
     "skills": [
       {
-        "es": "Desarrollo de modelos de predicción, clasificación, segmentación y series temporales para apoyar la toma de decisiones.",
-        "en": "Development of prediction, classification, segmentation, and time-series models to support decision-making."
+        "es": "Identificar qué procesos son deterministas: mismas entradas, mismas reglas, mismo resultado.",
+        "en": "Identify which processes are deterministic: same inputs, same rules, same outcome."
       },
       {
-        "es": "Aplicación de algoritmos de aprendizaje supervisado y no supervisado.",
-        "en": "Application of supervised and unsupervised learning algorithms."
+        "es": "Convertir tareas repetitivas en flujos explícitos, predecibles y auditables, sin depender de la intervención manual.",
+        "en": "Turn repetitive tasks into explicit, predictable, auditable flows that don't depend on manual intervention."
       },
       {
-        "es": "Preprocesamiento de datos: limpieza, normalización, imputación, ingeniería de características y selección de variables.",
-        "en": "Data preprocessing: cleaning, normalization, imputation, feature engineering, and feature selection."
-      },
-      {
-        "es": "Optimización y validación de modelos con técnicas de cross-validation, hiperparámetros y pipelines reproducibles en producción.",
-        "en": "Model optimization and validation using cross-validation, hyperparameter tuning, and reproducible production pipelines."
+        "es": "Reservar la IA para lo ambiguo y automatizar con reglas claras todo lo demás: más simple, barato y confiable.",
+        "en": "Reserve AI for what is ambiguous and automate everything else with clear rules: simpler, cheaper, and more reliable."
       }
     ],
-    "illustration": "data-science"
+    "illustration": "automation"
   },
   {
     "id": "ia",
@@ -35,16 +31,16 @@
     "icon": "fa-solid fa-robot",
     "skills": [
       {
-        "es": "Diseño e implementación de agentes inteligentes capaces de automatizar procesos, interactuar con usuarios y tomar decisiones basadas en contexto.",
-        "en": "Design and implementation of intelligent agents capable of automating processes, interacting with users, and making context-aware decisions."
+        "es": "Pensar los agentes como sistemas de decisión: qué objetivo persiguen, qué contexto necesitan y cuándo deben actuar.",
+        "en": "Think of agents as decision systems: what goal they pursue, what context they need, and when they should act."
       },
       {
-        "es": "Uso de frameworks como LangChain y n8n para la orquestación de flujos, integración de herramientas y construcción de pipelines escalables.",
-        "en": "Use of frameworks such as LangChain and n8n for workflow orchestration, tool integration, and building scalable pipelines."
+        "es": "Diseñar el flujo y los límites de autonomía antes de elegir herramientas o frameworks.",
+        "en": "Design the flow and the limits of autonomy before choosing tools or frameworks."
       },
       {
-        "es": "Aplicación de enfoques como prompt engineering, RAG (Retrieval-Augmented Generation) y diseño de herramientas (tools) para ampliar las capacidades de los agentes.",
-        "en": "Application of approaches such as prompt engineering, RAG (Retrieval-Augmented Generation), and tool design to extend agent capabilities."
+        "es": "Buscar confiabilidad: que el agente razone bien, falle de forma controlada y sea evaluable.",
+        "en": "Aim for reliability: agents that reason well, fail in a controlled way, and can be evaluated."
       }
     ],
     "illustration": "ai"
@@ -58,20 +54,16 @@
     "icon": "fas fa-database",
     "skills": [
       {
-        "es": "Administración, modelado y optimización de bases de datos relacionales y no relacionales.",
-        "en": "Administration, modeling, and optimization of relational and non-relational databases."
+        "es": "Modelar los datos según cómo se van a usar, con estructuras claras y pensadas para crecer.",
+        "en": "Model data around how it will be used, with clear structures built to grow."
       },
       {
-        "es": "Diseño y orquestación de flujos de transformación de datos (DAGs) utilizando Apache Airflow.",
-        "en": "Design and orchestration of data transformation workflows (DAGs) using Apache Airflow."
+        "es": "Diseñar pipelines como flujos simples, idempotentes y fáciles de razonar y de reparar.",
+        "en": "Design pipelines as simple, idempotent flows that are easy to reason about and repair."
       },
       {
-        "es": "Construcción de pipelines de datos escalables para ingesta, transformación y carga de datos (ETL/ELT).",
-        "en": "Building scalable data pipelines for ingestion, transformation, and loading (ETL/ELT)."
-      },
-      {
-        "es": "Implementación de estrategias de gobernanza de datos: seguridad, trazabilidad y calidad.",
-        "en": "Implementation of data governance strategies: security, traceability, and quality."
+        "es": "Tratar la calidad, la trazabilidad y la seguridad como parte del diseño, no como un agregado.",
+        "en": "Treat quality, traceability, and security as part of the design, not an add-on."
       }
     ],
     "illustration": "data-eng"
