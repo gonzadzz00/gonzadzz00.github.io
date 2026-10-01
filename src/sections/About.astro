@@ -10,9 +10,6 @@ const strings: Record<string, { es: string; en: string }> = uiStrings;
 const aboutTitle = strings['section.about.title'];
 const focusAreasTitle = strings['section.about.focusAreas'];
 const techStackTitle = strings['section.about.techStack'];
-const focusMore = strings['focus.more'];
-const focusLess = strings['focus.less'];
-const VISIBLE_SKILLS = 2;
 ---
 
 <section id="mi-perfil" class="section">
@@ -41,39 +38,17 @@ const VISIBLE_SKILLS = 2;
 
   <div class="grid-3 reveal-stagger">
     {focusAreas.map((area: any) => (
-      <div class="card focus-card" data-tilt data-focus-card>
+      <div class="card focus-card" data-tilt>
         <Illustration assetId={area.illustration} decorative class="focus-art" />
         <div class="focus-icon">
           <i class={area.icon}></i>
         </div>
         <h4 data-i18n-es={area.name.es} data-i18n-en={area.name.en}>{area.name.es}</h4>
         <ul class="focus-skills">
-          {area.skills.slice(0, VISIBLE_SKILLS).map((skill: { es: string; en: string }) => (
+          {area.skills.map((skill: { es: string; en: string }) => (
             <li data-i18n-es={skill.es} data-i18n-en={skill.en}>{skill.es}</li>
           ))}
         </ul>
-        {area.skills.length > VISIBLE_SKILLS && (
-          <>
-            <div class="focus-extra" id={`focus-extra-${area.id}`}>
-              <ul class="focus-skills">
-                {area.skills.slice(VISIBLE_SKILLS).map((skill: { es: string; en: string }) => (
-                  <li data-i18n-es={skill.es} data-i18n-en={skill.en}>{skill.es}</li>
-                ))}
-              </ul>
-            </div>
-            <button
-              type="button"
-              class="focus-more"
-              aria-expanded="false"
-              aria-controls={`focus-extra-${area.id}`}
-              data-focus-toggle
-            >
-              <span class="focus-more-label focus-more-label--more" data-i18n-es={focusMore.es} data-i18n-en={focusMore.en}>{focusMore.es}</span>
-              <span class="focus-more-label focus-more-label--less" data-i18n-es={focusLess.es} data-i18n-en={focusLess.en}>{focusLess.es}</span>
-              <i class="fas fa-chevron-down focus-more-icon" aria-hidden="true"></i>
-            </button>
-          </>
-        )}
       </div>
     ))}
   </div>
@@ -96,23 +71,6 @@ const VISIBLE_SKILLS = 2;
     </div>
   </div>
 </section>
-
-<script>
-  function initFocusToggles() {
-    document.querySelectorAll<HTMLButtonElement>('[data-focus-toggle]').forEach(button => {
-      if (button.dataset.ready === 'true') return;
-      button.dataset.ready = 'true';
-      button.addEventListener('click', () => {
-        const expanded = button.getAttribute('aria-expanded') === 'true';
-        button.setAttribute('aria-expanded', String(!expanded));
-        button.closest('[data-focus-card]')?.classList.toggle('is-expanded', !expanded);
-      });
-    });
-  }
-
-  initFocusToggles();
-  document.addEventListener('astro:after-swap', initFocusToggles);
-</script>
 
 <script>
   function initTechAutoSlide() {
@@ -150,53 +108,6 @@ const VISIBLE_SKILLS = 2;
   .focus-art {
     width: 96px;
     margin-bottom: var(--space-sm);
-  }
-
-  .focus-extra {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows var(--motion-duration-base) var(--motion-ease);
-  }
-
-  .focus-extra > .focus-skills {
-    overflow: hidden;
-    min-height: 0;
-  }
-
-  .focus-card.is-expanded .focus-extra {
-    grid-template-rows: 1fr;
-  }
-
-  .focus-more {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    margin-top: var(--space-sm);
-    padding: var(--space-xs) 0;
-    background: none;
-    border: none;
-    color: var(--accent-color);
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .focus-more-label--less,
-  .focus-more[aria-expanded='true'] .focus-more-label--more {
-    display: none;
-  }
-
-  .focus-more[aria-expanded='true'] .focus-more-label--less {
-    display: inline;
-  }
-
-  .focus-more-icon {
-    transition: transform var(--motion-duration-fast) var(--motion-ease);
-  }
-
-  .focus-more[aria-expanded='true'] .focus-more-icon {
-    transform: rotate(180deg);
   }
 
   @media (max-width: 900px) {
@@ -345,11 +256,6 @@ const VISIBLE_SKILLS = 2;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .focus-extra,
-    .focus-more-icon {
-      transition: none;
-    }
-
     .reveal-chips:not(.visible) .tech-chip {
       opacity: 1;
     }
