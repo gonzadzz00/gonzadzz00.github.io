@@ -31,8 +31,8 @@
     "institutionLogo": "/icon/ugr.png",
     "institutionUrl": "https://ugr.edu.ar/carreras/ciclo-de-licenciatura-en-ciencia-de-datos/",
     "description": {
-      "es": "Ciclo de licenciatura centrado en IA aplicada. Recorre el aprendizaje automático, profundo y por refuerzo, el procesamiento de lenguaje natural y LLMs, y la visión por computadora, junto con ingeniería de software y herramientas para llevar modelos a proyectos reales. Cierra con un Trabajo Final de Grado orientado a resolver problemas del mundo real.",
-      "en": "Bachelor's completion cycle focused on applied AI. It covers machine learning, deep learning and reinforcement learning, natural language processing and LLMs, and computer vision, along with software engineering and tools to take models into real projects. It closes with a Final Degree Project aimed at solving real-world problems."
+      "es": "Ciclo de licenciatura centrado en Ciencia de datos e Inteligencia Artificial aplicada. Recorre el aprendizaje automático, profundo y por refuerzo, el procesamiento de lenguaje natural y LLMs, y la visión por computadora, junto con ingeniería de software y herramientas para llevar modelos a proyectos reales. Cierra con un Trabajo Final de Grado orientado a resolver problemas del mundo real.",
+      "en": "Bachelor's completion cycle focused on Data Science and applied Artificial Intelligence. It covers machine learning, deep learning and reinforcement learning, natural language processing and LLMs, and computer vision, along with software engineering and tools to take models into real projects. It closes with a Final Degree Project aimed at solving real-world problems."
     },
     "competencies": [
       { "es": "Visión por Computadora", "en": "Computer Vision" },
