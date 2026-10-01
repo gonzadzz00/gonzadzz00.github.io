@@ -6,7 +6,7 @@
   },
   "bio": [
     {
-      "es": "¡Hola! Soy Gonzalo, Data & AI Engineer de Argentina, y curso la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario.",
+      "es": "¡Hola! Soy Gonzalo, Data & AI Engineer de Argentina, actualmente cursando la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario.",
       "en": "Hi! I'm Gonzalo, a Data & AI Engineer from Argentina, currently completing my Bachelor's in Data Science at the Universidad del Gran Rosario."
     },
     {
@@ -15,6 +15,7 @@
     }
   ],
   "profileImage": "/images/foto-contacto.webp",
+  "aboutAvatar": "/images/about-avatar-bordo.webp",
   "socialLinks": [
     {
       "label": "LinkedIn",

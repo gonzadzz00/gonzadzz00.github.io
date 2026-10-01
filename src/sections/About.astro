@@ -19,10 +19,15 @@ const techStackTitle = strings['section.about.techStack'];
   </h2>
 
   <div class="about-intro">
-    <div class="about-bio">
-      {siteConfig.bio.map((paragraph: { es: string; en: string }) => (
-        <p data-i18n-es={paragraph.es} data-i18n-en={paragraph.en}>{paragraph.es}</p>
-      ))}
+    <div class="about-speaker">
+      <span class="about-avatar" aria-hidden="true">
+        <img src={siteConfig.aboutAvatar} alt="" width="128" height="128" loading="lazy" decoding="async" />
+      </span>
+      <div class="about-bio">
+        {siteConfig.bio.map((paragraph: { es: string; en: string }) => (
+          <p data-i18n-es={paragraph.es} data-i18n-en={paragraph.en}>{paragraph.es}</p>
+        ))}
+      </div>
     </div>
     <BrainScene
       modelSrc="/models/hero-brain.glb"
@@ -108,6 +113,69 @@ const techStackTitle = strings['section.about.techStack'];
 
   .about-bio {
     max-width: 800px;
+  }
+
+  .about-avatar {
+    display: none;
+  }
+
+  /* Desktop: the bio is a speech bubble with my photo as the speaker (phones keep plain text) */
+  @media (min-width: 901px) {
+    .about-speaker {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+
+    .about-avatar {
+      display: block;
+      flex-shrink: 0;
+      width: 128px;
+      height: 128px;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 3px solid var(--accent-color);
+      box-shadow: var(--glow-shadow);
+    }
+
+    .about-avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-bio {
+      position: relative;
+      flex: 1;
+      max-width: none;
+      padding: var(--space-xl) var(--space-2xl);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--backdrop-blur));
+      -webkit-backdrop-filter: blur(var(--backdrop-blur));
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      box-shadow: var(--card-shadow), var(--glow-shadow);
+    }
+
+    /* Tail pointing at the photo */
+    .about-bio::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -12px;
+      width: 22px;
+      height: 22px;
+      background: var(--glass-bg);
+      border-left: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      border-bottom-left-radius: 5px;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .about-bio p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .focus-art {
