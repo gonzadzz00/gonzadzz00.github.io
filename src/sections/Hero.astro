@@ -6,11 +6,6 @@ import HeroDecor from '../components/HeroDecor.astro';
 import HeroChip from '../components/HeroChip.astro';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
-const terms = [
-  { ill: 'wf', color: '#4de0d6', text: strings['hero.term.automation'] },
-  { ill: 'nn', color: '#a78bfa', text: strings['hero.term.ml'] },
-  { ill: 'cv', color: '#27b5f0', text: strings['hero.term.cv'] },
-];
 const ctaProjects = strings['hero.cta.projects'];
 const ctaContact = strings['hero.cta.contact'];
 ---
@@ -25,20 +20,6 @@ const ctaContact = strings['hero.cta.contact'];
       <span class="scramble-text" aria-hidden="true" data-scramble={siteConfig.ownerName}>{siteConfig.ownerName}</span>
     </h1>
     <p class="hero-tagline" data-i18n-es={siteConfig.tagline.es} data-i18n-en={siteConfig.tagline.en}>{siteConfig.tagline.es}</p>
-    <ul class="hero-terms" aria-label={strings['hero.termsAria'].es} data-i18n-attr="aria-label" data-i18n-attr-es={strings['hero.termsAria'].es} data-i18n-attr-en={strings['hero.termsAria'].en}>
-      {terms.map(t => (
-        <li>
-          <a
-            class="hero-term"
-            href="#mis-proyectos"
-            data-ill={t.ill}
-            style={`--accent: ${t.color}`}
-            data-i18n-es={t.text.es}
-            data-i18n-en={t.text.en}
-          >{t.text.es}</a>
-        </li>
-      ))}
-    </ul>
     <div class="hero-ctas">
       <a class="hero-cta hero-cta--primary" href="#mis-proyectos" data-i18n-es={ctaProjects.es} data-i18n-en={ctaProjects.en}>{ctaProjects.es}</a>
       <a class="hero-cta hero-cta--secondary" href="#contacto" data-i18n-es={ctaContact.es} data-i18n-en={ctaContact.en}>{ctaContact.es}</a>
@@ -120,48 +101,12 @@ const ctaContact = strings['hero.cta.contact'];
     }).observe(hero);
   }
 
-  // Terms light up their illustration (hover, keyboard focus, or first tap on touch)
-  function initHeroTerms() {
-    const hero = document.querySelector<HTMLElement>('.hero');
-    if (!hero) return;
-    const terms = Array.from(hero.querySelectorAll<HTMLAnchorElement>('.hero-term'));
-    const wide = window.matchMedia('(min-width: 768px)');
-    const coarse = window.matchMedia('(pointer: coarse)');
-    const set = (ill: string | null) => {
-      if (ill && wide.matches) hero.setAttribute('data-active', ill);
-      else hero.removeAttribute('data-active');
-    };
-
-    terms.forEach(term => {
-      const ill = term.dataset.ill ?? null;
-      term.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') set(ill); });
-      term.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') set(null); });
-      term.addEventListener('focus', () => { if (term.matches(':focus-visible')) set(ill); });
-      term.addEventListener('blur', () => set(null));
-      // Touch: the first tap activates, a second tap on the same term follows the link
-      term.addEventListener('click', e => {
-        if (!coarse.matches || !wide.matches) return;
-        if (hero.getAttribute('data-active') !== ill) {
-          e.preventDefault();
-          set(ill);
-        }
-      });
-    });
-
-    document.addEventListener('pointerdown', e => {
-      if (!(e.target as Element).closest('.hero-term')) set(null);
-    });
-    wide.addEventListener('change', () => set(null));
-  }
-
   initTitleScramble();
   initHeroVisibility();
-  initHeroTerms();
   document.addEventListener('astro:after-swap', () => {
     initTitleScramble();
     initHeroVisibility();
-    initHeroTerms();
-  });
+    });
 </script>
 
 <style>
@@ -199,8 +144,8 @@ const ctaContact = strings['hero.cta.contact'];
   .hero-content {
     position: absolute;
     z-index: 4;
-    left: 8vw;
-    top: 38vh;
+    left: 14vw;
+    top: 46vh;
     transform: translateY(-50%);
     max-width: 40vw;
     text-align: left;
@@ -236,39 +181,6 @@ const ctaContact = strings['hero.cta.contact'];
     text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
     opacity: 0;
     animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
-  }
-
-  .hero-terms {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 20px;
-    list-style: none;
-    margin: 16px 0 0;
-    padding: 0;
-    font-size: clamp(14px, 1.05vw, 22px);
-    opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
-  }
-
-  .hero-term {
-    color: #fff;
-    font-weight: 600;
-    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
-    text-decoration: underline;
-    text-decoration-color: var(--accent);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 6px;
-    border-radius: 4px;
-    transition: text-decoration-color 0.3s ease-out;
-  }
-
-  .hero-term:hover {
-    color: #fff;
-  }
-
-  .hero-term:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 4px;
   }
 
   .hero-ctas {
@@ -331,6 +243,7 @@ const ctaContact = strings['hero.cta.contact'];
   /* Tablet */
   @media (max-width: 1279px) {
     .hero-content {
+      top: 38vh;
       left: 6vw;
       max-width: 55vw;
     }
@@ -354,8 +267,7 @@ const ctaContact = strings['hero.cta.contact'];
 
     /* Only the two CTAs are visible up top; title/tagline/terms stay in the DOM for screen readers */
     .hero-title,
-    .hero-tagline,
-    .hero-terms {
+    .hero-tagline {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -392,10 +304,6 @@ const ctaContact = strings['hero.cta.contact'];
       font-size: clamp(28px, 8vh, 40px);
     }
 
-    .hero-terms {
-      margin-top: 10px;
-    }
-
     .hero-ctas {
       margin-top: 10px;
     }
@@ -408,7 +316,6 @@ const ctaContact = strings['hero.cta.contact'];
   @media (prefers-reduced-motion: reduce) {
     .hero-title,
     .hero-tagline,
-    .hero-terms,
     .hero-ctas {
       opacity: 1;
       animation: none;

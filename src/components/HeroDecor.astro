@@ -1,19 +1,17 @@
 ---
 /**
- * The three capabilities that come out of the chip: automation (workflow), machine learning
- * (neural network) and computer vision. The SVGs animate with SMIL, which CSS cannot control,
+ * The capabilities that come out of the chip: machine learning (neural network) and
+ * computer vision. The SVGs animate with SMIL, which CSS cannot control,
  * so they are inlined (after the first paint, to keep them off the LCP path) and paused or
  * resumed from the script below.
  */
-import workflow from '../assets/hero/workflow.svg?raw';
 import neuralNetwork from '../assets/hero/neural-network.svg?raw';
 import computerVision from '../assets/hero/computer-vision.svg?raw';
 
-// Stagger so the three never pulse together: neural network, computer vision, workflow
+// Stagger so they never pulse together: neural network, computer vision
 const illustrations = [
   { id: 'nn', svg: neuralNetwork, delay: 0 },
   { id: 'cv', svg: computerVision, delay: 1200 },
-  { id: 'wf', svg: workflow, delay: 2400 },
 ];
 ---
 
@@ -141,12 +139,6 @@ const illustrations = [
       display: block;
     }
 
-    .ill--wf {
-      left: -3vw;
-      bottom: -10.5vh;
-      width: 36vw;
-    }
-
     .ill--nn {
       right: 4vw;
       top: 13vh;
@@ -160,32 +152,13 @@ const illustrations = [
     }
   }
 
-  /* Tablet: workflow bleeding off the bottom and the neural network up top */
+  /* Tablet: the neural network up top */
   @media (min-width: 768px) and (max-width: 1279px) and (min-height: 500px) {
-    .ill--wf {
-      display: block;
-      left: -3vw;
-      bottom: -10vh;
-      width: 52vw;
-      opacity: 0.6;
-    }
-
     .ill--nn {
       display: block;
       right: 4vw;
       top: 11vh;
       width: 20vw;
-    }
-  }
-
-  /* Mobile: one big workflow behind the chip */
-  @media (max-width: 767px) {
-    .ill--wf {
-      display: block;
-      left: -15vw;
-      bottom: -6vh;
-      width: 130vw;
-      opacity: 0.5;
     }
   }
 
@@ -195,7 +168,6 @@ const illustrations = [
       opacity: 0.45;
     }
 
-    .hero[data-active='wf'] .ill--wf,
     .hero[data-active='nn'] .ill--nn,
     .hero[data-active='cv'] .ill--cv {
       opacity: 1;
@@ -204,7 +176,6 @@ const illustrations = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero[data-active='wf'] .ill--wf,
     .hero[data-active='nn'] .ill--nn,
     .hero[data-active='cv'] .ill--cv {
       transform: none;

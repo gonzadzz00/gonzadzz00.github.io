@@ -1,8 +1,8 @@
 ---
 /**
  * Circuit traces that leave the chip: 16 pins (4 per side), each with its own trace ending in a
- * ring. Five of them plug into the three hero illustrations (three to the workflow, one to the
- * neural network, one to computer vision); the rest wander across the cover as loose nodes.
+ * ring. Two of them plug into the hero illustrations (neural network and computer vision);
+ * the rest wander across the cover as loose nodes.
  *
  * The SVGs are drawn on a 1920 x 1080 reference grid and stretched to the viewport
  * (preserveAspectRatio="none"), so every x/y below maps 1:1 to vw/vh:
@@ -27,24 +27,8 @@ const chipLeft = CHIP.x - CHIP.half; // 1219
 const chipRight = CHIP.x + CHIP.half; // 1469
 
 // ---- Connectors: the traces that plug into the illustrations ----
-// Three separate ports for the workflow, stepping down and to the left (around 35-42vw, 63-72vh)
-const WF_PORTS: Point[] = [
-  [806, 680],
-  [746, 730],
-  [686, 780],
-];
 const NN_RING: Point = [1546, 281];
 const CV_RING: Point = [1546, 886];
-
-// Left side: pins 1-3 are three lanes that never cross (outer pin -> outer lane, and the
-// higher the pin the higher its port). Each one ends on its own port. Pin 0 stays loose.
-const wfPins = PIN_OFFSETS.slice(1).map(o => CHIP.y + o);
-const wfLanes = [950, 1015, 1080];
-const wfTraces = wfPins.map((py, i) => ({
-  d: `M${chipLeft} ${py} H${chipLeft - STUB} H${wfLanes[i]} V${WF_PORTS[i][1]} H${WF_PORTS[i][0]}`,
-  delay: -i * 1.3,
-  duration: 5.2 + i * 0.6,
-}));
 
 // Right side: the outer pins go to the neural network (up) and computer vision (down)
 const nnTrace = {
@@ -74,8 +58,6 @@ function mulberry32(seed: number) {
 // and the scroll button. Everything is on the 1920 x 1080 grid.
 const KEEP_OUT: Array<[number, number, number, number]> = [
   [130, 215, 960, 690], // text block
-  [650, 445, 1215, 810], // workflow connector lanes
-  [-60, 700, 650, 1090], // workflow
   [1520, 120, 1870, 400], // neural network
   [1495, 262, 1560, 440], // neural network connector
   [1520, 730, 1900, 1060], // computer vision
@@ -102,7 +84,7 @@ interface Side {
 }
 const sides: Side[] = [
   { out: [1, 0], from: o => [chipRight, CHIP.y + o], start: o => [chipRight + STUB, CHIP.y + o], skip: [0, 3] },
-  { out: [-1, 0], from: o => [chipLeft, CHIP.y + o], start: o => [chipLeft - STUB, CHIP.y + o], skip: [1, 2, 3] },
+  { out: [-1, 0], from: o => [chipLeft, CHIP.y + o], start: o => [chipLeft - STUB, CHIP.y + o], skip: [0, 1, 2, 3] },
   { out: [0, 1], from: o => [CHIP.x + o, CHIP.y + 60], start: o => [CHIP.x + o, CHIP.y + CHIP.half + STUB], skip: [] },
   { out: [0, -1], from: o => [CHIP.x + o, CHIP.y - 60], start: o => [CHIP.x + o, CHIP.y - CHIP.half - STUB], skip: [] },
 ];
@@ -185,8 +167,39 @@ sides.forEach(side => {
   });
 });
 
+// Left side: the four pins leave the chip as straight runs with two short 45-degree steps (up for
+// the top pair, down for the bottom pair) and then run on to their rings, clearing the text block.
+// Hand-routed and nested (the outer pin steps away first and ends furthest out) so no lane crosses.
+const leftLanes: Array<{ pin: number; x1: number; d1: number; x2: number; d2: number; end: number }> = [
+  { pin: 0, x1: 1120, d1: 90, x2: 900, d2: 87, end: 300 },
+  { pin: 1, x1: 1160, d1: 90, x2: 920, d2: 92, end: 520 },
+  { pin: 2, x1: 1150, d1: 90, x2: 920, d2: 83, end: 380 },
+  { pin: 3, x1: 1110, d1: 90, x2: 900, d2: 83, end: 300 },
+];
+leftLanes.forEach((lane, i) => {
+  const [sx, sy] = sides[1].start(PIN_OFFSETS[lane.pin]);
+  const dir = lane.pin < 2 ? -1 : 1;
+  const y1 = sy + dir * lane.d1;
+  const y2 = y1 + dir * lane.d2;
+  const pts: Point[] = [
+    [sx, sy],
+    [lane.x1, sy],
+    [lane.x1 - lane.d1, y1],
+    [lane.x2, y1],
+    [lane.x2 - lane.d2, y2],
+    [lane.end, y2],
+  ];
+  const f = sides[1].from(PIN_OFFSETS[lane.pin]);
+  loose.push({
+    d: `M${f[0]} ${f[1]} ` + pts.map(([x, y]) => `L${x} ${y}`).join(' '),
+    end: pts[pts.length - 1],
+    pulse: true,
+    delay: -i * 2.1,
+    duration: 6 + i * 0.5,
+  });
+});
+
 const rings = [
-  ...WF_PORTS.map(pos => ({ id: 'wf', pos })),
   { id: 'nn', pos: NN_RING },
   { id: 'cv', pos: CV_RING },
 ];
@@ -218,12 +231,6 @@ const rings = [
 
   <!-- Connectors: plug the chip into the three illustrations -->
   <svg class="traces-svg" viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <g class="trace-group trace-group--wf" data-ill="wf">
-      {wfTraces.map(t => <path class="trace" d={t.d} pathLength="100" />)}
-      {wfTraces.map(t => (
-        <path class="pulse" d={t.d} pathLength="100" style={`animation-delay: ${t.delay}s; animation-duration: ${t.duration}s`} />
-      ))}
-    </g>
     <g class="trace-group trace-group--nn" data-ill="nn">
       <path class="trace" d={nnTrace.d} pathLength="100" />
       <path class="pulse" d={nnTrace.d} pathLength="100" style={`animation-delay: ${nnTrace.delay}s; animation-duration: ${nnTrace.duration}s`} />
@@ -333,7 +340,6 @@ const rings = [
     }
   }
 
-  .trace-ring--wf { --ring: #4de0d6; }
   .trace-ring--nn { --ring: #a78bfa; }
   .trace-ring--cv { --ring: #27b5f0; }
 
@@ -373,14 +379,12 @@ const rings = [
     opacity: 0.25;
   }
 
-  .hero[data-active='wf'] .trace-group--wf,
   .hero[data-active='nn'] .trace-group--nn,
   .hero[data-active='cv'] .trace-group--cv {
     opacity: 1;
     filter: brightness(1.35);
   }
 
-  .hero[data-active='wf'] .trace-ring--wf,
   .hero[data-active='nn'] .trace-ring--nn,
   .hero[data-active='cv'] .trace-ring--cv {
     opacity: 1;
