@@ -93,6 +93,11 @@ const techStackTitle = strings['section.about.techStack'];
 </script>
 
 <style>
+  /* Projects follows right after the tech strip: keep the gap between them tight */
+  #mi-perfil {
+    padding-bottom: var(--space-lg);
+  }
+
   .about-intro {
     margin-bottom: var(--space-2xl);
     display: grid;
@@ -176,7 +181,7 @@ const techStackTitle = strings['section.about.techStack'];
   .tech-badges {
     overflow: hidden;
     margin-top: var(--space-md);
-    padding: var(--space-lg) var(--space-xs);
+    padding: var(--space-lg) var(--space-xs) var(--space-sm);
     margin-left: calc(var(--space-xs) * -1);
     margin-right: calc(var(--space-xs) * -1);
   }

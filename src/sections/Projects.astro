@@ -2,6 +2,7 @@
 import projects from '../data/projects.json';
 import ImageCarousel from '../components/ImageCarousel.astro';
 import uiStrings from '../data/ui-strings.json';
+import workflowArt from '../assets/hero/workflow.svg?url';
 
 const strings: Record<string, { es: string; en: string }> = uiStrings;
 const projectsTitle = strings['section.projects.title'];
@@ -17,14 +18,19 @@ const flowResume = strings['flow.resume'];
 ---
 
 <section id="mis-proyectos" class="section">
-  <h2 class="section-title reveal-title">
-    <i class="fas fa-laptop-code section-icon"></i>
-    <span data-i18n-es={projectsTitle.es} data-i18n-en={projectsTitle.en}>{projectsTitle.es}</span>
-  </h2>
+  <div class="projects-head">
+    <div class="projects-head-text">
+      <h2 class="section-title reveal-title">
+        <i class="fas fa-laptop-code section-icon"></i>
+        <span data-i18n-es={projectsTitle.es} data-i18n-en={projectsTitle.en}>{projectsTitle.es}</span>
+      </h2>
 
-  <p class="projects-intro" data-i18n-es={projectsIntro.es} data-i18n-en={projectsIntro.en}>
-    {projectsIntro.es}
-  </p>
+      <p class="projects-intro" data-i18n-es={projectsIntro.es} data-i18n-en={projectsIntro.en}>
+        {projectsIntro.es}
+      </p>
+    </div>
+    <img class="projects-art" src={workflowArt} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+  </div>
 
   <div class="projects-list reveal-stagger">
     {projects.map((project: any) => (
@@ -448,10 +454,38 @@ const flowResume = strings['flow.resume'];
 </script>
 
 <style>
+  #mis-proyectos {
+    padding-top: var(--space-xl);
+  }
+
+  .projects-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+    align-items: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-2xl);
+  }
+
   .projects-intro {
     max-width: 800px;
-    margin-bottom: var(--space-2xl);
     color: var(--secondary-text);
+  }
+
+  .projects-art {
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @media (max-width: 900px) {
+    .projects-head {
+      grid-template-columns: 1fr;
+    }
+
+    .projects-art {
+      display: none;
+    }
   }
 
   .projects-list {
