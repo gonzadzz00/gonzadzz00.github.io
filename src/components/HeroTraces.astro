@@ -220,7 +220,7 @@ const rings = [
       </g>
     </svg>
     {loose.map(t => (
-      <span class="trace-ring" style={`left: ${toVw(t.end[0])}vw; top: ${toVh(t.end[1])}vh`}></span>
+      <span class="trace-ring" style={`--gx: ${t.end[0]}; --gy: ${t.end[1]}; left: ${toVw(t.end[0])}vw; top: ${toVh(t.end[1])}vh`}></span>
     ))}
   </div>
 
@@ -242,7 +242,7 @@ const rings = [
   </svg>
 
   {rings.map(r => (
-    <span class={`trace-ring trace-ring--${r.id}`} data-ill={r.id} style={`left: ${toVw(r.pos[0])}vw; top: ${toVh(r.pos[1])}vh`}></span>
+    <span class={`trace-ring trace-ring--${r.id}`} data-ill={r.id} style={`--gx: ${r.pos[0]}; --gy: ${r.pos[1]}; left: ${toVw(r.pos[0])}vw; top: ${toVh(r.pos[1])}vh`}></span>
   ))}
 </div>
 
@@ -284,14 +284,14 @@ const rings = [
     animation: hero-drift 22s ease-in-out infinite alternate-reverse;
   }
 
-  /* The long traces only exist on desktop, where the three illustrations are shown */
+  /* The long traces are drawn on desktop and on phones (cropped there, see the phone block below) */
   .traces-loose,
   .traces-svg,
   .trace-ring {
     display: none;
   }
 
-  @media (min-width: 1280px) and (min-height: 500px) {
+  @media ((min-width: 1280px) and (min-height: 500px)), (max-width: 767px) {
     .traces-loose {
       display: block;
       position: absolute;
@@ -398,6 +398,37 @@ const rings = [
   @keyframes hero-drift {
     from { transform: translate3d(0, 0, 0); }
     to { transform: translate3d(-3%, 4%, 0); }
+  }
+
+  /* Phones: the desktop drawing keeps its scale (chip body 50vw = 250 grid units, 0.2vw each) and is
+     anchored on the chip, so the traces run off the screen edges but stay connected to the pins.
+     Fainter than on desktop so they never fight the text. */
+  @media (max-width: 767px) {
+    .traces-loose {
+      -webkit-mask-image: none;
+      mask-image: none;
+      opacity: 0.55;
+    }
+
+    .traces-svg {
+      left: calc(50vw - 1344 * 0.2vw);
+      top: auto;
+      bottom: calc(16vh + 25vw - 583 * 0.2vw);
+      width: calc(1920 * 0.2vw);
+      height: calc(1080 * 0.2vw);
+    }
+
+    .traces-svg:not(.traces-svg--pins) {
+      opacity: 0.5;
+    }
+
+    .trace-ring {
+      left: calc(50vw + (var(--gx) - 1344) * 0.2vw);
+      top: auto;
+      bottom: calc(16vh + 25vw + (497 - var(--gy)) * 0.2vw);
+      transform: translate(-50%, 50%);
+      opacity: 0.4;
+    }
   }
 
   /* Orbs: keep the glow on the chip when the layout stacks */
