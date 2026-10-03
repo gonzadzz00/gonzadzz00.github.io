@@ -6,12 +6,12 @@
   },
   "bio": [
     {
-      "es": "¡Hola! Soy Gonzalo, Data & AI Engineer de Argentina, actualmente cursando la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario.",
-      "en": "Hi! I'm Gonzalo, a Data & AI Engineer from Argentina, currently completing my Bachelor's in Data Science at the Universidad del Gran Rosario."
+      "es": "Mi nombre es Gonzalo Díaz y soy Data & AI Engineer, actualmente cursando la Licenciatura en Ciencia de Datos en la Universidad del Gran Rosario y especializándome en Arquitectura de Agentes de IA en la Universidad Torcuato Di Tella.",
+      "en": "My name is Gonzalo Díaz and I'm a Data & AI Engineer, currently pursuing a Bachelor's in Data Science at the Universidad del Gran Rosario and specializing in AI Agent Architecture at the Universidad Torcuato Di Tella."
     },
     {
-      "es": "Diseño agentes inteligentes y automatizo flujos de datos, combinando enfoque analítico con mentalidad de ingeniería para llevar soluciones a producción.",
-      "en": "I design intelligent agents and automate data flows, combining analytical rigor with an engineering mindset to bring solutions into production."
+      "es": "Mi experiencia se centra en el diseño e implementación de soluciones de IA, automatización de flujos de datos y, especialmente, en llevar soluciones desde la etapa de desarrollo hasta su puesta en producción.",
+      "en": "My experience focuses on designing and implementing AI solutions, automating data flows and, above all, taking solutions from development all the way to production."
     }
   ],
   "profileImage": "/images/foto-contacto.webp",
